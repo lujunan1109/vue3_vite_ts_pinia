@@ -3,24 +3,24 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-07 10:20:30
+ * @LastEditTime: 2022-06-07 14:48:44
 -->
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+import { RouterView } from 'vue-router';
 </script>
 
- <template>
-   <RouterView/>
- </template>
-
+<template>
+    <RouterView />
+</template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    width: 100%;
+    height: 100%;
 }
 </style>

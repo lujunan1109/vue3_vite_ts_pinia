@@ -7,29 +7,22 @@
 -->
 
 <template>
-<div class="pinia">
-  {{ userStore.name }}
-</div>
-<button @click.self="updateName"> 点击修改名字</button>
+    <div class="pinia">
+        {{ userStore.name }}
+    </div>
+    <button @click.self="updateName">点击修改名字</button>
 </template>
 
 <script lang="ts" setup>
-import { 
-  defineComponent, 
-  getCurrentInstance, 
-  reactive, 
-  ref,
-  
-} from 'vue';
+import { defineComponent, getCurrentInstance, reactive, ref } from 'vue';
 
-import { useUserStore } from "@/store/user";
+import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
 
 const updateName = () => {
-  userStore.updateName("lew")
-}
-
+    userStore.updateName('lew');
+};
 </script>
 
 <style lang="scss" scoped>

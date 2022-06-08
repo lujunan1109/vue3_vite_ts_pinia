@@ -3,15 +3,20 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-07 10:35:30
+ * @LastEditTime: 2022-06-07 17:52:30
  */
 import { defineConfig } from 'vite';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vue from '@vitejs/plugin-vue';
 import * as path from 'path';
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import {
   createStyleImportPlugin,
   ElementPlusResolve,
 } from 'vite-plugin-style-import'
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,22 +28,30 @@ export default defineConfig({
     },
     plugins: [
       vue(),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
       createStyleImportPlugin({
-          resolves:[
-              ElementPlusResolve()
-          ],
-          libs: [
-              // 如果没有你需要的resolve，可以在lib内直接写，也可以给我们提供PR
-              {
-                  libraryName: 'element-plus',
-                  esModule: true,
-                  resolveStyle: (name) => {
-                      return `element-plus/lib/theme-chalk/${name}.css`
-                  },
-                  ensureStyleFile: true // 忽略文件是否存在, 导入不存在的CSS文件时防止错误。
-              },
-          ],
-      })
+        resolves: [ElementPlusResolve()],
+        libs: [
+          {
+            libraryName: 'element-plus',
+            esModule: true,
+            resolveStyle: (name: string) => {
+              return `element-plus/theme-chalk/${name}.css`
+            },
+          },
+        ]
+      }),
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+        iconDirs: [path.resolve(process.cwd(), 'src/icons')],
+        // 指定symbolId格式
+        symbolId: 'icon-[dir]-[name]'
+      }),
   ],
     server: {
         port: 8080, //启动端口

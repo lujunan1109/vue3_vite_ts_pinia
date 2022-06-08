@@ -6,26 +6,25 @@
  * @LastEditTime: 2022-06-07 09:51:38
  */
 module.exports = {
-  parser: 'vue-eslint-parser',
+    parser: 'vue-eslint-parser',
 
-  parserOptions: {
-      parser: '@typescript-eslint/parser',
-      ecmaVersion: 2020,
-      sourceType: 'module',
-      ecmaFeatures: {
-          jsx: true
-      }
-  },
+    parserOptions: {
+        parser: '@typescript-eslint/parser',
+        ecmaVersion: 2020,
+        sourceType: 'module',
+        ecmaFeatures: {
+            jsx: true,
+        },
+    },
 
-  extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'plugin:prettier/recommended'
-],
+    extends: [
+        'plugin:vue/vue3-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
+        'plugin:prettier/recommended',
+    ],
 
-  rules: {
-      // override/add rules settings here, such as:
-  }
+    rules: {
+        // override/add rules settings here, such as:
+    },
 };
-
