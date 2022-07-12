@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:14:58
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-07 17:20:07
+ * @LastEditTime: 2022-06-30 09:05:38
 -->
 
 <template>
@@ -25,6 +25,7 @@
                         placeholder="请输入用户名/手机账户/邮箱"
                         :prefix-icon="User"
                         clearable
+                        autocomplete="on"
                     />
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
@@ -33,6 +34,7 @@
                         placeholder="请输入密码"
                         :prefix-icon="Lock"
                         clearable
+                        autocomplete="on"
                     />
                 </el-form-item>
                 <el-form-item>
@@ -51,7 +53,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from 'vue';
-import SvgIcon from '@/components/SvgIcon.vue';
+import { useRouter } from 'vue-router';
 import type { FormInstance, FormRules } from 'element-plus';
 import { Lock, User } from '@element-plus/icons-vue';
 const iconsName = ref('login-bg');
@@ -60,6 +62,8 @@ const ruleForm = reactive({
     name: '',
     password: '',
 });
+
+const $router = useRouter();
 
 const rules = reactive<FormRules>({
     name: [
@@ -83,6 +87,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     await formEl.validate((valid, fields) => {
         console.log(valid, fields);
         if (valid) {
+            $router.push({ path: '/home' });
             console.log('submit!');
         } else {
             console.log('error submit!', fields);
@@ -114,6 +119,7 @@ $mainColor: #409eff;
 
     .user-login {
         font-weight: 500;
+        padding-bottom: 20px;
     }
 
     .center-form {
@@ -123,7 +129,7 @@ $mainColor: #409eff;
         transform: translate(-50%, -50%);
         width: 400px;
         height: 250px;
-        padding: 40px 20px 30px 20px;
+        padding: 20px 20px 30px 20px;
         background-color: #fff;
         box-shadow: 10px 10px 10px #ccc;
         border-radius: 4px;

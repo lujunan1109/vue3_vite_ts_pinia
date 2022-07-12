@@ -3,12 +3,13 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-07 17:52:30
+ * @LastEditTime: 2022-07-06 08:58:56
  */
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vue from '@vitejs/plugin-vue';
 import * as path from 'path';
+// 按需配置elment-plus
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'

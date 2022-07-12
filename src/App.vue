@@ -1,19 +1,20 @@
 <!--
- * @Description: 单页面
+ * @Description: SPA
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-07 14:48:44
+ * @LastEditTime: 2022-06-27 10:51:45
 -->
-<script setup lang="ts">
-import { RouterView } from 'vue-router';
-</script>
 
 <template>
-    <RouterView />
+    <router-view v-slot="{ Component }" class="router-view">
+        <transition name="fade-transform" mode="out-in">
+            <component :is="Component" />
+        </transition>
+    </router-view>
 </template>
 
-<style>
+<style lang="scss" scoped>
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -22,5 +23,18 @@ import { RouterView } from 'vue-router';
     color: #2c3e50;
     width: 100%;
     height: 100%;
+}
+
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+    transition: all 0.5s;
+}
+.fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
 }
 </style>
