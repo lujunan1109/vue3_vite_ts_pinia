@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-27 14:53:16
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-18 16:42:30
+ * @LastEditTime: 2022-07-18 16:55:18
  * @Description: 工具函数
  */
 
@@ -65,31 +65,21 @@ export function useLocalStorage(key: string, initialValue: any) {
 }
 
 /**
- * @description: 转换成时分秒的函数
+ * @description: 时间戳转换成时分秒的函数
  * @return {*}
  */
 export const timeFormatter = (val: number): string | number => {
     if (val < 60) {
-        return zeroNumber(val);
+        return zeroNum(val);
     } else if (val >= 60 && val <= 60 * 60) {
         const min: number = Math.floor((val % (60 * 60)) / 60);
         const second = (val % (60 * 60)) % 60;
-        return `${zeroNumber(min)}-${zeroNumber(second)}`;
+        return `${zeroNum(min)}-${zeroNum(second)}`;
     } else {
         const hour = Math.floor(val / (60 * 60));
         const min = Math.floor((val % (60 * 60)) / 60);
         const second = (val % (60 * 60)) % 60;
 
-        return `${zeroNumber(hour)} - ${zeroNumber(min)}-${zeroNumber(second)}`;
+        return `${zeroNum(hour)} - ${zeroNum(min)}-${zeroNum(second)}`;
     }
-};
-
-/**
- * @description: 小于10补零
- * @param {number} val
- * @return {*}
- */
-export const zeroNumber = (val: number) => {
-    if (val >= 10) return val;
-    return `0${val}`;
 };

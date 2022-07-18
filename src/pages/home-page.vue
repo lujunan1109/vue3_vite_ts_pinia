@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:14:22
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-18 16:35:25
+ * @LastEditTime: 2022-07-18 17:43:41
 -->
 
 <template>
@@ -11,8 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick } from 'process';
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 const domRef = ref(null);
 nextTick(() => {
     console.log(domRef.value);
