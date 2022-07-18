@@ -1,0 +1,60 @@
+// {
+//   "compilerOptions": {
+//     "typeRoots": [
+//       "node_modules",
+//       "src/types"
+//    ],
+//     "target": "esnext",
+//     "useDefineForClassFields": true,
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "strict": true,
+//     "jsx": "preserve",
+//     "sourceMap": true,
+//     "resolveJsonModule": true,
+//     "esModuleInterop": true,
+//     "lib": ["esnext", "dom"],
+//     "baseUrl": "./",
+//     "paths":{
+//       "@": ["src"],
+//       "@/*": ["src/*"],
+//     }
+//   },
+//   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+// }
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@images/*": ["./src/assets/images/*"],
+      "@styles/*": ["./src/assets/styles/*"],
+      "@views/*": ["./src/views/*"],
+      "@store/*": ["./src/store/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@layout/*": ["./src/layout/*"],
+      "@service/*": ["./src/service/*"],
+      "@api/*": ["./src/api/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@directives/*": ["./src/directives/*"],
+      "@components/*": ["./src/components/*"]
+    },
+    "types": ["element-plus/global"],
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true, // 跳过第三方依赖的类型检查
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "**/dist", "**/__tests__/**/*"]
+}
+
