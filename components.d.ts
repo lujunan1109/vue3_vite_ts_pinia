@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     RenderFunc: typeof import('./src/components/RenderFunc.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScreenShowPage: typeof import('./src/components/ScreenShowPage.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
     UsePinia: typeof import('./src/components/usePinia.vue')['default']
     UseVueuse: typeof import('./src/components/useVueuse.vue')['default']

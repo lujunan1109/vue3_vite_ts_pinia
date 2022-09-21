@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-12 18:07:18
+ * @LastEditTime: 2022-09-19 15:00:44
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -38,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
             title: '树',
             keepAlive: false,
             requireAuth: true,
-            index: 4,
+            index: 3,
         },
         component: () => import('@/pages/tree-page.vue'),
     },
@@ -48,10 +48,32 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '404',
             keepAlive: false,
-            requireAuth: false,
-            index: 3,
+            requireAuth: true,
+            index: 4,
         },
         component: () => import('@/pages/404-page.vue'),
+    },
+    {
+        path: '/keep',
+        name: 'Keep',
+        meta: {
+            title: 'keep',
+            keepAlive: false,
+            requireAuth: true,
+            index: 5,
+        },
+        component: () => import('@/pages/keep-home.vue'),
+    },
+    {
+        path: '/life',
+        name: 'Life',
+        meta: {
+            title: 'life',
+            keepAlive: false,
+            requireAuth: true,
+            index: 6,
+        },
+        component: () => import('@/pages/life-page.vue'),
     },
     {
         path: '/:pathMatch(.*)',

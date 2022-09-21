@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-27 14:53:16
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-18 16:55:18
+ * @LastEditTime: 2022-08-02 10:51:40
  * @Description: 工具函数
  */
 
@@ -82,4 +82,34 @@ export const timeFormatter = (val: number): string | number => {
 
         return `${zeroNum(hour)} - ${zeroNum(min)}-${zeroNum(second)}`;
     }
+};
+
+/**
+ * @description: 12345678.789->123,456,78.789
+ * @param {string} s
+ * @return {string} result
+ */
+export const equalAmount = function (s: string) {
+    // 前置判断
+    if (typeof s === 'number') s = s + '';
+    if (typeof s !== 'string') {
+        return new Error('请输入字符串类型数据');
+    }
+    const splitArray = s.includes('.') ? s.split('.') : ['', '']; // 修复无小数判断
+    const reverseArr = s.includes('.')
+        ? splitArray[0].split('').reverse()
+        : s.split('').reverse();
+    let concatStr = '';
+    let result = '';
+    for (let index = 0; index < reverseArr.length; index++) {
+        if (index % 3 === 0 && index !== 0 && index !== reverseArr.length - 1) {
+            concatStr += ',' + reverseArr[index];
+        } else {
+            concatStr += reverseArr[index];
+        }
+    }
+    result = splitArray[1]
+        ? concatStr.split('').reverse().join('') + '.' + splitArray[1]
+        : concatStr.split('').reverse().join('');
+    return result;
 };

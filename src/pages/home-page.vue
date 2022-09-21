@@ -2,21 +2,23 @@
  * @Author: lujunan
  * @Date: 2022-07-12 18:03:34
  * @LastEditors: lujunan
- * @LastEditTime: 2022-08-01 17:23:34
+ * @LastEditTime: 2022-08-08 14:30:06
  * @Description: 放大镜
 -->
 <script lang="ts" setup name="GoodsImage">
 import { ref } from 'vue';
 import { useMouseInElement, useLocalStorage } from '@vueuse/core';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
+import { useRouter } from 'vue-router';
 const target = ref(null);
-// isOutside是否进入指定区域 进入为false 否则为true
+// isOutside是否进入指定区域 进入区域为false离开为false
 // elementX 鼠标X位置
 // elementY 鼠标Y位置
 const { isOutside, elementX, elementY } = useMouseInElement(target); // useMouseInElement(指定的区域)鼠标进入的位置
 
 useLocalStorage('key', 'value');
 
+const $router = useRouter();
 const images = ref(
     'https://images.mepai.me/app/works/178221/2022-07-14/w_62d01aa163e45/062d01aa163f41.jpg!1200w.jpg',
 );
@@ -33,6 +35,20 @@ const position = computed(() => {
         y,
     };
 });
+
+// 处理初始化出现移动遮罩和放大区域的问题
+let i = ref(0);
+let flag = ref(false);
+
+watch(isOutside, (pre, cur) => {
+    console.log(pre, cur, '监听', isOutside.value);
+    if (i.value === 0) {
+        flag.value = false;
+        i.value++;
+    } else {
+        flag.value = cur;
+    }
+});
 </script>
 
 <template>
@@ -42,7 +58,8 @@ const position = computed(() => {
     <div class="goods-image">
         <!-- 显示在右侧的放大之后的区域 -->
         <div
-            v-show="!isOutside"
+            v-show="flag"
+            ref="largeRef"
             class="large"
             :style="[
                 {
@@ -55,14 +72,28 @@ const position = computed(() => {
         ></div>
 
         <div ref="target" class="middle">
-            <img :src="images" alt="" />
+            <img
+                :src="images"
+                alt=""
+                @error="() => require('@assets/logo.png')"
+            />
             <!-- 移动遮罩 -->
             <div
-                v-show="!isOutside"
+                v-show="flag"
+                ref="layerRef"
                 class="layer"
                 :style="{ left: position.x + 'px', top: position.y + 'px' }"
             ></div>
         </div>
+        <el-button
+            @click="
+                () =>
+                    $router.push({
+                        name: 'keep',
+                        params: { username: 'eduardo' },
+                    })
+            "
+        ></el-button>
     </div>
 </template>
 
