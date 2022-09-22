@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2022-09-19 15:00:44
+ * @LastEditTime: 2022-09-21 17:34:56
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -30,17 +30,6 @@ const routes: Array<RouteRecordRaw> = [
             index: 2,
         },
         component: () => import('@/pages/home-page.vue'),
-    },
-    {
-        path: '/tree',
-        name: 'Tree',
-        meta: {
-            title: '树',
-            keepAlive: false,
-            requireAuth: true,
-            index: 3,
-        },
-        component: () => import('@/pages/tree-page.vue'),
     },
     {
         path: '/404',
