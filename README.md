@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-17 16:58:13
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-18 16:54:12
+ * @LastEditTime: 2022-12-09 16:45:14
  * @Description: Do not edit
 -->
 
@@ -13,4 +13,7 @@ https://blog.csdn.net/weixin_43554584/article/details/113839778
 vite + ele plus 配置：https://blog.csdn.net/filerat/article/details/123750595
 
 更新计划：
-1. 引入axios
+1. axios
+2. node  koa / express
+3. theme switch
+4. 骨架屏 / 全局loading

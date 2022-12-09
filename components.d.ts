@@ -5,24 +5,20 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    CustomVmodel: typeof import('./src/components/CustomVmodel.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElProgress: typeof import('element-plus/es')['ElProgress']
-    GetMounse: typeof import('./src/components/GetMounse.vue')['default']
-    GetMounseP: typeof import('./src/components/getMounseP.vue')['default']
     GetMouse: typeof import('./src/components/GetMouse.vue')['default']
-    GetMousePOsition: typeof import('./src/components/getMousePOsition.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    RenderFunc: typeof import('./src/components/RenderFunc.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ScreenShowPage: typeof import('./src/components/ScreenShowPage.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
+    Swiper: typeof import('./src/components/dbComponents/Swiper.vue')['default']
+    SwiperCom: typeof import('./src/components/dbComponents/SwiperCom.vue')['default']
+    SwiperMovie: typeof import('./src/components/dbComponents/SwiperMovie.vue')['default']
+    SwiperMpvie: typeof import('./src/components/dbComponents/SwiperMpvie.vue')['default']
     UsePinia: typeof import('./src/components/usePinia.vue')['default']
-    UseVueuse: typeof import('./src/components/useVueuse.vue')['default']
   }
 }
 

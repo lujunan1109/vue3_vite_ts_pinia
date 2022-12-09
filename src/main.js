@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-14 11:28:23
+ * @LastEditTime: 2022-12-06 10:40:41
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -31,8 +31,4 @@ for (const [key, val] of Object.entries(directives)) {
 
 console.log(directives, 'directives');
 
-app.use(store)
-    .use(router)
-    .component('SvgIcon', SvgIcon)
-    .use(animate)
-    .mount('#app');
+app.use(store).use(router).component('SvgIcon', SvgIcon).mount('#app');

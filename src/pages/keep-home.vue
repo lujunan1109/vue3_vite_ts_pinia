@@ -2,24 +2,22 @@
  * @Author: lujunan
  * @Date: 2022-08-08 11:34:41
  * @LastEditors: lujunan
- * @LastEditTime: 2022-08-25 09:54:13
+ * @LastEditTime: 2022-12-06 10:47:26
  * @Description: Do not edit
 -->
 
 <template>
-    <div>
-        <div id="myscrollbox" ref="el">
-            <div
-                v-for="(items, inx) in colorList"
-                :key="inx"
-                class="w-h"
-                :style="[{ background: items.color }]"
-            ></div>
-        </div>
+    <div id="myscrollbox" ref="el">
+        <div
+            v-for="(items, inx) in colorList"
+            :key="inx"
+            class="w-h"
+            :style="[{ background: items.color }]"
+        ></div>
     </div>
 </template>
 
-<script lang="ts" setup name="Keep">
+<script lang="ts" setup>
 import { reactive, ref, onUnmounted, onMounted } from 'vue';
 
 const colorList = reactive([

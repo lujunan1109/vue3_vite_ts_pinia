@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-27 09:58:13
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-29 17:51:47
+ * @LastEditTime: 2022-12-08 10:07:51
  * @Description: Do not edit
 -->
 <template>
@@ -17,6 +17,7 @@
         <HelloWorld :msg="msgProps" />
         <button @click="num1++">num1+1</button>
         <span>展示相加之后的数据{{ addNum }}</span>
+        <img src="@/assets/404.png" />
     </div>
 </template>
 
@@ -25,6 +26,8 @@ import { ref } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 import HelloWorld from '../components/HelloWorld.vue';
 import useAdd from '../components/useHook';
+// import notFoundImg from '@/assets/404.png';
+
 const msgProps = ref('子组件');
 const num1 = ref(1);
 const num2 = ref(2);

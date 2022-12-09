@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-06 08:58:56
+ * @LastEditTime: 2022-12-09 17:00:14
  */
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -63,7 +63,7 @@ export default defineConfig({
         // 设置 https 代理
         proxy: {
             '/api': {
-                target: 'your https address',
+                target: 'https://img9.doubanio.com/',
                 changeOrigin: true,
                 rewrite: (path: string) => path.replace(/^\/api/, '')
             }

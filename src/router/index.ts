@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2022-09-21 17:34:56
+ * @LastEditTime: 2022-12-08 11:10:21
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -63,6 +63,17 @@ const routes: Array<RouteRecordRaw> = [
             index: 6,
         },
         component: () => import('@/pages/life-page.vue'),
+    },
+    {
+        path: '/douban',
+        name: 'Douban',
+        meta: {
+            title: '豆瓣',
+            keepAlive: false,
+            requireAuth: true,
+            index: 7,
+        },
+        component: () => import('@/pages/douban-page.vue'),
     },
     {
         path: '/:pathMatch(.*)',

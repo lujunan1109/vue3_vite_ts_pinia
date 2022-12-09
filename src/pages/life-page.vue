@@ -2,41 +2,139 @@
  * @Author: lujunan
  * @Date: 2022-09-19 14:47:40
  * @LastEditors: lujunan
- * @LastEditTime: 2022-09-19 17:27:33
+ * @LastEditTime: 2022-12-09 14:26:09
  * @Description: 记录人生的每一个格子的demo code
 -->
 <template>
     <div>
-        <div>{{ percentVal }} %</div>
-        <ul>
-            <li
-                v-for="(day, inx) in lifeData"
-                :key="inx"
-                :class="day ? 'active-style' : 'default-style'"
-            ></li>
-        </ul>
+        <div class="form__age--content">
+            <el-form
+                ref="formRef"
+                :model="numberValidateForm"
+                label-width="100px"
+                class="demo-ruleForm"
+            >
+                <el-form-item
+                    label="age"
+                    prop="age"
+                    :rules="[
+                        { required: true, message: 'age is required' },
+                        { type: 'number', message: 'age must be a number' },
+                        { validator: checkAge, trigger: 'blur' },
+                    ]"
+                >
+                    <el-input
+                        v-model.number="numberValidateForm.age"
+                        type="text"
+                        autocomplete="off"
+                    />
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm(formRef)"
+                        >Submit</el-button
+                    >
+                    <el-button @click="resetForm(formRef)">Reset</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+
+        <div v-show="lifeData.length !== 0" class="show__life--percent">
+            <div>{{ percentVal }} %</div>
+            <ul>
+                <li
+                    v-for="(day, inx) in lifeData"
+                    :key="inx"
+                    :class="day ? 'active-style' : 'default-style'"
+                ></li>
+            </ul>
+        </div>
         <div>今年还剩余{{ leftDay }}天</div>
+        <SwiperComVue ref="swiperEl" @swiperPageNum="swiperPageNum" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, getCurrentInstance, onMounted } from 'vue';
+import { FormInstance } from 'element-plus';
+import SwiperComVue from '../components/dbComponents/SwiperCom.vue';
+
 // 2022中国男性的平均寿命
 const chinaAverageManAge = 74;
-
-const percentVal = ref(percent(26));
 const leftDay = leftDays();
-const lifeData = reactive(setLifeLoseDay(26));
+let lifeData: any = ref([]);
+const formRef = ref<FormInstance>();
 
-function percent(old) {
+const { ctx: that } = getCurrentInstance() as any;
+console.log(that);
+
+const numberValidateForm = reactive({
+    age: '',
+});
+const percentVal = ref('0');
+
+// form表单的逻辑
+const submitForm = (formEl: FormInstance | undefined) => {
+    if (!formEl) return;
+    formEl.validate((valid) => {
+        if (valid) {
+            lifeData.value = setLifeLoseDay(numberValidateForm.age);
+            percentVal.value = percent(numberValidateForm.age);
+            console.log(percentVal.value, 'percentVal.value');
+        } else {
+            console.log('error submit!');
+            return false;
+        }
+    });
+};
+
+// rules
+const checkAge = (rule: any, value: any, callback: any) => {
+    if (!value) {
+        return callback(new Error('Please input the age'));
+    }
+    setTimeout(() => {
+        if (!Number.isInteger(value)) {
+            callback(new Error('Please input digits'));
+        } else {
+            if (value < 0) {
+                callback(new Error('Age must be greater than 0'));
+            } else {
+                callback();
+            }
+        }
+    }, 1000);
+};
+
+const swiperEl = ref(null);
+
+// const triggerChildFunc = () => {
+//         swiperEl.value.prevClick();
+// };
+
+const swiperPageNum = (pageNum) => {
+    console.log('pageNum', pageNum);
+};
+
+const resetForm = (formEl: FormInstance | undefined) => {
+    if (!formEl) return;
+    formEl.resetFields();
+};
+
+function percent(old): string {
+    old = old > chinaAverageManAge ? chinaAverageManAge : old;
     const number = (old / chinaAverageManAge) * 100;
     return number.toFixed(2);
 }
 
-function setLifeLoseDay(old) {
+function setLifeLoseDay(old): Array<number> {
+    old = old > chinaAverageManAge ? chinaAverageManAge : old;
     return new Array(old)
         .fill(1)
-        .concat(new Array(chinaAverageManAge - old).fill(0));
+        .concat(
+            new Array(
+                chinaAverageManAge - old < 0 ? 0 : chinaAverageManAge - old,
+            ).fill(0),
+        );
 }
 
 // 某个年份的天数
@@ -77,6 +175,12 @@ function leftDays() {
 </script>
 
 <style lang="scss" scoped>
+.form__age--content {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+}
 .active-style {
     background: red;
 }

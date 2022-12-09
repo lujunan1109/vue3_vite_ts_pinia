@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-07-12 18:03:34
  * @LastEditors: lujunan
- * @LastEditTime: 2022-08-08 14:30:06
+ * @LastEditTime: 2022-12-06 16:36:05
  * @Description: 放大镜
 -->
 <script lang="ts" setup name="GoodsImage">
@@ -55,45 +55,60 @@ watch(isOutside, (pre, cur) => {
     <!-- {{isOutside}}
    X: {{elementX}}
    Y: {{elementY}} -->
-    <div class="goods-image">
-        <!-- 显示在右侧的放大之后的区域 -->
-        <div
-            v-show="flag"
-            ref="largeRef"
-            class="large"
-            :style="[
-                {
-                    backgroundImage: 'url(' + images + ')',
-                    backgroundPosition: `-${position.x * 2}px -${
-                        position.y * 2
-                    }px`,
-                },
-            ]"
-        ></div>
-
-        <div ref="target" class="middle">
-            <img
-                :src="images"
-                alt=""
-                @error="() => require('@assets/logo.png')"
-            />
-            <!-- 移动遮罩 -->
+    <div>
+        <div class="goods-image">
+            <!-- 显示在右侧的放大之后的区域 -->
             <div
                 v-show="flag"
-                ref="layerRef"
-                class="layer"
-                :style="{ left: position.x + 'px', top: position.y + 'px' }"
+                ref="largeRef"
+                class="large"
+                :style="[
+                    {
+                        backgroundImage: 'url(' + images + ')',
+                        backgroundPosition: `-${position.x * 2}px -${
+                            position.y * 2
+                        }px`,
+                    },
+                ]"
             ></div>
+
+            <div ref="target" class="middle">
+                <img
+                    :src="images"
+                    alt=""
+                    @error="() => require('@assets/logo.png')"
+                />
+                <!-- 移动遮罩 -->
+                <div
+                    v-show="flag"
+                    ref="layerRef"
+                    class="layer"
+                    :style="{ left: position.x + 'px', top: position.y + 'px' }"
+                ></div>
+            </div>
         </div>
-        <el-button
-            @click="
-                () =>
-                    $router.push({
-                        name: 'keep',
-                        params: { username: 'eduardo' },
-                    })
-            "
-        ></el-button>
+        <div class="footer__btn">
+            <el-button
+                @click="
+                    () =>
+                        $router.push({
+                            name: 'Keep',
+                            params: { username: 'eduardo' },
+                        })
+                "
+                >GO TO KEEP PAGE</el-button
+            >
+            <el-button
+                @click="
+                    () =>
+                        $router.push({
+                            name: 'Life',
+                            query: { username: 'eduardo' },
+                        })
+                "
+                >GO TO KEEP LIFE</el-button
+            >
+        </div>
     </div>
 </template>
 

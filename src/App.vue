@@ -3,15 +3,21 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2022-08-08 14:19:46
+ * @LastEditTime: 2022-12-09 14:53:26
 -->
 
 <template>
-    <router-view v-slot="{ Component }" class="router-view">
-        <transition name="fade-transform" mode="out-in">
-            <component :is="Component" />
-        </transition>
-    </router-view>
+    <div>
+        <router-view v-slot="{ Component }" class="router-view">
+            <KeepAlive max="5">
+                <transition name="fade-transform" mode="out-in">
+                    <div>
+                        <component :is="Component" />
+                    </div>
+                </transition>
+            </KeepAlive>
+        </router-view>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -37,4 +43,5 @@
     opacity: 0;
     transform: translateX(30px);
 }
+
 </style>
