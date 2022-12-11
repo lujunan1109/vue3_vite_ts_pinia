@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-page-swiper">
         <div class="douban__header">
             <ul>
                 <li v-for="(item, inx) in doubanList" :key="inx">{{ item }}</li>
@@ -32,23 +32,30 @@
             </div>
         </div>
         <div class="main-content">
-            <div class="light-swiper">
-                <div class="swiper-wrap">
-                    <div class="swipe-item">
-                        <img
-                            src="https://cdn.wwads.cn/creatives/5hucrGYPcEv4uS4F4BivwcCWmJBGHPWcT6jwnzjW.png"
-                            alt="123"
-                        />
+            <div style="width: 675px; height: auto">
+                <div class="light-swiper">
+                    <div class="swiper-wrap">
+                        <div
+                            v-for="(item, inx) in swiperItemsData"
+                            :key="inx"
+                            class="swipe-item"
+                        >
+                            <img
+                                :src="imagesUrl"
+                                :alt="item.alt"
+                                width="675"
+                                height="300"
+                            />
+                        </div>
                     </div>
-                    <div class="swipe-item">2</div>
-                    <div class="swipe-item">3</div>
-                    <div class="swipe-item">4</div>
                 </div>
+                <div class="article-content"></div>
             </div>
+
             <div class="aside">
                 <div class="history-rank">
                     <p class="start-rank">
-                        历史前10球星
+                        历史得分前10球星
                         <router-link :to="{ path: '/more-rank' }">
                             <span class="more-rank">更多排名</span></router-link
                         >
@@ -69,6 +76,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref, watch, onUnmounted, onMounted } from 'vue';
+import imagesUrl from '../assets/jianglin.webp';
 import Swiper from 'light-swiper';
 
 const doubanList = [
@@ -84,22 +92,66 @@ const doubanList = [
     '豆品',
 ];
 
+const swiperItemsData = [
+    {
+        ul: '',
+        alt: '降临',
+    },
+    {
+        ul: 'https://www.bilibili.com/video/BV1TZ4y1W7TG/?spm_id_from=333.999.0.0&vd_source=7a03cc8d77e2f6176697825736b7141a',
+        alt: '降临',
+    },
+    {
+        ul: 'https://www.bilibili.com/video/BV1TZ4y1W7TG/?spm_id_from=333.999.0.0&vd_source=7a03cc8d77e2f6176697825736b7141a',
+        alt: '降临',
+    },
+    {
+        ul: 'https://www.bilibili.com/video/BV1TZ4y1W7TG/?spm_id_from=333.999.0.0&vd_source=7a03cc8d77e2f6176697825736b7141a',
+        alt: '降临',
+    },
+];
+
 const hisStarData = [
     {
         id: 1,
-        name: '迈克尔.乔丹',
+        name: '勒布朗.詹姆斯',
+        url: 'https://www.bilibili.com/video/BV1TZ4y1W7TG/?spm_id_from=333.999.0.0&vd_source=7a03cc8d77e2f6176697825736b7141a',
     },
     {
         id: 2,
-        name: '勒布朗.詹姆斯',
+        name: '卡里姆.阿布杜尔-贾巴尔',
     },
     {
         id: 3,
-        name: '布莱恩特.科比',
+        name: '卡尔.马龙',
     },
     {
         id: 4,
-        name: '史蒂芬.库里',
+        name: '科比.布莱恩特',
+    },
+    {
+        id: 5,
+        name: '迈克尔.乔丹',
+    },
+    {
+        id: 6,
+        name: '德克.诺维斯基',
+    },
+    {
+        id: 7,
+        name: '维尔特.张伯伦',
+    },
+    {
+        id: 8,
+        name: '朱丽叶斯.欧文',
+    },
+    {
+        id: 9,
+        name: '沙奎.奥尼尔',
+    },
+    {
+        id: 10,
+        name: '摩西.马龙',
     },
 ];
 
@@ -151,6 +203,9 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
+.home-page-swiper {
+    overflow-y: auto;
+}
 .douban__header {
     width: 100%;
     height: 30px;
@@ -209,15 +264,20 @@ onUnmounted(() => {
     justify-content: space-between;
     .light-swiper {
         width: 675px;
-        height: 200px;
+        height: 300px;
         overflow: hidden;
         .swiper-wrap {
             .swipe-item {
-                height: 200px;
+                height: 300px;
                 object-fit: contain;
                 box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
             }
         }
+    }
+    .article-content {
+        width: 100%;
+        height: 700px;
+        background: yellow;
     }
     .aside {
         width: 300px;
@@ -249,8 +309,10 @@ onUnmounted(() => {
                 -webkit-box-orient: vertical;
                 padding: 10px 0;
                 border-bottom: 1px solid #eaeaea;
-                p {
+                p:hover {
                     cursor: pointer;
+                    font-weight: bold;
+                    color: #37a;
                 }
             }
         }

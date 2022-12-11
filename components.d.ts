@@ -14,10 +14,8 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
-    Swiper: typeof import('./src/components/dbComponents/Swiper.vue')['default']
     SwiperCom: typeof import('./src/components/dbComponents/SwiperCom.vue')['default']
     SwiperMovie: typeof import('./src/components/dbComponents/SwiperMovie.vue')['default']
-    SwiperMpvie: typeof import('./src/components/dbComponents/SwiperMpvie.vue')['default']
     UsePinia: typeof import('./src/components/usePinia.vue')['default']
   }
 }
