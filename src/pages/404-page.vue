@@ -25,7 +25,7 @@
 import { ref } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 import HelloWorld from '../components/HelloWorld.vue';
-import useAdd from '../components/useHook';
+import { useAdd } from '../components/useHook';
 // import notFoundImg from '@/assets/404.png';
 
 const msgProps = ref('子组件');

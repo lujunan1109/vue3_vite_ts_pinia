@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2022-12-06 10:40:41
+ * @LastEditTime: 2023-08-08 22:07:28
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -13,7 +13,6 @@ import SvgIcon from '@/components/SvgIcon.vue';
 import 'virtual:svg-icons-register'; // 注册 svg 注册脚本
 import 'normalize.css';
 import '@/assets/iconfont/iconfont.css';
-import animate from 'animate.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
 // 创建vue实例
@@ -30,5 +29,12 @@ for (const [key, val] of Object.entries(directives)) {
 }
 
 console.log(directives, 'directives');
+// 定义全局变量和函数
+app.config.globalProperties.$env = 'dev';
+app.config.globalProperties.$filter = {
+    format<T>(str: T) {
+        return `我爱前端-${str}`;
+    },
+};
 
 app.use(store).use(router).component('SvgIcon', SvgIcon).mount('#app');
