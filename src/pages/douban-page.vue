@@ -1,10 +1,5 @@
 <template>
     <div class="home-page-swiper">
-        <div class="douban__header">
-            <ul>
-                <li v-for="(item, inx) in doubanList" :key="inx">{{ item }}</li>
-            </ul>
-        </div>
         <div class="db__content">
             <div class="db__nav">
                 <div class="nav__logo"></div>
@@ -14,7 +9,6 @@
                         placeholder="搜索人物/视频"
                     ></el-input>
                 </div>
-                <div class="movie__annual"></div>
             </div>
             <div class="db__wrapper"></div>
         </div>

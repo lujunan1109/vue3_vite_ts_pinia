@@ -1,10 +1,3 @@
-<!--
- * @Author: lujunan
- * @Date: 2022-09-19 14:47:40
- * @LastEditors: lujunan
- * @LastEditTime: 2022-12-09 14:26:09
- * @Description: 记录人生的每一个格子的demo code
--->
 <template>
     <div>
         <div class="form__age--content">
@@ -49,14 +42,12 @@
             </ul>
         </div>
         <div>今年还剩余{{ leftDay }}天</div>
-        <SwiperComVue ref="swiperEl" @swiperPageNum="swiperPageNum" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, getCurrentInstance, onMounted } from 'vue';
 import { FormInstance } from 'element-plus';
-import SwiperComVue from '../components/dbComponents/SwiperCom.vue';
 
 // 2022中国男性的平均寿命
 const chinaAverageManAge = 74;
@@ -110,10 +101,6 @@ const swiperEl = ref(null);
 // const triggerChildFunc = () => {
 //         swiperEl.value.prevClick();
 // };
-
-const swiperPageNum = (pageNum) => {
-    console.log('pageNum', pageNum);
-};
 
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return;

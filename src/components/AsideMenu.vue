@@ -3,70 +3,33 @@
 </template>
 
 <script lang="ts" setup>
+import { useRouter } from 'vue-router';
+const $router = useRouter();
 interface Tree {
     label: string;
+    path: string;
     children?: Tree[];
 }
 
 const handleNodeClick = (data: Tree) => {
     console.log(data);
+    if (!data.children) {
+        $router.push({ path: data.path });
+    }
 };
 
 const data: Tree[] = [
     {
-        label: 'Level one 1',
-        children: [
-            {
-                label: 'Level two 1-1',
-                children: [
-                    {
-                        label: 'Level three 1-1-1',
-                    },
-                ],
-            },
-        ],
+        label: '首页',
+        path: '/home',
     },
     {
-        label: 'Level one 2',
-        children: [
-            {
-                label: 'Level two 2-1',
-                children: [
-                    {
-                        label: 'Level three 2-1-1',
-                    },
-                ],
-            },
-            {
-                label: 'Level two 2-2',
-                children: [
-                    {
-                        label: 'Level three 2-2-1',
-                    },
-                ],
-            },
-        ],
+        label: '豆瓣',
+        path: '/douban',
     },
     {
-        label: 'Level one 3',
-        children: [
-            {
-                label: 'Level two 3-1',
-                children: [
-                    {
-                        label: 'Level three 3-1-1',
-                    },
-                ],
-            },
-            {
-                label: 'Level two 3-2',
-                children: [
-                    {
-                        label: 'Level three 3-2-1',
-                    },
-                ],
-            },
-        ],
+        label: '人生',
+        path: '/life',
     },
 ];
 

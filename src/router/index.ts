@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2022-12-08 11:10:21
+ * @LastEditTime: 2023-08-09 20:37:14
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -20,61 +20,69 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import('@/pages/login-page.vue'),
     },
+
     {
-        path: '/home',
-        name: 'Index',
-        meta: {
-            title: '首页',
-            keepAlive: false,
-            requireAuth: true,
-            index: 2,
-        },
-        component: () => import('@/pages/home-page.vue'),
+        path: '/redirect',
+        component: () => import('@/pages/layout.vue'),
+        children: [
+            {
+                path: '/home',
+                name: 'Index',
+                meta: {
+                    title: '首页',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 2,
+                },
+                component: () => import('@/pages/home-page.vue'),
+            },
+            {
+                path: '/404',
+                name: '404',
+                meta: {
+                    title: '404',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 4,
+                },
+                component: () => import('@/pages/404-page.vue'),
+            },
+            {
+                path: '/keep',
+                name: 'Keep',
+                meta: {
+                    title: 'keep',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 5,
+                },
+                component: () => import('@/pages/keep-home.vue'),
+            },
+            {
+                path: '/life',
+                name: 'Life',
+                meta: {
+                    title: 'life',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 6,
+                },
+                component: () => import('@/pages/life-page.vue'),
+            },
+            {
+                path: '/douban',
+                name: 'Douban',
+                meta: {
+                    title: '豆瓣',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 7,
+                },
+                component: () => import('@/pages/douban-page.vue'),
+            },
+        ],
     },
-    {
-        path: '/404',
-        name: '404',
-        meta: {
-            title: '404',
-            keepAlive: false,
-            requireAuth: true,
-            index: 4,
-        },
-        component: () => import('@/pages/404-page.vue'),
-    },
-    {
-        path: '/keep',
-        name: 'Keep',
-        meta: {
-            title: 'keep',
-            keepAlive: false,
-            requireAuth: true,
-            index: 5,
-        },
-        component: () => import('@/pages/keep-home.vue'),
-    },
-    {
-        path: '/life',
-        name: 'Life',
-        meta: {
-            title: 'life',
-            keepAlive: false,
-            requireAuth: true,
-            index: 6,
-        },
-        component: () => import('@/pages/life-page.vue'),
-    },
-    {
-        path: '/douban',
-        name: 'Douban',
-        meta: {
-            title: '豆瓣',
-            keepAlive: false,
-            requireAuth: true,
-            index: 7,
-        },
-        component: () => import('@/pages/douban-page.vue'),
-    },
+
     {
         path: '/:pathMatch(.*)',
         redirect: '/login',
