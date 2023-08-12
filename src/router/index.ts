@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-09 20:37:14
+ * @LastEditTime: 2023-08-13 00:42:43
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
 
     {
         path: '/redirect',
-        component: () => import('@/pages/layout.vue'),
+        component: () => import('@/pages/layout-page.vue'),
         children: [
             {
                 path: '/home',

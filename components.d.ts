@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AsideHeader: typeof import('./src/components/AsideHeader.vue')['default']
     AsideMenu: typeof import('./src/components/AsideMenu.vue')['default']
     ChildCom: typeof import('./src/components/customForm/childCom.vue')['default']
     CustomForm: typeof import('./src/components/customForm/index.vue')['default']
@@ -14,8 +15,15 @@ declare module '@vue/runtime-core' {
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
+    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
+    ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTree: typeof import('element-plus/es')['ElTree']
     GetMouse: typeof import('./src/components/GetMouse.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

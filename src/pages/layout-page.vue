@@ -6,9 +6,9 @@
                     <AsideMenu />
                 </el-aside>
                 <div class="common-layout-main">
-                    <el-header class="common-layout-header"
-                        >头部组件展示</el-header
-                    >
+                    <el-header class="common-layout-header">
+                        <AsideHeader />
+                    </el-header>
                     <div class="com-style-pub">
                         <router-view v-slot="{ Component }" class="router-view">
                             <KeepAlive max="5">
@@ -28,6 +28,7 @@
 
 <script lang="ts" setup>
 import AsideMenu from '../components/AsideMenu.vue';
+import AsideHeader from '../components/AsideHeader.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -68,7 +69,7 @@ import AsideMenu from '../components/AsideMenu.vue';
     }
 
     &-aside {
-        width: 200px;
+        width: auto;
         background: #aaa;
     }
 
