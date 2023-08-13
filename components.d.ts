@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElTag: typeof import('element-plus/es')['ElTag']
     ElTree: typeof import('element-plus/es')['ElTree']
     GetMouse: typeof import('./src/components/GetMouse.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

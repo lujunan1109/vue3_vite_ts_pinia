@@ -10,9 +10,9 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "baseUrl": ".",
+    "baseUrl": ".",// 解析非相对模块的基础地址，默认是当前目录
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"],// 路径映射，相对于baseUrl
       "@assets/*": ["./src/assets/*"],
       "@images/*": ["./src/assets/images/*"],
       "@styles/*": ["./src/assets/styles/*"],

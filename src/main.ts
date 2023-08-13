@@ -18,6 +18,15 @@ import * as directives from './utils/directive.js';
 // 创建vue实例
 const app = createApp(App);
 
+import zh from 'element-plus/es/locale/lang/zh-cn';
+
+import ElementPlus from 'element-plus';
+app.use(ElementPlus, {
+    locale: zh,
+    size: 'small',
+    zIndex: 3000,
+});
+
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);
 }

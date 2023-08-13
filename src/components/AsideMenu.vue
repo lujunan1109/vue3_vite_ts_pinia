@@ -1,31 +1,25 @@
 <template>
-    <div>
+    <div class="slider-wrap">
         <el-menu
             :collapse="menueWidthState"
-            active-text-color="#ffd04b"
-            background-color="#545c64"
+            active-text-color="#359ef3"
+            background-color="#304156"
             class="el-menu-vertical-demo"
             default-active="/home"
             text-color="#fff"
             @select="handleClick"
         >
-            <el-sub-menu index="1">
+            <el-menu-item index="/home">
+                <el-icon><House /></el-icon>
                 <template #title>
-                    <el-icon><location /></el-icon>
-                    <span>Navigator One</span>
+                    <span>首页</span>
                 </template>
-                <el-menu-item index="/home">
-                    <template #title>
-                        <el-icon><location /></el-icon>
-                        <span>首页</span>
-                    </template>
-                </el-menu-item>
-            </el-sub-menu>
+            </el-menu-item>
 
             <el-sub-menu index="2">
                 <template #title>
-                    <el-icon><location /></el-icon>
-                    <span>Navigator One</span>
+                    <el-icon><Calendar /></el-icon>
+                    <span>组件开发</span>
                 </template>
                 <el-menu-item index="/life">
                     <template #title>
@@ -37,8 +31,8 @@
 
             <el-sub-menu index="3">
                 <template #title>
-                    <el-icon><location /></el-icon>
-                    <span>Navigator One</span>
+                    <el-icon><Platform /></el-icon>
+                    <span>功能展示</span>
                 </template>
                 <el-menu-item index="/404">
                     <template #title>
@@ -50,8 +44,8 @@
 
             <el-sub-menu index="4">
                 <template #title>
-                    <el-icon><location /></el-icon>
-                    <span>Navigator One</span>
+                    <el-icon><Operation /></el-icon>
+                    <span>测试菜单</span>
                 </template>
                 <el-menu-item-group>
                     <template #title><span>Group One</span></template>
@@ -89,6 +83,6 @@ const handleClick = (path: string, keyPath: string[]) => {
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
-    min-height: 400px;
+    min-height: 100vh;
 }
 </style>

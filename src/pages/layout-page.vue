@@ -58,6 +58,7 @@ import AsideHeader from '../components/AsideHeader.vue';
 .common-layout {
     width: 100%;
     height: 100%;
+    background-color: #f2f3f5;
     .common-flex {
         display: flex;
     }
@@ -65,12 +66,12 @@ import AsideHeader from '../components/AsideHeader.vue';
     &-header {
         width: 100%;
         height: 80px;
-        background-color: #ccc;
+        background-color: #fff;
     }
 
     &-aside {
         width: auto;
-        background: #aaa;
+        background: #304156;
     }
 
     &-main {
