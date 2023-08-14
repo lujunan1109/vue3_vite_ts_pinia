@@ -9,7 +9,7 @@
     </div>
     <div class="keep-alive-tag">
         <el-tag
-            v-for="tag in tags"
+            v-for="tag in menuTags"
             :key="tag.name"
             class="mx-1"
             closable
@@ -27,39 +27,39 @@
 import { ref } from 'vue';
 import { useMenuStore } from '@/store/menu';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
+const $router = useRouter();
 const menuStore = useMenuStore();
-let { menueWidthState } = storeToRefs(menuStore);
+let { menueWidthState, menuTags } = storeToRefs(menuStore);
 const isCollapse = ref(menueWidthState);
 const handleClick = (state) => {
     isCollapse.value = state;
-    menueWidthState = state;
+    menueWidthState.value = state;
 };
-
-const tags = ref([
-    { name: '首页 1', type: '', checked: 'plain' },
-    { name: '人生 2', type: '', checked: 'plain' },
-    { name: '404 2', type: '', checked: 'plain' },
-]);
 
 type Tag = {
     name: string;
     type: string;
     checked: string;
+    path: string;
 };
 
 const handleClose = (tag: Tag) => {
-    tags.value.splice(tags.value.indexOf(tag), 1);
+    menuTags.value.splice(menuTags.value.indexOf(tag), 1);
 };
 
 const clickHandle = (tag: Tag) => {
-    // reset
-    tags.value = tags.value.map((t) => {
+    // 重置选中效果
+    menuTags.value = menuTags.value.map((t) => {
         t.checked = 'plain';
         return t;
     });
-    const inx = tags.value.findIndex((t) => t.name === tag.name);
-    tags.value[inx].checked = 'Dark';
+    // 跳转到选中页面
+    $router.push({ path: tag.path });
+    // 选中效果
+    const inx = menuTags.value.findIndex((t) => t.name === tag.name);
+    menuTags.value[inx].checked = 'Dark';
 };
 </script>
 <style scoped lang="scss">

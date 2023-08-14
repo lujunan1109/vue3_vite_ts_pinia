@@ -44,6 +44,19 @@
 
             <el-sub-menu index="4">
                 <template #title>
+                    <el-icon><Platform /></el-icon>
+                    <span>权限管理</span>
+                </template>
+                <el-menu-item index="/douban">
+                    <template #title>
+                        <el-icon><Operation /></el-icon>
+                        <span>豆瓣</span>
+                    </template>
+                </el-menu-item>
+            </el-sub-menu>
+
+            <!-- <el-sub-menu index="5">
+                <template #title>
                     <el-icon><Operation /></el-icon>
                     <span>测试菜单</span>
                 </template>
@@ -59,7 +72,7 @@
                     <template #title><span>item four</span></template>
                     <el-menu-item index="1-4-1">item one</el-menu-item>
                 </el-sub-menu>
-            </el-sub-menu>
+            </el-sub-menu> -->
         </el-menu>
     </div>
 </template>

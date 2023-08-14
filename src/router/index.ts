@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-13 00:42:43
+ * @LastEditTime: 2023-08-14 21:04:01
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -49,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/keep',
-                name: 'Keep',
+                name: '健身',
                 meta: {
                     title: 'keep',
                     keepAlive: false,
@@ -60,9 +60,9 @@ const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/life',
-                name: 'Life',
+                name: 'life',
                 meta: {
-                    title: 'life',
+                    title: '人生',
                     keepAlive: false,
                     requireAuth: true,
                     index: 6,
