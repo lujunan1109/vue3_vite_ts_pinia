@@ -6,6 +6,17 @@
         <el-icon v-show="!isCollapse" size="normal" @click="handleClick(true)"
             ><Fold
         /></el-icon>
+
+        <el-breadcrumb :separator-icon="ArrowRight">
+            <el-breadcrumb-item :to="{ path: '/home' }">
+                首页
+            </el-breadcrumb-item>
+            <el-breadcrumb-item
+                v-if="breadMenu.path !== '/home'"
+                :to="{ path: breadMenu.path }"
+                >{{ breadMenu.label }}</el-breadcrumb-item
+            >
+        </el-breadcrumb>
     </div>
     <div class="keep-alive-tag">
         <el-tag
@@ -28,10 +39,11 @@ import { ref } from 'vue';
 import { useMenuStore } from '@/store/menu';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { ArrowRight } from '@element-plus/icons-vue';
 
 const $router = useRouter();
 const menuStore = useMenuStore();
-let { menueWidthState, menuTags } = storeToRefs(menuStore);
+let { menueWidthState, menuTags, breadMenu } = storeToRefs(menuStore);
 const isCollapse = ref(menueWidthState);
 const handleClick = (state) => {
     isCollapse.value = state;
@@ -59,18 +71,37 @@ const clickHandle = (tag: Tag) => {
     $router.push({ path: tag.path });
     // 选中效果
     const inx = menuTags.value.findIndex((t) => t.name === tag.name);
-    menuTags.value[inx].checked = 'Dark';
+    menuTags.value[inx].checked = 'dark';
 };
+
+// 监听router获取面包屑数据
+type Node = {
+    path: string;
+    label: string;
+};
+const currentPathNode = ref<Node>({ path: '', label: '' });
+watch(
+    () => $router.currentRoute.value,
+    (toValue) => {
+        if (toValue.path !== '/home') {
+            currentPathNode.value = {
+                path: toValue.path,
+                label: toValue.meta.title as string,
+            };
+        }
+    },
+    { immediate: true, deep: true },
+);
 </script>
 <style scoped lang="scss">
 .icon-block {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: #fff;
     height: 45px;
     & .el-icon {
         cursor: pointer;
+        padding-right: 20px;
     }
 }
 .keep-alive-tag {

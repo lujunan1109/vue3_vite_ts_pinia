@@ -68,7 +68,7 @@ watch(
         // 设置tag高亮
         const inx = menuTags.value.findIndex((e) => e.path === toValue.path);
         if (inx > -1) {
-            menuTags.value[inx].checked = 'Dark';
+            menuTags.value[inx].checked = 'dark';
         }
     },
     { immediate: true, deep: true },

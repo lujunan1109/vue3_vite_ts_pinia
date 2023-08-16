@@ -3,12 +3,12 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-14 21:04:01
+ * @LastEditTime: 2023-08-16 21:22:11
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
     {
         path: '/login',
         name: 'Login',
@@ -27,12 +27,13 @@ const routes: Array<RouteRecordRaw> = [
         children: [
             {
                 path: '/home',
-                name: 'Index',
+                name: '首页',
                 meta: {
                     title: '首页',
                     keepAlive: false,
                     requireAuth: true,
                     index: 2,
+                    icon: 'House',
                 },
                 component: () => import('@/pages/home-page.vue'),
             },
@@ -44,6 +45,7 @@ const routes: Array<RouteRecordRaw> = [
                     keepAlive: false,
                     requireAuth: true,
                     index: 4,
+                    icon: 'WarningFilled',
                 },
                 component: () => import('@/pages/404-page.vue'),
             },
@@ -51,32 +53,35 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/keep',
                 name: '健身',
                 meta: {
-                    title: 'keep',
+                    title: '健身',
                     keepAlive: false,
                     requireAuth: true,
                     index: 5,
+                    icon: 'Basketball',
                 },
                 component: () => import('@/pages/keep-home.vue'),
             },
             {
                 path: '/life',
-                name: 'life',
+                name: '人生',
                 meta: {
                     title: '人生',
                     keepAlive: false,
                     requireAuth: true,
                     index: 6,
+                    icon: 'Avatar',
                 },
                 component: () => import('@/pages/life-page.vue'),
             },
             {
                 path: '/douban',
-                name: 'Douban',
+                name: '豆瓣',
                 meta: {
                     title: '豆瓣',
                     keepAlive: false,
                     requireAuth: true,
                     index: 7,
+                    icon: 'HelpFilled',
                 },
                 component: () => import('@/pages/douban-page.vue'),
             },
@@ -89,7 +94,7 @@ const routes: Array<RouteRecordRaw> = [
     },
 ];
 
-const router = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     routes,
 });
@@ -102,5 +107,3 @@ router.beforeEach((to, from) => {
     // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
     // else next()
 });
-
-export default router;

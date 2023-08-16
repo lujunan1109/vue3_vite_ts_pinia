@@ -3,12 +3,12 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-08 22:07:28
+ * @LastEditTime: 2023-08-16 21:06:27
  */
 import { createApp } from 'vue';
 import App from './App.vue';
 import store from './store';
-import router from './router';
+import { router } from './router';
 import SvgIcon from '@/components/SvgIcon.vue';
 import 'virtual:svg-icons-register'; // 注册 svg 注册脚本
 import 'normalize.css';

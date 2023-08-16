@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-13 22:43:27
+ * @LastEditTime: 2023-08-15 20:47:16
  */
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
@@ -18,7 +18,6 @@ import {
     createStyleImportPlugin,
     ElementPlusResolve,
 } from 'vite-plugin-style-import';
-import { fileURLToPath, URL } from "url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -45,8 +44,7 @@ export default defineConfig({
     resolve: {
         //设置别名
         alias: {
-            // '@': path.resolve(__dirname, 'src'),
-            "@": fileURLToPath(new URL("./src", import.meta.url)),
+            '@': path.resolve(__dirname, 'src'),
         },
     },
     plugins: [
