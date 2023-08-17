@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     ChildCom: typeof import('./src/components/customForm/childCom.vue')['default']
     CustomForm: typeof import('./src/components/customForm/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']

@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-16 21:06:27
+ * @LastEditTime: 2023-08-16 21:39:38
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -46,4 +46,7 @@ app.config.globalProperties.$filter = {
     },
 };
 
-app.use(store).use(router).component('SvgIcon', SvgIcon).mount('#app');
+app.use(store as any)
+    .use(router as any)
+    .component('SvgIcon', SvgIcon)
+    .mount('#app');
