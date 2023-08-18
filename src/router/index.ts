@@ -38,18 +38,6 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/pages/home-page.vue'),
             },
             {
-                path: '/404',
-                name: '404',
-                meta: {
-                    title: '404',
-                    keepAlive: false,
-                    requireAuth: true,
-                    index: 4,
-                    icon: 'WarningFilled',
-                },
-                component: () => import('@/pages/404-page.vue'),
-            },
-            {
                 path: '/keep',
                 name: '健身',
                 meta: {
@@ -59,7 +47,7 @@ export const routes: Array<RouteRecordRaw> = [
                     index: 5,
                     icon: 'Basketball',
                 },
-                component: () => import('@/pages/keep-home.vue'),
+                component: () => import('@/pages/keep-page.vue'),
             },
             {
                 path: '/life',
@@ -75,9 +63,9 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/douban',
-                name: '豆瓣',
+                name: '测试',
                 meta: {
-                    title: '豆瓣',
+                    title: '测试',
                     keepAlive: false,
                     requireAuth: true,
                     index: 7,
@@ -91,6 +79,19 @@ export const routes: Array<RouteRecordRaw> = [
     {
         path: '/:pathMatch(.*)',
         redirect: '/login',
+    },
+
+    {
+        path: '/404',
+        name: '404',
+        meta: {
+            title: '404',
+            keepAlive: false,
+            requireAuth: true,
+            index: 4,
+            icon: 'WarningFilled',
+        },
+        component: () => import('@/pages/404-page.vue'),
     },
 ];
 

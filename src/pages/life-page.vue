@@ -46,17 +46,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, getCurrentInstance, onMounted } from 'vue';
+import {
+    ref,
+    reactive,
+    getCurrentInstance,
+    ComponentInternalInstance,
+} from 'vue';
 import { FormInstance } from 'element-plus';
 
 // 2022中国男性的平均寿命
 const chinaAverageManAge = 74;
+// 本年度剩余天数
 const leftDay = leftDays();
-let lifeData: any = ref([]);
+// 0,1组成的数组，代表人类的生命值
+const lifeData = ref([]);
+// 表单实例
 const formRef = ref<FormInstance>();
-
-const { ctx: that } = getCurrentInstance() as any;
-console.log(that);
+// 当前组件的实例
+const that = getCurrentInstance() as ComponentInternalInstance;
+console.log(that, '当前组件的实例');
 
 const numberValidateForm = reactive({
     age: '',
@@ -79,7 +87,11 @@ const submitForm = (formEl: FormInstance | undefined) => {
 };
 
 // rules
-const checkAge = (rule: any, value: any, callback: any) => {
+const checkAge = (
+    rule: Array<string | number> | undefined,
+    value: number,
+    callback: (error?: Error) => void,
+) => {
     if (!value) {
         return callback(new Error('Please input the age'));
     }
@@ -97,22 +109,21 @@ const checkAge = (rule: any, value: any, callback: any) => {
 };
 
 const swiperEl = ref(null);
-
-// const triggerChildFunc = () => {
-//         swiperEl.value.prevClick();
-// };
+console.log(swiperEl, 'swiperEl');
 
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.resetFields();
 };
 
+// 设置百分比
 function percent(old): string {
     old = old > chinaAverageManAge ? chinaAverageManAge : old;
     const number = (old / chinaAverageManAge) * 100;
     return number.toFixed(2);
 }
 
+// 设置数组内容
 function setLifeLoseDay(old): Array<number> {
     old = old > chinaAverageManAge ? chinaAverageManAge : old;
     return new Array(old)
@@ -148,7 +159,18 @@ const allDays = (year: number) => {
     return sum_day;
 };
 
-// 剩下的天数
+// 未来10年，每年天数
+const futureTenYearsDays = (year: number) => {
+    let sum_day = [];
+    for (let i = 0; i < 10; i++) {
+        sum_day.push(allDays(year + i));
+    }
+    return sum_day;
+};
+// 我们的荣耀不在过去也不是此刻，而是未来。
+console.log(futureTenYearsDays(new Date().getFullYear()), '未来10年，每年天数');
+
+// 本年度剩下的天数
 function leftDays() {
     // 今天的标准时间
     let today = new Date();

@@ -40,8 +40,8 @@ const textInner = () => {
     const hours = d.getHours();
     if (18 <= hours && hours <= 24) return '晚上好';
     if (12 <= hours && hours <= 18) return '中午好';
-    if (18 <= hours && hours <= 24) return '晚上好';
-    if (24 <= hours && hours <= 6) return '凌晨好';
+    if (6 <= hours && hours <= 12) return '早上好';
+    if (0 <= hours && hours <= 6) return '凌晨好';
 };
 </script>
 
@@ -64,7 +64,7 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     justify-content: space-around;
     align-items: center;
     padding: 20px;
-    height: 80px;
+    height: 40px;
     & .avatar-data {
         display: flex;
         align-items: center;
@@ -72,13 +72,13 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
 }
 
 .mid-content {
-    height: 400px;
+    height: 300px;
     padding: 20px;
     margin: 20px 0;
 }
 
 .footer-content {
-    height: 400px;
+    height: 300px;
     padding: 20px;
 }
 
