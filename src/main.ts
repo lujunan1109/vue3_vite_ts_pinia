@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-16 21:39:38
+ * @LastEditTime: 2023-08-20 18:17:34
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -16,16 +16,7 @@ import '@/assets/iconfont/iconfont.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
 // 创建vue实例
-const app = createApp(App);
-
-import zh from 'element-plus/es/locale/lang/zh-cn';
-
-import ElementPlus from 'element-plus';
-app.use(ElementPlus, {
-    locale: zh,
-    size: 'small',
-    zIndex: 3000,
-});
+export const app = createApp(App);
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);

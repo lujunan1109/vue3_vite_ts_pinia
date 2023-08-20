@@ -1,22 +1,53 @@
 <template>
     <div class="icon-block">
-        <el-icon v-show="isCollapse" size="normal" @click="handleClick(false)"
-            ><Expand
-        /></el-icon>
-        <el-icon v-show="!isCollapse" size="normal" @click="handleClick(true)"
-            ><Fold
-        /></el-icon>
+        <div>
+            <el-icon
+                v-show="isCollapse"
+                size="normal"
+                @click="handleClick(false)"
+                ><Expand
+            /></el-icon>
+            <el-icon
+                v-show="!isCollapse"
+                size="normal"
+                @click="handleClick(true)"
+                ><Fold
+            /></el-icon>
 
-        <el-breadcrumb :separator-icon="ArrowRight">
-            <el-breadcrumb-item :to="{ path: '/home' }">
-                首页
-            </el-breadcrumb-item>
-            <el-breadcrumb-item
-                v-if="breadMenu.path !== '/home'"
-                :to="{ path: breadMenu.path }"
-                >{{ breadMenu.label }}</el-breadcrumb-item
-            >
-        </el-breadcrumb>
+            <el-breadcrumb :separator-icon="ArrowRight">
+                <el-breadcrumb-item :to="{ path: '/home' }">
+                    首页
+                </el-breadcrumb-item>
+                <el-breadcrumb-item
+                    v-if="breadMenu.path !== '/home'"
+                    :to="{ path: breadMenu.path }"
+                    >{{ breadMenu.label }}</el-breadcrumb-item
+                >
+            </el-breadcrumb>
+        </div>
+
+        <div>
+            <el-icon><FullScreen /></el-icon>
+
+            <el-dropdown @command="handleCommand">
+                <span class="el-dropdown-link">
+                    <el-icon><Switch /></el-icon>
+                </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item command="default"
+                            >默认</el-dropdown-item
+                        >
+                        <el-dropdown-item command="large"
+                            >大型</el-dropdown-item
+                        >
+                        <el-dropdown-item command="small"
+                            >小型</el-dropdown-item
+                        >
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+        </div>
     </div>
     <div class="keep-alive-tag">
         <el-tag
@@ -35,13 +66,16 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, nextTick, inject } from 'vue';
 import { useMenuStore } from '@/store/menu';
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ArrowRight } from '@element-plus/icons-vue';
+import { useGlobalStore } from '@/store/global';
+import { app } from '@/main';
 
 const $router = useRouter();
+const $route = useRoute();
 const menuStore = useMenuStore();
 let { menueWidthState, menuTags, breadMenu } = storeToRefs(menuStore);
 const isCollapse = ref(menueWidthState);
@@ -92,6 +126,15 @@ watch(
     },
     { immediate: true, deep: true },
 );
+
+// 设置ui尺寸
+type Func = () => void;
+const reloadPage: Func = inject('reloadPage');
+const globalStore = useGlobalStore();
+const handleCommand = (data) => {
+    globalStore.setUiSize(data);
+    reloadPage();
+};
 </script>
 <style scoped lang="scss">
 .icon-block {
@@ -99,6 +142,7 @@ watch(
     align-items: center;
     background-color: #fff;
     height: 45px;
+    justify-content: space-between;
     & .el-icon {
         cursor: pointer;
         padding-right: 20px;

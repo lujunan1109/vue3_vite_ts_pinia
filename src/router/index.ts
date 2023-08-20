@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-16 21:22:11
+ * @LastEditTime: 2023-08-20 16:32:23
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -63,15 +63,29 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/douban',
-                name: '测试',
+                name: '豆瓣',
                 meta: {
-                    title: '测试',
+                    title: '豆瓣',
                     keepAlive: false,
                     requireAuth: true,
                     index: 7,
                     icon: 'HelpFilled',
                 },
                 component: () => import('@/pages/douban-page.vue'),
+                children: [
+                    {
+                        path: '/test',
+                        name: '测试',
+                        meta: {
+                            title: '测试',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 71,
+                            icon: 'HelpFilled',
+                        },
+                        component: () => import('@/pages/test-page.vue'),
+                    },
+                ],
             },
         ],
     },

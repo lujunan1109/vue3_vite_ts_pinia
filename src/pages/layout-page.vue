@@ -10,11 +10,20 @@
                         <AsideHeader />
                     </el-header>
                     <div class="com-style-pub">
-                        <router-view v-slot="{ Component }" class="router-view">
-                            <Transition name="slide-right">
-                                <component :is="Component" />
-                            </Transition>
-                        </router-view>
+                        <el-config-provider
+                            :size="size"
+                            :z-index="zIndex"
+                            :locale="zhCn"
+                        >
+                            <router-view
+                                v-slot="{ Component }"
+                                class="router-view"
+                            >
+                                <Transition name="slide-right">
+                                    <component :is="Component" />
+                                </Transition>
+                            </router-view>
+                        </el-config-provider>
                     </div>
                 </div>
             </el-container>
@@ -31,17 +40,10 @@ import { useMenuStore } from '@/store/menu';
 const menuStore = useMenuStore();
 let { menuTags } = storeToRefs(menuStore);
 
-import { watch } from 'vue';
+import { watch, provide, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
 const $router = useRouter();
-
-type Tag = {
-    name: string;
-    type: string;
-    checked: string;
-    path: string;
-};
 
 // 监听并且menuTags赋值
 watch(
@@ -69,6 +71,19 @@ watch(
     },
     { immediate: true, deep: true },
 );
+
+import type { EpPropMergeType } from 'element-plus/es/utils/vue/props/types';
+// 修改elment-plus的尺寸/语言/组件层级
+import { ElConfigProvider } from 'element-plus';
+import { useGlobalStore } from '@/store/global';
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
+// 你ts是真滴恶心啊
+const size = storeToRefs(useGlobalStore()).size.value as EpPropMergeType<
+    StringConstructor,
+    '' | 'small' | 'default' | 'large',
+    never
+>;
+const zIndex = 3000;
 </script>
 
 <style lang="scss" scoped>
@@ -120,6 +135,7 @@ watch(
     &-aside {
         width: auto;
         background: #304156;
+        overflow-x: hidden;
     }
 
     &-main {

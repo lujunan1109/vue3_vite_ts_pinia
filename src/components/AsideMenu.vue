@@ -8,56 +8,34 @@
             default-active="/home"
             text-color="#fff"
         >
-            <el-menu-item
-                v-for="items in renderMenu"
-                :key="items.path"
-                :index="items.path"
-                @click="handleClick(items)"
-            >
-                <el-icon><component :is="items.meta.icon" /></el-icon>
-                <template #title>
-                    <span>{{ items.name }}</span>
-                </template>
-            </el-menu-item>
-
-            <!-- <el-sub-menu index="组件开发">
-                <template #title>
-                    <el-icon><Calendar /></el-icon>
-                    <span>组件开发</span>
-                </template>
-                <el-menu-item index="人生">
+            <div v-for="items in renderMenu" :key="items.name">
+                <el-sub-menu v-show="items.children" :index="items.path">
                     <template #title>
-                        <el-icon><document /></el-icon>
-                        <span>人生</span>
+                        <el-icon><component :is="items.meta.icon" /></el-icon>
+                        <span v-show="!menueWidthState"> {{ items.name }}</span>
+                    </template>
+                    <el-menu-item
+                        v-for="nav in items.children"
+                        :key="nav.name"
+                        :index="nav.path"
+                        @click="handleClick(nav)"
+                    >
+                        <el-icon><component :is="items.meta.icon" /></el-icon>
+                        <span> {{ nav.name }}</span>
+                    </el-menu-item>
+                </el-sub-menu>
+
+                <el-menu-item
+                    v-show="!items.children"
+                    :index="items.path"
+                    @click="handleClick(items)"
+                >
+                    <el-icon><component :is="items.meta.icon" /></el-icon>
+                    <template #title>
+                        <span>{{ items.name }}</span>
                     </template>
                 </el-menu-item>
-            </el-sub-menu>
-
-            <el-sub-menu index="功能展示">
-                <template #title>
-                    <el-icon><Platform /></el-icon>
-                    <span>功能展示</span>
-                </template>
-                <el-menu-item index="404">
-                    <template #title>
-                        <el-icon><icon-menu /></el-icon>
-                        <span>404</span>
-                    </template>
-                </el-menu-item>
-            </el-sub-menu>
-
-            <el-sub-menu index="权限管理">
-                <template #title>
-                    <el-icon><Platform /></el-icon>
-                    <span>权限管理</span>
-                </template>
-                <el-menu-item index="豆瓣">
-                    <template #title>
-                        <el-icon><Operation /></el-icon>
-                        <span>豆瓣</span>
-                    </template>
-                </el-menu-item>
-            </el-sub-menu> -->
+            </div>
         </el-menu>
     </div>
 </template>
@@ -70,17 +48,19 @@ import { routes } from '@/router';
 console.log(routes, 'routes');
 
 const renderMenu = routes[1].children;
+console.log(renderMenu, 'renderMenu');
+
 const menuStore = useMenuStore();
 const { menueWidthState, breadMenu } = storeToRefs(menuStore);
 const $router = useRouter();
 
-import {
-    HelpFilled,
-    Avatar,
-    Basketball,
-    House,
-    WarningFilled,
-} from '@element-plus/icons-vue';
+// import {
+//     HelpFilled,
+//     Avatar,
+//     Basketball,
+//     House,
+//     WarningFilled,
+// } from '@element-plus/icons-vue';
 
 import { RouteRecordRaw } from 'vue-router';
 

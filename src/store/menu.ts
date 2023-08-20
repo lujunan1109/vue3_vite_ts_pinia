@@ -9,7 +9,7 @@
 import { defineStore } from 'pinia';
 
 export const useMenuStore = defineStore({
-    id: 'global', // id必填，而且需要唯一
+    id: 'menu', // id必填，而且需要唯一
     state: () => {
         return {
             // 菜单伸缩状态
