@@ -26,12 +26,15 @@
             </el-breadcrumb>
         </div>
 
-        <div>
-            <el-icon><FullScreen /></el-icon>
+        <div class="header-right-tab">
+            <el-icon v-if="isFullscreen" @click="fullScreen"
+                ><FullScreen
+            /></el-icon>
+            <el-icon v-else @click="fullScreen"><RefreshLeft /></el-icon>
 
             <el-dropdown @command="handleCommand">
                 <span class="el-dropdown-link">
-                    <el-icon><Switch /></el-icon>
+                    <el-icon><Operation /></el-icon>
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
@@ -43,6 +46,26 @@
                         >
                         <el-dropdown-item command="small"
                             >小型</el-dropdown-item
+                        >
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+
+            <el-dropdown @command="triggerCom">
+                <span class="el-dropdown-link">
+                    <el-image
+                        style="width: 40px; height: 40px"
+                        :src="userUrl"
+                        fit="fill"
+                    />
+                </span>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item command="/home"
+                            >首页</el-dropdown-item
+                        >
+                        <el-dropdown-item command="/login"
+                            >退出</el-dropdown-item
                         >
                     </el-dropdown-menu>
                 </template>
@@ -72,7 +95,8 @@ import { storeToRefs } from 'pinia';
 import { useRoute, useRouter } from 'vue-router';
 import { ArrowRight } from '@element-plus/icons-vue';
 import { useGlobalStore } from '@/store/global';
-import { app } from '@/main';
+import userUrl from '@/assets/user.gif';
+import screenfull from 'screenfull';
 
 const $router = useRouter();
 const $route = useRoute();
@@ -135,6 +159,36 @@ const handleCommand = (data) => {
     globalStore.setUiSize(data);
     reloadPage();
 };
+
+// 用户头像点击事件
+import { ElMessage, ElMessageBox } from 'element-plus';
+const triggerCom = (data) => {
+    if (data === '/login') {
+        ElMessageBox.confirm('你确定退出吗', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            type: 'warning',
+        }).then(() => {
+            $router.push({ path: data });
+        });
+    } else {
+        $router.push({ path: data });
+    }
+};
+
+// 全屏实现
+const isFullscreen = ref(true);
+const fullScreen = () => {
+    // 当前全屏状态
+    isFullscreen.value = screenfull.isFullscreen;
+    if (!screenfull.isEnabled) {
+        ElMessage({
+            type: 'warning',
+            message: '你的浏览器不支持全屏',
+        });
+    }
+    screenfull.toggle();
+};
 </script>
 <style scoped lang="scss">
 .icon-block {
@@ -146,6 +200,10 @@ const handleCommand = (data) => {
     & .el-icon {
         cursor: pointer;
         padding-right: 20px;
+    }
+    & .header-right-tab {
+        display: flex;
+        align-items: center;
     }
 }
 .keep-alive-tag {

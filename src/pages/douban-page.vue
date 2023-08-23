@@ -1,8 +1,6 @@
 <template>
     <div>
-        test1 cocmponents
-
-        <el-button type="primary">测试按钮大小</el-button>
+        <router-view></router-view>
     </div>
 </template>
 <script setup lang="ts"></script>

@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-15 20:47:16
+ * @LastEditTime: 2023-08-22 20:32:34
  */
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
@@ -12,7 +12,7 @@ import vue from '@vitejs/plugin-vue';
 import * as path from 'path';
 // 按需配置elment-plus
 import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
+import Components from 'unplugin-vue-components/vite'; // 自动引入组件
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import {
     createStyleImportPlugin,

@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-20 16:32:23
+ * @LastEditTime: 2023-08-23 21:41:31
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -27,7 +27,7 @@ export const routes: Array<RouteRecordRaw> = [
         children: [
             {
                 path: '/home',
-                name: '首页',
+                name: 'Home',
                 meta: {
                     title: '首页',
                     keepAlive: false,
@@ -39,7 +39,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/keep',
-                name: '健身',
+                name: 'Keep',
                 meta: {
                     title: '健身',
                     keepAlive: false,
@@ -50,10 +50,10 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/pages/keep-page.vue'),
             },
             {
-                path: '/life',
-                name: '人生',
+                path: '/day',
+                name: 'Day',
                 meta: {
-                    title: '人生',
+                    title: '生活',
                     keepAlive: false,
                     requireAuth: true,
                     index: 6,
@@ -62,10 +62,10 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/pages/life-page.vue'),
             },
             {
-                path: '/douban',
-                name: '豆瓣',
+                path: '/test',
+                name: 'Test',
                 meta: {
-                    title: '豆瓣',
+                    title: '测试模块',
                     keepAlive: false,
                     requireAuth: true,
                     index: 7,
@@ -74,16 +74,28 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/pages/douban-page.vue'),
                 children: [
                     {
-                        path: '/test',
-                        name: '测试',
+                        path: 'index',
+                        name: 'Index',
                         meta: {
-                            title: '测试',
+                            title: '404效果',
                             keepAlive: false,
                             requireAuth: true,
-                            index: 71,
-                            icon: 'HelpFilled',
+                            index: 8,
+                            icon: 'FolderDelete',
                         },
                         component: () => import('@/pages/test-page.vue'),
+                    },
+                    {
+                        path: 'table',
+                        name: 'Table',
+                        meta: {
+                            title: '表格封装',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 9,
+                            icon: 'TrendCharts',
+                        },
+                        component: () => import('@/pages/test1-page.vue'),
                     },
                 ],
             },

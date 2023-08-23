@@ -1,139 +1,43 @@
 <template>
-    <div>
-        <div class="form__age--content">
-            <el-form
-                ref="formRef"
-                :model="numberValidateForm"
-                label-width="100px"
-                class="demo-ruleForm"
-            >
-                <el-form-item
-                    label="age"
-                    prop="age"
-                    :rules="[
-                        { required: true, message: 'age is required' },
-                        { type: 'number', message: 'age must be a number' },
-                        { validator: checkAge, trigger: 'blur' },
-                    ]"
-                >
-                    <el-input
-                        v-model.number="numberValidateForm.age"
-                        type="text"
-                        autocomplete="off"
-                    />
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="submitForm(formRef)"
-                        >Submit</el-button
-                    >
-                    <el-button @click="resetForm(formRef)">Reset</el-button>
-                </el-form-item>
-            </el-form>
+    <div class="container">
+        <div class="g-container">
+            <div class="g-number">今年还剩{{ leftDay }}天</div>
+            <div class="g-contrast">
+                <div class="g-circle"></div>
+                <ul class="g-bubbles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
         </div>
-
-        <div v-show="lifeData.length !== 0" class="show__life--percent">
-            <div>{{ percentVal }} %</div>
-            <ul>
-                <li
-                    v-for="(day, inx) in lifeData"
-                    :key="inx"
-                    :class="day ? 'active-style' : 'default-style'"
-                ></li>
-            </ul>
-        </div>
-        <div>今年还剩余{{ leftDay }}天</div>
     </div>
 </template>
 
 <script setup lang="ts">
-import {
-    ref,
-    reactive,
-    getCurrentInstance,
-    ComponentInternalInstance,
-} from 'vue';
-import { FormInstance } from 'element-plus';
+import { ref, getCurrentInstance, ComponentInternalInstance } from 'vue';
 
-// 2022中国男性的平均寿命
-const chinaAverageManAge = 74;
 // 本年度剩余天数
 const leftDay = leftDays();
-// 0,1组成的数组，代表人类的生命值
-const lifeData = ref([]);
-// 表单实例
-const formRef = ref<FormInstance>();
+
 // 当前组件的实例
 const that = getCurrentInstance() as ComponentInternalInstance;
 console.log(that, '当前组件的实例');
 
-const numberValidateForm = reactive({
-    age: '',
-});
-const percentVal = ref('0');
-
-// form表单的逻辑
-const submitForm = (formEl: FormInstance | undefined) => {
-    if (!formEl) return;
-    formEl.validate((valid) => {
-        if (valid) {
-            lifeData.value = setLifeLoseDay(numberValidateForm.age);
-            percentVal.value = percent(numberValidateForm.age);
-            console.log(percentVal.value, 'percentVal.value');
-        } else {
-            console.log('error submit!');
-            return false;
-        }
-    });
-};
-
-// rules
-const checkAge = (
-    rule: Array<string | number> | undefined,
-    value: number,
-    callback: (error?: Error) => void,
-) => {
-    if (!value) {
-        return callback(new Error('Please input the age'));
-    }
-    setTimeout(() => {
-        if (!Number.isInteger(value)) {
-            callback(new Error('Please input digits'));
-        } else {
-            if (value < 0) {
-                callback(new Error('Age must be greater than 0'));
-            } else {
-                callback();
-            }
-        }
-    }, 1000);
-};
-
 const swiperEl = ref(null);
 console.log(swiperEl, 'swiperEl');
-
-const resetForm = (formEl: FormInstance | undefined) => {
-    if (!formEl) return;
-    formEl.resetFields();
-};
-
-// 设置百分比
-function percent(old): string {
-    old = old > chinaAverageManAge ? chinaAverageManAge : old;
-    const number = (old / chinaAverageManAge) * 100;
-    return number.toFixed(2);
-}
-
-// 设置数组内容
-function setLifeLoseDay(old): Array<number> {
-    old = old > chinaAverageManAge ? chinaAverageManAge : old;
-    return new Array(old)
-        .fill(1)
-        .concat(
-            new Array(
-                chinaAverageManAge - old < 0 ? 0 : chinaAverageManAge - old,
-            ).fill(0),
-        );
-}
 
 // 某个年份的天数
 const allDays = (year: number) => {
@@ -184,31 +88,130 @@ function leftDays() {
 </script>
 
 <style lang="scss" scoped>
-.form__age--content {
-    width: 500px;
+.container {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    background: #000;
+    overflow: hidden;
+}
+.g-number {
+    position: absolute;
+    width: 300px;
+    top: 27%;
+    text-align: center;
+    font-size: 32px;
+    z-index: 10;
+    color: #fff;
+}
+
+.g-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: auto;
+}
+
+.g-contrast {
+    filter: contrast(10) hue-rotate(0);
+    width: 300px;
+    height: 400px;
+    background-color: #000;
+    overflow: hidden;
+    animation: hueRotate 10s infinite linear;
+}
+
+.g-circle {
+    position: relative;
+    width: 300px;
     height: 300px;
-    display: flex;
-    align-items: center;
-}
-.active-style {
-    background: red;
-}
-.default-style {
-    background: #ccc;
+    box-sizing: border-box;
+    filter: blur(8px);
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0);
+        width: 200px;
+        height: 200px;
+        background-color: #00ff6f;
+        border-radius: 42% 38% 62% 49% / 45%;
+        animation: rotate 10s infinite linear;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 176px;
+        height: 176px;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: #000;
+        z-index: 10;
+    }
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
+.g-bubbles {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100px;
+    height: 40px;
+    transform: translate(-50%, 0);
+    border-radius: 100px 100px 0 0;
+    background-color: #00ff6f;
+    filter: blur(5px);
+}
 
-    li {
-        width: 10px;
-        height: 10px;
-        display: inline-block;
-        border: 2px solid #fff;
+li {
+    position: absolute;
+    border-radius: 50%;
+    background: #00ff6f;
+}
+
+@for $i from 0 through 15 {
+    li:nth-child(#{$i}) {
+        $width: 15 + random(15) + px;
+        left: 15 + random(70) + px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: $width;
+        height: $width;
+        animation: moveToTop
+            #{random(6) +
+            3}s
+            ease-in-out -#{random(5000) /
+            1000}s
+            infinite;
+    }
+}
+
+@keyframes rotate {
+    50% {
+        border-radius: 45% / 42% 38% 58% 49%;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(720deg);
+    }
+}
+
+@keyframes moveToTop {
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.1;
+        transform: translate(-50%, -180px);
+    }
+}
+
+@keyframes hueRotate {
+    100% {
+        filter: contrast(15) hue-rotate(360deg);
     }
 }
 </style>

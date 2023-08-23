@@ -3,7 +3,7 @@
         <div
             v-for="(items, inx) in colorList"
             :key="inx"
-            class="w-h"
+            class="w-h pink"
             :style="[{ background: items.color }]"
         >
             健身就是爬楼梯，一层层的爪巴然后爬到最后一层
@@ -12,7 +12,8 @@
             v-show="flyState"
             class="btn-top"
             type="danger"
-            :icon="ArrowUpBold"
+            title="到达顶部"
+            :icon="Top"
             circle
             @click="goTop"
         />
@@ -21,7 +22,7 @@
 
 <script lang="ts" setup>
 import { reactive, ref, onUnmounted, onMounted } from 'vue';
-import { ArrowUpBold } from '@element-plus/icons-vue';
+import { Top } from '@element-plus/icons-vue';
 
 const colorList = reactive([
     { color: '#989664' },
@@ -67,10 +68,27 @@ onUnmounted(() => {
 .w-h {
     width: 100%;
     height: 100vh;
+    line-height: 100vh;
+    text-align: center;
 }
 .btn-top {
     position: fixed;
     right: 50px;
     bottom: 100px;
+}
+
+.pink {
+    filter: brightness(110%);
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #e91e63,
+        0 0 35px #e91e63, 0 0 40px #e91e63, 0 0 50px #e91e63, 0 0 75px #e91e63;
+    animation: pink-animation 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pink-animation {
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+            0 0 40px #e91e63, 0 0 70px #e91e63, 0 0 80px #e91e63,
+            0 0 100px #e91e63, 0 0 150px #e91e63;
+    }
 }
 </style>

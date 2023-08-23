@@ -20,7 +20,7 @@
                         :index="nav.path"
                         @click="handleClick(nav)"
                     >
-                        <el-icon><component :is="items.meta.icon" /></el-icon>
+                        <el-icon><component :is="nav.meta.icon" /></el-icon>
                         <span> {{ nav.name }}</span>
                     </el-menu-item>
                 </el-sub-menu>
@@ -71,7 +71,7 @@ const handleClick = (node: RouteRecordRaw) => {
         path: node.path,
         label: node.name as string,
     };
-    $router.push({ path: node.path });
+    $router.push({ name: node.name });
 };
 </script>
 
