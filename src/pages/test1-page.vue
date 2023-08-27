@@ -1,3 +1,7 @@
-<template>嗨嗨嗨</template>
-<script setup lang="ts"></script>
+<template>
+    <HelloWorld :msg="msg" />
+</template>
+<script setup lang="ts">
+const msg = 'hello world';
+</script>
 <style scoped lang="scss"></style>

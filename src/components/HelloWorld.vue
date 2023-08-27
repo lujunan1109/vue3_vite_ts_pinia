@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { onBeforeRouteUpdate } from 'vue-router';
+import CustomTable from '@/components/customForm/customTable.vue';
 
 defineProps<{ msg: string }>();
 
@@ -16,6 +17,35 @@ onBeforeRouteUpdate(async (to, from) => {
 defineExpose({
     count,
 });
+
+const tableData = [
+    {
+        date: '2016-05-03',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+        date: '2016-05-02',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+        date: '2016-05-04',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+    },
+    {
+        date: '2016-05-01',
+        name: 'Tom',
+        address: 'No. 189, Grove St, Los Angeles',
+    },
+];
+
+const colums = ['date', 'name', 'address'];
+
+const deleteHandle = (e) => {
+    console.log('删除参数', e);
+};
 </script>
 
 <template>
@@ -45,6 +75,11 @@ defineExpose({
         Edit
         <code>components/HelloWorld.vue</code> to test hot module replacement.
     </p>
+    <CustomTable v-slot="{ slotData }" :table-data="tableData" :colums="colums">
+        <el-button type="warning" @click="deleteHandle(slotData)"
+            >删除</el-button
+        >
+    </CustomTable>
 </template>
 
 <style scoped>
