@@ -1,6 +1,6 @@
 <template>
     <div class="icon-block">
-        <div>
+        <div class="header-left-tab">
             <el-icon
                 v-show="isCollapse"
                 size="normal"
@@ -202,6 +202,11 @@ const fullScreen = () => {
         padding-right: 20px;
     }
     & .header-right-tab {
+        display: flex;
+        align-items: center;
+    }
+
+    & .header-left-tab {
         display: flex;
         align-items: center;
     }

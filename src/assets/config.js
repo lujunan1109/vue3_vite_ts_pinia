@@ -58,11 +58,6 @@ export const option = {
             },
             data: [5, 5, 5, 6.1, 6.2, 6.3, 6.4, 6, 4, 4, 4, 4, 4, 4, 4],
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
         },
         {
             //mountain behind
@@ -75,11 +70,6 @@ export const option = {
             },
             data: [4, 4, 4, 4, 4, 4, 4, 4, 3, 4.5, 5, 6, 6.5, 7, 7.2],
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
         },
         {
             //river behind
@@ -92,11 +82,6 @@ export const option = {
             },
             data: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
         },
         {
             //mountain left
@@ -109,11 +94,6 @@ export const option = {
             },
             data: [6.5, 6, 6, 6, 5.8, 5.2, 4.8, 4.2, 2, 0, 0, 0, 0, 0, 0],
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
         },
         {
             //river middle
@@ -129,11 +109,6 @@ export const option = {
                 2.8, 2.8,
             ],
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
         },
         {
             //mountain right
@@ -146,11 +121,6 @@ export const option = {
             },
             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4.8, 5, 5.5],
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
         },
         {
             //river front
@@ -165,11 +135,7 @@ export const option = {
             smooth: true,
             smoothMonotone: 'x',
             symbolSize: 0,
-            lineStyle: {
-                normal: {
-                    width: 0,
-                },
-            },
+
             animationDelayUpdate: function (idx) {
                 return idx * 5;
             },

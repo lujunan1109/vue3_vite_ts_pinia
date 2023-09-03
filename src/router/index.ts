@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-23 21:41:31
+ * @LastEditTime: 2023-09-03 10:59:44
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -11,7 +11,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/login',
-        name: 'Login',
+        name: '登录',
         meta: {
             title: '登录',
             keepAlive: false,
@@ -27,7 +27,7 @@ export const routes: Array<RouteRecordRaw> = [
         children: [
             {
                 path: '/home',
-                name: 'Home',
+                name: '首页',
                 meta: {
                     title: '首页',
                     keepAlive: false,
@@ -39,7 +39,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/keep',
-                name: 'Keep',
+                name: '健身',
                 meta: {
                     title: '健身',
                     keepAlive: false,
@@ -51,7 +51,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/day',
-                name: 'Day',
+                name: '生活',
                 meta: {
                     title: '生活',
                     keepAlive: false,
@@ -63,7 +63,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/test',
-                name: 'Test',
+                name: '测试',
                 meta: {
                     title: '测试模块',
                     keepAlive: false,
@@ -75,9 +75,9 @@ export const routes: Array<RouteRecordRaw> = [
                 children: [
                     {
                         path: 'index',
-                        name: 'Index',
+                        name: '404特效',
                         meta: {
-                            title: '404效果',
+                            title: '404特效',
                             keepAlive: false,
                             requireAuth: true,
                             index: 8,
@@ -87,7 +87,7 @@ export const routes: Array<RouteRecordRaw> = [
                     },
                     {
                         path: 'table',
-                        name: 'Table',
+                        name: '表格',
                         meta: {
                             title: '表格封装',
                             keepAlive: false,
@@ -98,6 +98,18 @@ export const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/pages/test1-page.vue'),
                     },
                 ],
+            },
+            {
+                path: '/doc',
+                name: '文档',
+                meta: {
+                    title: '文档',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 6,
+                    icon: 'Document',
+                },
+                component: () => import('@/pages/doc-page.vue'),
             },
         ],
     },
