@@ -51,6 +51,10 @@
                 </template>
             </el-dropdown>
 
+            <div class="picker">
+                <el-color-picker v-model="defaultTheme" @change="changeTheme" />
+            </div>
+
             <el-dropdown @command="triggerCom">
                 <span class="el-dropdown-link">
                     <el-image
@@ -189,6 +193,13 @@ const fullScreen = () => {
     }
     screenfull.toggle();
 };
+
+// 主颜色修改
+import { useElementPlusTheme } from 'use-element-plus-theme';
+
+const defaultTheme = ref('#405DFF');
+
+const { changeTheme } = useElementPlusTheme(defaultTheme.value);
 </script>
 <style scoped lang="scss">
 .icon-block {
@@ -217,5 +228,8 @@ const fullScreen = () => {
         margin-right: 5px;
         cursor: pointer;
     }
+}
+.picker {
+    margin-right: 20px;
 }
 </style>

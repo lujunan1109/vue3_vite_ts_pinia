@@ -142,8 +142,11 @@ const zIndex = 3000;
         width: 100%;
         height: 100vh;
         overflow-y: auto;
+        display: flex;
+        flex-direction: column;
         & .com-style-pub {
-            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
         }
     }
 }

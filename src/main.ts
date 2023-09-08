@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-20 18:17:34
+ * @LastEditTime: 2023-09-08 16:44:40
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -15,6 +15,7 @@ import 'normalize.css';
 import '@/assets/iconfont/iconfont.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
+import 'element-plus/theme-chalk/dark/css-vars.css';
 // 创建vue实例
 export const app = createApp(App);
 

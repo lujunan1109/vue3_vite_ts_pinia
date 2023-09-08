@@ -37,6 +37,7 @@
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^3.2.0",
     "screenfull": "^6.0.2",
+    "use-element-plus-theme": "^0.0.5",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16"
   },

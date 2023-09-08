@@ -90,7 +90,7 @@ function leftDays() {
 <style lang="scss" scoped>
 .container {
     width: 100%;
-    height: 85vh;
+    height: 100%;
     display: flex;
     background: #000;
     overflow: hidden;

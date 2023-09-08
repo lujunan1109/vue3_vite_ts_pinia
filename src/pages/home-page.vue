@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-container">
         <div class="top-content box-shadow-bg">
             <div class="avatar-data">
                 <el-avatar
@@ -51,6 +51,10 @@ $el-bg-color-overlay: #ffffff;
 $el-border-color: #dcdfe6;
 $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     0px 12px 32px rgba(0, 0, 0, 0.12), 0px 8px 16px -8px rgba(0, 0, 0, 0.16);
+.home-container {
+    padding: 10px;
+}
+
 .box-shadow-bg {
     font-weight: 700;
     color: $el-text-color-regular;

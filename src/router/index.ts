@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-09-03 10:59:44
+ * @LastEditTime: 2023-09-08 15:44:34
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -73,18 +73,18 @@ export const routes: Array<RouteRecordRaw> = [
                 },
                 component: () => import('@/pages/douban-page.vue'),
                 children: [
-                    {
-                        path: 'index',
-                        name: '404特效',
-                        meta: {
-                            title: '404特效',
-                            keepAlive: false,
-                            requireAuth: true,
-                            index: 8,
-                            icon: 'FolderDelete',
-                        },
-                        component: () => import('@/pages/test-page.vue'),
-                    },
+                    // {
+                    //     path: 'index',
+                    //     name: '404特效',
+                    //     meta: {
+                    //         title: '404特效',
+                    //         keepAlive: false,
+                    //         requireAuth: true,
+                    //         index: 8,
+                    //         icon: 'FolderDelete',
+                    //     },
+                    //     component: () => import('@/pages/test-page.vue'),
+                    // },
                     {
                         path: 'table',
                         name: '表格',
