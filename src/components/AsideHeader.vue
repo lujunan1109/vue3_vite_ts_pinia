@@ -27,6 +27,7 @@
         </div>
 
         <div class="header-right-tab">
+            <i class="header-right-weather">{{ nowWeather }}</i>
             <el-icon v-if="isFullscreen" @click="fullScreen"
                 ><FullScreen
             /></el-icon>
@@ -93,17 +94,30 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, nextTick, inject } from 'vue';
+import { ref, inject } from 'vue';
 import { useMenuStore } from '@/store/menu';
 import { storeToRefs } from 'pinia';
-import { useRoute, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { ArrowRight } from '@element-plus/icons-vue';
 import { useGlobalStore } from '@/store/global';
 import userUrl from '@/assets/user.gif';
 import screenfull from 'screenfull';
+import { getTimeWeather } from '@/api/index';
+import { useElementPlusTheme } from 'use-element-plus-theme';
+
+// 主颜色切换
+const defaultTheme = ref('#405DFF');
+const { changeTheme } = useElementPlusTheme(defaultTheme.value);
+// 根据高德地图api获取实时天气
+const nowWeather = ref('');
+
+getTimeWeather().then((res) => {
+    const { lives } = res;
+    const { city, weather, temperature } = lives[0];
+    nowWeather.value = `${city} ${weather} ${temperature} ℃ `;
+});
 
 const $router = useRouter();
-const $route = useRoute();
 const menuStore = useMenuStore();
 let { menueWidthState, menuTags, breadMenu } = storeToRefs(menuStore);
 const isCollapse = ref(menueWidthState);
@@ -193,13 +207,6 @@ const fullScreen = () => {
     }
     screenfull.toggle();
 };
-
-// 主颜色修改
-import { useElementPlusTheme } from 'use-element-plus-theme';
-
-const defaultTheme = ref('#405DFF');
-
-const { changeTheme } = useElementPlusTheme(defaultTheme.value);
 </script>
 <style scoped lang="scss">
 .icon-block {
@@ -215,6 +222,10 @@ const { changeTheme } = useElementPlusTheme(defaultTheme.value);
     & .header-right-tab {
         display: flex;
         align-items: center;
+        & .header-right-weather {
+            padding-right: 20px;
+            font-size: 16px;
+        }
     }
 
     & .header-left-tab {

@@ -51,10 +51,8 @@ export const option = {
             //mountain background
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#2a9c91',
-                    opacity: 0.4,
-                },
+                color: '#2a9c91',
+                opacity: 0.4,
             },
             data: [5, 5, 5, 6.1, 6.2, 6.3, 6.4, 6, 4, 4, 4, 4, 4, 4, 4],
             symbolSize: 0,
@@ -63,10 +61,8 @@ export const option = {
             //mountain behind
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#2a9c91',
-                    opacity: 0.8,
-                },
+                color: '#2a9c91',
+                opacity: 0.8,
             },
             data: [4, 4, 4, 4, 4, 4, 4, 4, 3, 4.5, 5, 6, 6.5, 7, 7.2],
             symbolSize: 0,
@@ -75,10 +71,8 @@ export const option = {
             //river behind
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#2dc3b5',
-                    opacity: 1,
-                },
+                color: '#2dc3b5',
+                opacity: 1,
             },
             data: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
             symbolSize: 0,
@@ -87,10 +81,8 @@ export const option = {
             //mountain left
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#0f6960',
-                    opacity: 1,
-                },
+                color: '#0f6960',
+                opacity: 1,
             },
             data: [6.5, 6, 6, 6, 5.8, 5.2, 4.8, 4.2, 2, 0, 0, 0, 0, 0, 0],
             symbolSize: 0,
@@ -99,10 +91,8 @@ export const option = {
             //river middle
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#2dc3b5',
-                    opacity: 1,
-                },
+                color: '#2dc3b5',
+                opacity: 1,
             },
             data: [
                 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8,
@@ -114,10 +104,8 @@ export const option = {
             //mountain right
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#0f6960',
-                    opacity: 1,
-                },
+                color: '#0f6960',
+                opacity: 1,
             },
             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4.8, 5, 5.5],
             symbolSize: 0,
@@ -126,10 +114,8 @@ export const option = {
             //river front
             type: 'line',
             areaStyle: {
-                normal: {
-                    color: '#2dc3b5',
-                    opacity: 0.8,
-                },
+                color: '#2dc3b5',
+                opacity: 0.8,
             },
             data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
             smooth: true,
@@ -166,9 +152,7 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            opacity: 0.2,
-                        },
+                        opacity: 0.2,
                     },
                 },
                 {
@@ -177,9 +161,7 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            opacity: 0.25,
-                        },
+                        opacity: 0.25,
                     },
                 },
                 {
@@ -188,9 +170,7 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            opacity: 0.2,
-                        },
+                        opacity: 0.2,
                     },
                 },
                 {
@@ -199,18 +179,14 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            opacity: 0.2,
-                        },
+                        opacity: 0.2,
                     },
                 },
             ],
             itemStyle: {
-                normal: {
-                    color: '#ff5722',
-                    shadowColor: '#ff5722',
-                    shadowBlur: 100,
-                },
+                color: '#ff5722',
+                shadowColor: '#ff5722',
+                shadowBlur: 100,
             },
             silent: true,
             z: 3,
@@ -235,9 +211,7 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            color: '#333',
-                        },
+                        color: '#333',
                     },
                     symbol: 'path://M27.310007,2.749997l22.5,0c-2.485281,0 -4.5,14.326891 -4.5,32.000002c0,17.673113 2.014718,32 4.5,32l-22.5,0l0,0c-2.485281,0 -4.5,-14.326889 -4.5,-32c0,-17.673111 2.014718,-32.000002 4.5,-32.000002z M12.75,70.184998l47,0l-11,10l-30,-1l-6,-9z',
                 },
@@ -248,10 +222,8 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            color: '#333',
-                            opacity: 0.1,
-                        },
+                        color: '#333',
+                        opacity: 0.1,
                     },
                     symbol: 'roundRect',
                 },
@@ -260,10 +232,8 @@ export const option = {
                     x: 130,
                     y: 45,
                     itemStyle: {
-                        normal: {
-                            color: '#333',
-                            opacity: 0.1,
-                        },
+                        color: '#333',
+                        opacity: 0.1,
                     },
                     symbolRotate: 2,
                     symbolOffset: [20, 151],
@@ -322,11 +292,9 @@ export const option = {
                 },
             ],
             lineStyle: {
-                normal: {
-                    width: 1,
-                    curveness: 0.45,
-                    color: '#0f6960',
-                },
+                width: 1,
+                curveness: 0.45,
+                color: '#0f6960',
             },
             silent: true,
             symbolRotate: -2,
@@ -432,16 +400,12 @@ export const option = {
                 },
             ],
             lineStyle: {
-                normal: {
-                    width: 1,
-                    curveness: 0.3,
-                    color: '#333',
-                },
+                width: 1,
+                curveness: 0.3,
+                color: '#333',
             },
             itemStyle: {
-                normal: {
-                    color: '#555',
-                },
+                color: '#555',
             },
             silent: true,
             z: 4,
@@ -508,9 +472,8 @@ export const hisOption = {
         },
         axisLabel: {
             margin: 10,
-            textStyle: {
-                fontSize: 14,
-            },
+
+            fontSize: 14,
         },
     },
     yAxis: {
@@ -530,9 +493,8 @@ export const hisOption = {
         },
         axisLabel: {
             margin: 10,
-            textStyle: {
-                fontSize: 14,
-            },
+
+            fontSize: 14,
         },
     },
     series: [
@@ -558,35 +520,29 @@ export const hisOption = {
                 '1322',
             ],
             areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(
-                        0,
-                        0,
-                        0,
-                        1,
-                        [
-                            {
-                                offset: 0,
-                                color: 'rgba(199, 237, 250,0.5)',
-                            },
-                            {
-                                offset: 1,
-                                color: 'rgba(199, 237, 250,0.2)',
-                            },
-                        ],
-                        false,
-                    ),
-                },
+                color: new echarts.graphic.LinearGradient(
+                    0,
+                    0,
+                    0,
+                    1,
+                    [
+                        {
+                            offset: 0,
+                            color: 'rgba(199, 237, 250,0.5)',
+                        },
+                        {
+                            offset: 1,
+                            color: 'rgba(199, 237, 250,0.2)',
+                        },
+                    ],
+                    false,
+                ),
             },
             itemStyle: {
-                normal: {
-                    color: '#f7b851',
-                },
+                color: '#f7b851',
             },
             lineStyle: {
-                normal: {
-                    width: 3,
-                },
+                width: 3,
             },
         },
         {
@@ -611,35 +567,29 @@ export const hisOption = {
                 '822',
             ],
             areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(
-                        0,
-                        0,
-                        0,
-                        1,
-                        [
-                            {
-                                offset: 0,
-                                color: 'rgba(216, 244, 247,1)',
-                            },
-                            {
-                                offset: 1,
-                                color: 'rgba(216, 244, 247,1)',
-                            },
-                        ],
-                        false,
-                    ),
-                },
+                color: new echarts.graphic.LinearGradient(
+                    0,
+                    0,
+                    0,
+                    1,
+                    [
+                        {
+                            offset: 0,
+                            color: 'rgba(216, 244, 247,1)',
+                        },
+                        {
+                            offset: 1,
+                            color: 'rgba(216, 244, 247,1)',
+                        },
+                    ],
+                    false,
+                ),
             },
             itemStyle: {
-                normal: {
-                    color: '#58c8da',
-                },
+                color: '#58c8da',
             },
             lineStyle: {
-                normal: {
-                    width: 3,
-                },
+                width: 3,
             },
         },
     ],
