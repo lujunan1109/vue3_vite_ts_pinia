@@ -17,6 +17,9 @@ dependencies:
   animate.css:
     specifier: ^3.5.2
     version: registry.npmmirror.com/animate.css@3.5.2
+  autofit.js:
+    specifier: 2.0.5
+    version: registry.npmmirror.com/autofit.js@2.0.5
   axios:
     specifier: ^1.4.0
     version: registry.npmmirror.com/axios@1.4.0
@@ -1722,6 +1725,12 @@ packages:
     engines: {node: '>= 4.5.0'}
     hasBin: true
     dev: true
+
+  registry.npmmirror.com/autofit.js@2.0.5:
+    resolution: {integrity: sha512-xwNmaZd+A+pVLf4bITBBcU7OSqMCyvDR5BhQmvIIgbvP0u0n/QoFWsMthQTaHR6MR0nrsXf5VxdypyZYvvfnhw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/autofit.js/-/autofit.js-2.0.5.tgz}
+    name: autofit.js
+    version: 2.0.5
+    dev: false
 
   registry.npmmirror.com/axios@1.4.0:
     resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/axios/-/axios-1.4.0.tgz}

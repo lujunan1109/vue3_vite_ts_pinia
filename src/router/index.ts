@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-09-08 15:44:34
+ * @LastEditTime: 2023-09-17 15:50:52
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -95,7 +95,7 @@ export const routes: Array<RouteRecordRaw> = [
                             index: 9,
                             icon: 'TrendCharts',
                         },
-                        component: () => import('@/pages/test1-page.vue'),
+                        component: () => import('@/pages/table-page.vue'),
                     },
                 ],
             },

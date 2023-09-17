@@ -16,19 +16,59 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import * as echarts from 'echarts';
+import { useMenuStore } from '@/store/menu';
+import { storeToRefs } from 'pinia';
 import { option, hisOption } from '@/assets/config.js';
 
-const init = (id: string, opt) => {
+// 重置echart图表
+let resetEcahrts = [];
+const init = (id: string, opt, once = true) => {
     const chartDom = document.getElementById(id);
     const myChart = echarts.init(chartDom);
     opt && myChart.setOption(opt);
+    // 只收集一次依赖
+    if (once) {
+        resetEcahrts.push({
+            type: id,
+            dom: myChart,
+            opt,
+        });
+    }
 };
+
+// 重绘图标
+const redraw = () => {
+    resetEcahrts.forEach((cfg) => {
+        const { dom: myChart, type, opt: option } = cfg;
+        myChart.clear();
+        myChart.resize();
+        init(type, option, false);
+    });
+};
+
+// 切换菜单宽度时候重置echart
+const menuStore = useMenuStore();
+let { menueWidthState } = storeToRefs(menuStore);
+
+watch(menueWidthState, (nv) => {
+    console.log('切换的时候出发', nv);
+    // 由于切换菜单有性能问题，div宽度变化在echart渲染之后导致的bug
+    const t = setTimeout(() => {
+        redraw();
+        clearTimeout(t);
+    }, 500);
+});
 
 onMounted(() => {
     init('bg', option);
     init('line', hisOption);
+    window.addEventListener('resize', redraw, false);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', redraw, false);
 });
 
 const goGithub = () => {

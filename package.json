@@ -29,6 +29,7 @@
     "@vueuse/components": "^9.1.0",
     "@vueuse/core": "^8.6.0",
     "animate.css": "^3.5.2",
+    "autofit.js": "2.0.5",
     "axios": "^1.4.0",
     "default-passive-events": "^2.0.0",
     "echarts": "^5.4.3",

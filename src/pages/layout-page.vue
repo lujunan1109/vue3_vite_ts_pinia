@@ -120,6 +120,10 @@ const zIndex = 3000;
     width: 100%;
     height: 100%;
     background-color: #f2f3f5;
+    & .el-container {
+        width: 100%;
+        height: 100%;
+    }
     .common-flex {
         display: flex;
         width: 100%;
@@ -140,7 +144,7 @@ const zIndex = 3000;
 
     &-main {
         width: 100%;
-        height: 100vh;
+        height: 100%common-layout;
         overflow-y: auto;
         display: flex;
         flex-direction: column;

@@ -3,11 +3,12 @@
         <el-table-column
             v-for="(items, k) in colums"
             :key="k"
-            :prop="items"
-            :label="items"
-        />
-        <el-table-column fixed="right" label="Operate" width="120">
-            <template #default="scope">
+            :prop="items.prop"
+            :label="items.label"
+            :width="items.width"
+            :sortable="items.sortable"
+        >
+            <template v-if="items.slot" #default="scope">
                 <slot :slot-data="scope"></slot>
             </template>
         </el-table-column>
@@ -15,10 +16,17 @@
 </template>
 
 <script lang="ts" setup>
+interface Columns {
+    prop: string;
+    label: string;
+    width?: number;
+    fixed?: string;
+    slot?: boolean;
+    sortable?: boolean;
+}
 type TabData = Array<object>;
-type Columns = Array<string>;
 
-defineProps<{ tableData: TabData; colums: Columns }>();
+defineProps<{ tableData: TabData; colums: Columns[] }>();
 </script>
 
 <!-- https://blog.csdn.net/weixin_45291937/article/details/125523244  可以学习很多小知识-->
