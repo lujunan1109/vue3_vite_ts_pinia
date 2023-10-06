@@ -3,14 +3,14 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-09-17 17:54:02
+ * @LastEditTime: 2023-09-19 21:55:51
 -->
 
 <template>
     <div v-if="isRouterAlive" id="resetBox"><router-view /></div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup module="es2017">
 import { ref, onMounted } from 'vue';
 import autofit from 'autofit.js';
 
@@ -27,7 +27,7 @@ const reloadPage = () => {
 onMounted(() => {
     autofit.init({
         el: '#app',
-        dh: 1080,
+        dh: 937,
         dw: 1920,
         resize: true,
         ignore: [],
