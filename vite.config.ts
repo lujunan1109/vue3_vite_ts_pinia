@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-22 20:32:34
+ * @LastEditTime: 2023-11-25 19:11:40
  */
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
@@ -76,6 +76,16 @@ export default defineConfig({
             symbolId: 'icon-[dir]-[name]',
         }),
     ],
+    // css: {
+    //     preprocessorOptions:{
+    //         scss:{
+    //           // 自动导入定制化样式进行文件覆盖
+    //           additionalData: `
+    //             @use "@/assets/theme-variables.scss" as *;
+    //           `
+    //         }
+    //       },
+    // },
     server: {
         port: 8888, //启动端口
         hmr: {

@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-09-14 22:44:52
+ * @LastEditTime: 2023-11-25 19:32:07
  */
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -15,8 +15,9 @@ import 'normalize.css';
 import '@/assets/iconfont/iconfont.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
-import 'element-plus/theme-chalk/dark/css-vars.css';
+// import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
+
 // 创建vue实例
 export const app = createApp(App);
 

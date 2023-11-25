@@ -85,7 +85,10 @@ const size = storeToRefs(useGlobalStore()).size.value as EpPropMergeType<
 >;
 const zIndex = 3000;
 </script>
-
+<!-- 全局改变css样式 -->
+<style lang="scss">
+@import '@/assets/variables.scss';
+</style>
 <style lang="scss" scoped>
 // 切换动画效果
 .slide-right-enter-from {

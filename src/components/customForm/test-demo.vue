@@ -1,8 +1,10 @@
 <template>
-    <el-button @click="handleClick">
+    <el-button type="info" @click="handleClick">
         <slot></slot>
     </el-button>
-    <el-button @click="customClick"> 点击触发自定义事件 </el-button>
+    <el-button type="success" @click="customClick"
+        >点击触发自定义事件
+    </el-button>
     <el-dialog v-model="visible" :title="title"> </el-dialog>
 </template>
 
