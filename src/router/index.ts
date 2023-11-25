@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-09-17 15:50:52
+ * @LastEditTime: 2023-11-25 14:59:54
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -71,45 +71,46 @@ export const routes: Array<RouteRecordRaw> = [
                     index: 7,
                     icon: 'HelpFilled',
                 },
-                component: () => import('@/pages/douban-page.vue'),
+                component: () => import('@/pages/test/test-page.vue'),
                 children: [
-                    // {
-                    //     path: 'index',
-                    //     name: '404特效',
-                    //     meta: {
-                    //         title: '404特效',
-                    //         keepAlive: false,
-                    //         requireAuth: true,
-                    //         index: 8,
-                    //         icon: 'FolderDelete',
-                    //     },
-                    //     component: () => import('@/pages/test-page.vue'),
-                    // },
                     {
                         path: 'table',
                         name: '表格',
                         meta: {
-                            title: '表格封装',
+                            title: '表格',
                             keepAlive: false,
                             requireAuth: true,
                             index: 9,
                             icon: 'TrendCharts',
                         },
-                        component: () => import('@/pages/table-page.vue'),
+                        component: () => import('@/pages/test/table-page.vue'),
+                    },
+                    {
+                        path: 'teleport',
+                        name: '传送门',
+                        meta: {
+                            title: '传送门',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 9,
+                            icon: 'TrendCharts',
+                        },
+                        component: () =>
+                            import('@/pages/test/teleport-page.vue'),
+                    },
+                    {
+                        path: '/tree',
+                        name: '多选树',
+                        meta: {
+                            title: '多选树',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 6,
+                            icon: 'Document',
+                        },
+                        component: () => import('@/pages/test/tree-page.vue'),
                     },
                 ],
-            },
-            {
-                path: '/doc',
-                name: '文档',
-                meta: {
-                    title: '文档',
-                    keepAlive: false,
-                    requireAuth: true,
-                    index: 6,
-                    icon: 'Document',
-                },
-                component: () => import('@/pages/doc-page.vue'),
             },
         ],
     },

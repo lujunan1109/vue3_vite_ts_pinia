@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -36,6 +37,7 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
+    ElTree: typeof import('element-plus/es')['ElTree']
     GetMouse: typeof import('./src/components/GetMouse.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -43,6 +45,7 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./src/components/SvgIcon.vue')['default']
     SwiperMovie: typeof import('./src/components/dbComponents/SwiperMovie.vue')['default']
     Test: typeof import('./src/components/test.vue')['default']
+    TestDemo: typeof import('./src/components/customForm/test-demo.vue')['default']
     UsePinia: typeof import('./src/components/usePinia.vue')['default']
   }
 }
