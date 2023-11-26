@@ -136,7 +136,7 @@ const zIndex = 3000;
     &-header {
         width: 100%;
         height: 80px;
-        background-color: #fff;
+        background-color: var(--el-bg-color);
     }
 
     &-aside {
@@ -151,9 +151,11 @@ const zIndex = 3000;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
+        background-color: var(--el-bg-color);
         & .com-style-pub {
             height: 100%;
             overflow-y: auto;
+            background-color: var(--el-bg-color);
         }
     }
 }

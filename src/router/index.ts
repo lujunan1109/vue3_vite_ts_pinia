@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2023-11-25 14:59:54
+ * @LastEditTime: 2023-11-26 20:48:16
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
@@ -80,7 +80,7 @@ export const routes: Array<RouteRecordRaw> = [
                             title: '表格',
                             keepAlive: false,
                             requireAuth: true,
-                            index: 9,
+                            index: 8,
                             icon: 'TrendCharts',
                         },
                         component: () => import('@/pages/test/table-page.vue'),
@@ -93,7 +93,7 @@ export const routes: Array<RouteRecordRaw> = [
                             keepAlive: false,
                             requireAuth: true,
                             index: 9,
-                            icon: 'TrendCharts',
+                            icon: 'Bicycle',
                         },
                         component: () =>
                             import('@/pages/test/teleport-page.vue'),
@@ -105,10 +105,23 @@ export const routes: Array<RouteRecordRaw> = [
                             title: '多选树',
                             keepAlive: false,
                             requireAuth: true,
-                            index: 6,
+                            index: 10,
                             icon: 'Document',
                         },
                         component: () => import('@/pages/test/tree-page.vue'),
+                    },
+                    {
+                        path: '/theme',
+                        name: '主题切换',
+                        meta: {
+                            title: '主题切换',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 11,
+                            icon: 'Guide',
+                        },
+                        component: () =>
+                            import('@/pages/test/toggle-theme.vue'),
                     },
                 ],
             },

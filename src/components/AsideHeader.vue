@@ -212,7 +212,7 @@ const fullScreen = () => {
 .icon-block {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--el-bg-color);
     height: 45px;
     justify-content: space-between;
     & .el-icon {
