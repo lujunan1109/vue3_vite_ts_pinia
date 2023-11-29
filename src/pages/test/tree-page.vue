@@ -43,6 +43,12 @@
     </div>
 </template>
 <script lang="ts" setup>
+type Node = {
+    id: number;
+    label: string;
+    children?: Node[];
+};
+
 const defaultProps = {
     children: 'children',
     label: 'label',
@@ -100,7 +106,7 @@ const data = [
 ];
 
 // 扁平化tree
-const flatten = (arr) => {
+const flatten = (arr: Node[]): Node[] => {
     return arr.reduce((prev, cur) => {
         return prev.concat(cur.children ? flatten(cur.children) : cur);
     }, []);
@@ -108,7 +114,7 @@ const flatten = (arr) => {
 const flatData = flatten(data);
 
 // 通过label快速找到对应节点id
-const findNodeIds = (arr, labels) => {
+const findNodeIds = (arr: Node[], labels: string[]): number[] => {
     const ids = [];
     let len = arr.length;
     let i = 0;

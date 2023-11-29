@@ -26,7 +26,7 @@
       "@directives/*": ["./src/directives/*"],
       "@components/*": ["./src/components/*"]
     },
-    "types": ["element-plus/global"],
+    "types": ["element-plus/global","vite/client"],
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true, // 跳过第三方依赖的类型检查
   },

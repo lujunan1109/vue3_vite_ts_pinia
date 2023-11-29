@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 14:26:26
  * @LastEditors: lujunan
- * @LastEditTime: 2022-06-07 14:26:28
+ * @LastEditTime: 2023-11-26 23:18:30
 -->
 
 <template>
@@ -17,7 +17,7 @@
     </svg>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
 const props = defineProps({
     prefix: {

@@ -2,10 +2,10 @@
  * @Author: lujunan
  * @Date: 2022-06-29 17:43:09
  * @LastEditors: lujunan
- * @LastEditTime: 2023-08-07 20:46:53
+ * @LastEditTime: 2023-11-26 23:34:19
  * @Description: hook
  */
-import type { App } from 'vue';
+// import type { App } from 'vue';
 import { onMounted, ref, watch } from 'vue';
 export const useAdd = ({ num1, num2 }) => {
     const addNum = ref(0);
@@ -62,9 +62,10 @@ export const toBase64 = function (
     });
 };
 
+type Func = (...args: DOMRectReadOnly[]) => void;
 
 // 自定义指令结合hooks
-export const useResize = (el: HTMLElement, callback: Function) => {
+export const useResize = (el: HTMLElement, callback: Func) => {
     // 监听元素宽高变化api
     const resize = new ResizeObserver((entries) => {
         // 返回变化之后宽高的属性数据
@@ -73,7 +74,7 @@ export const useResize = (el: HTMLElement, callback: Function) => {
     resize.observe(el);
 };
 
-const install = (app: App) => {
+const install = (app) => {
     app.directive('resize', {
         mounted(el, binding) {
             useResize(el, binding.value);

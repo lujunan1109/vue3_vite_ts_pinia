@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-27 14:53:16
  * @LastEditors: lujunan
- * @LastEditTime: 2022-08-02 10:51:40
+ * @LastEditTime: 2023-11-26 23:42:57
  * @Description: 工具函数
  */
 
@@ -58,7 +58,7 @@ export function useLocalStorage(key: string, initialValue: any) {
         },
         set(newValue) {
             value.value = newValue;
-            localStorage.setItem(key, newValue);
+            localStorage.setItem(key, newValue as string);
             return value.value;
         },
     });

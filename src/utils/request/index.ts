@@ -4,7 +4,7 @@ import type {
     RequestConfig,
     RequestInterceptors,
     CreateRequestConfig,
-} from './types';
+} from './type';
 
 class Request {
     // axios 实例

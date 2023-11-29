@@ -1,7 +1,7 @@
 import Request from './request';
 import { AxiosResponse } from 'axios';
 
-import type { RequestConfig } from './request/types';
+import type { RequestConfig } from './request/type';
 
 export interface YWZResponse<T> {
     statusCode: number;
