@@ -86,21 +86,24 @@ const textInner = () => {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/theme.scss'; // 主题样式
+
 $el-text-color-regular: #606266;
-$el-bg-color-overlay: #ffffff;
+$el-bg-color-overlay: #1d1d1d;
 $el-border-color: #dcdfe6;
 $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     0px 12px 32px rgba(0, 0, 0, 0.12), 0px 8px 16px -8px rgba(0, 0, 0, 0.16);
+
 .home-container {
     padding: 10px;
 }
 
 .box-shadow-bg {
     font-weight: 700;
-    color: $el-text-color-regular;
-    background: $el-bg-color-overlay;
+    color: --el-text-color-regular;
     border-color: $el-border-color;
     box-shadow: $el-box-shadow-dark;
+    @include useTheme('background-color', $bg-color);
 }
 
 .top-content {
@@ -112,6 +115,7 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     & .avatar-data {
         display: flex;
         align-items: center;
+        color: --el-text-color-regular;
     }
 }
 

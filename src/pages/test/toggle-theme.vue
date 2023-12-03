@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2023-11-26 20:31:00
  * @LastEditors: lujunan
- * @LastEditTime: 2023-11-26 20:46:07
+ * @LastEditTime: 2023-12-03 21:34:38
 -->
 <template>
     <div style="padding: 20px">
@@ -19,4 +19,11 @@ import { Sunny, Moon } from '@element-plus/icons-vue';
 import { useDark, useToggle } from '@vueuse/core';
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+console.log(isDark.value);
+// 切换html的data-theme用于测试scss主题切换
+watch(isDark, () => {
+    document
+        .querySelector('html')
+        .setAttribute('data-theme', isDark.value ? 'dark' : 'light');
+});
 </script>
