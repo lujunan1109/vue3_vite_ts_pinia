@@ -86,8 +86,6 @@ const textInner = () => {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/theme.scss'; // 主题样式
-
 $el-text-color-regular: #606266;
 $el-bg-color-overlay: #1d1d1d;
 $el-border-color: #dcdfe6;

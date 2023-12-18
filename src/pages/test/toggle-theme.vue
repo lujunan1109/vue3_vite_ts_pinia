@@ -12,6 +12,9 @@
 
             {{ isDark ? 'Dark' : 'Light' }}
         </el-button>
+        <!-- 原生内容，scss控制样式颜色 -->
+        <div class="origin">scss控制样式颜色</div>
+        <div class="var">css变量控制颜色</div>
     </div>
 </template>
 <script setup lang="ts">
@@ -27,3 +30,15 @@ watch(isDark, () => {
         .setAttribute('data-theme', isDark.value ? 'dark' : 'light');
 });
 </script>
+
+<style lang="scss">
+.origin {
+    padding-top: 40px;
+    @include useTheme('color', $subtitle-color);
+}
+.var {
+    color: var(--v-color);
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+</style>

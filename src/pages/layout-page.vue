@@ -85,10 +85,7 @@ const size = storeToRefs(useGlobalStore()).size.value as EpPropMergeType<
 >;
 const zIndex = 3000;
 </script>
-<!-- 全局改变css样式 -->
-<style lang="scss">
-@import '@/assets/variables.scss';
-</style>
+
 <style lang="scss" scoped>
 // 切换动画效果
 .slide-right-enter-from {
@@ -135,8 +132,10 @@ const zIndex = 3000;
 
     &-header {
         width: 100%;
-        height: 80px;
+        height: 85px;
         background-color: var(--el-bg-color);
+        padding-bottom: 5px;
+        @include useTheme('border-bottom', $border-bottom);
     }
 
     &-aside {

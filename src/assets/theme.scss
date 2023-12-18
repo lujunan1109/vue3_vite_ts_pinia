@@ -1,4 +1,3 @@
-// 利用预编译器改变样式
 // 所有主题样式
 $bg-color: (
   light: #fff,
@@ -13,6 +12,11 @@ $title-color: (
 $subtitle-color: (
   light: #4a4a4a,
   dark: cyan
+);
+
+$border-bottom: (
+  light: 1px solid #dbdbdb,
+  dark: 1px solid #363636
 );
 
 @mixin useTheme($key, $valueMap) {

@@ -76,16 +76,17 @@ export default defineConfig({
             symbolId: 'icon-[dir]-[name]',
         }),
     ],
-    // css: {
-    //     preprocessorOptions:{
-    //         scss:{
-    //           // 自动导入定制化样式进行文件覆盖
-    //           additionalData: `
-    //             @use "@/assets/theme-variables.scss" as *;
-    //           `
-    //         }
-    //       },
-    // },
+    css: {
+        preprocessorOptions:{
+            scss:{
+              // scss样式颜色全局引入
+              additionalData: `
+                @import "@/assets/theme.scss";
+                @import "@/assets/variables.scss";
+              `
+            }
+          },
+    },
     server: {
         port: 8888, //启动端口
         hmr: {
