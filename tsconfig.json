@@ -27,7 +27,6 @@
       "@components/*": ["./src/components/*"]
     },
     "types": ["element-plus/global","vite/client"],
-    "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true, // 跳过第三方依赖的类型检查
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

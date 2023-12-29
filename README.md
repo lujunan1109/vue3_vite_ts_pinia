@@ -40,6 +40,7 @@
 ### 预计参考页面ui实现
 - https://panjiachen.github.io/vue-element-admin/###/dashboard
 - https://vue3.youlai.tech/#/dashboard
+- https://lin0716.gitee.io/gi-demo/#/home
 
 
 ### 共勉

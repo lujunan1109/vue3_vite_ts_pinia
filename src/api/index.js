@@ -6,3 +6,10 @@ export function getTimeWeather() {
         method: 'GET',
     });
 }
+
+export function getTableData() {
+    return ywzRequest({
+        url: '/data/list',
+        method: 'GET',
+    });
+}

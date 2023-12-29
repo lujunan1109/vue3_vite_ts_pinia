@@ -113,3 +113,19 @@ export const equalAmount = function (s: string) {
         : concatStr.split('').reverse().join('');
     return result;
 };
+
+/**
+ *
+ * @param asyncFunction 异步函数
+ * @returns
+ */
+export async function captureAsyncErrors<T>(
+    asyncFunction: () => Promise<T>,
+): Promise<[Error | null, T | null]> {
+    try {
+        const result = await asyncFunction();
+        return [null, result];
+    } catch (error) {
+        return [error, null];
+    }
+}

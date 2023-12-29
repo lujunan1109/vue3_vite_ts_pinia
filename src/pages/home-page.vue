@@ -53,7 +53,6 @@ const menuStore = useMenuStore();
 let { menueWidthState } = storeToRefs(menuStore);
 
 watch(menueWidthState, (nv) => {
-    console.log('切换的时候出发', nv);
     // 由于切换菜单有性能问题，div宽度变化在echart渲染之后导致的bug
     const t = setTimeout(() => {
         redraw();

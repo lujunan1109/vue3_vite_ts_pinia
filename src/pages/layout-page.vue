@@ -13,7 +13,7 @@
                         <el-config-provider
                             :size="size"
                             :z-index="zIndex"
-                            :locale="zhCn"
+                            :locale="local"
                         >
                             <router-view
                                 v-slot="{ Component }"
@@ -32,15 +32,15 @@
 </template>
 
 <script lang="ts" setup>
-import AsideMenu from '@/components/AsideMenu.vue';
-import AsideHeader from '@/components/AsideHeader.vue';
+import AsideMenu from '@/components/AsideMenu/index.vue';
+import AsideHeader from '@/components/AsideHeader/index.vue';
 
 import { storeToRefs } from 'pinia';
 import { useMenuStore } from '@/store/menu';
 const menuStore = useMenuStore();
 let { menuTags } = storeToRefs(menuStore);
 
-import { watch, provide, nextTick } from 'vue';
+import { watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const $router = useRouter();
@@ -76,14 +76,21 @@ import type { EpPropMergeType } from 'element-plus/es/utils/vue/props/types';
 // 修改elment-plus的尺寸/语言/组件层级
 import { ElConfigProvider } from 'element-plus';
 import { useGlobalStore } from '@/store/global';
+import { useLanguage } from '@/store/language';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
-// 你ts是真滴恶心啊
+import en from 'element-plus/dist/locale/en.mjs';
+
 const size = storeToRefs(useGlobalStore()).size.value as EpPropMergeType<
     StringConstructor,
     '' | 'small' | 'default' | 'large',
     never
 >;
 const zIndex = 3000;
+
+const local = computed(() => {
+    const { language } = storeToRefs(useLanguage());
+    return language.value === 'zh-cn' ? zhCn : en;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -140,7 +147,7 @@ const zIndex = 3000;
 
     &-aside {
         width: auto;
-        background: #304156;
+        background: #001529;
         overflow-x: hidden;
     }
 

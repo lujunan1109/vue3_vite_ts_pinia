@@ -9,7 +9,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import store from './store';
 import { router } from './router';
-import SvgIcon from '@/components/SvgIcon.vue';
+import SvgIcon from '@/components/SvgIcon/index.vue';
 import 'virtual:svg-icons-register'; // 注册 svg 注册脚本
 import 'normalize.css';
 import '@/assets/iconfont/iconfont.css';
@@ -17,6 +17,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
+import '@/mockjs/index';
 
 // 创建vue实例
 export const app = createApp(App);
@@ -40,7 +41,4 @@ app.config.globalProperties.$filter = {
     },
 };
 
-app.use(store as any)
-    .use(router as any)
-    .component('SvgIcon', SvgIcon)
-    .mount('#app');
+app.use(store).use(router).component('SvgIcon', SvgIcon).mount('#app');

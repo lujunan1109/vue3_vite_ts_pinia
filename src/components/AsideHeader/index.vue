@@ -2,13 +2,13 @@
     <div class="icon-block">
         <div class="header-left-tab">
             <el-icon
-                v-show="isCollapse"
+                v-show="menueWidthState"
                 size="normal"
                 @click="handleClick(false)"
                 ><Expand
             /></el-icon>
             <el-icon
-                v-show="!isCollapse"
+                v-show="!menueWidthState"
                 size="normal"
                 @click="handleClick(true)"
                 ><Fold
@@ -56,6 +56,15 @@
                 <el-color-picker v-model="defaultTheme" @change="changeTheme" />
             </div>
 
+            <div class="picker">
+                <el-switch
+                    v-model="isZh"
+                    inline-prompt
+                    active-text="中"
+                    inactive-text="英"
+                />
+            </div>
+
             <el-dropdown @command="triggerCom">
                 <span class="el-dropdown-link">
                     <el-image
@@ -82,7 +91,7 @@
             v-for="tag in menuTags"
             :key="tag.name"
             class="mx-1"
-            closable
+            :closable="tag.name !== '首页'"
             size="large"
             :type="tag.type"
             :effect="tag.checked"
@@ -104,57 +113,51 @@ import userUrl from '@/assets/user.gif';
 import screenfull from 'screenfull';
 import { getTimeWeather } from '@/api/index';
 import { useElementPlusTheme } from 'use-element-plus-theme';
+import { useLanguage } from '@/store/language';
+
+import { Tag, Node, Func } from './type';
 
 // 主颜色切换
 const defaultTheme = ref('#405DFF');
-const { changeTheme } = useElementPlusTheme(defaultTheme.value);
+
 // 根据高德地图api获取实时天气
 const nowWeather = ref('');
+const { changeTheme } = useElementPlusTheme(defaultTheme.value);
 
-getTimeWeather().then((res) => {
-    const { lives } = res;
+onBeforeMount(async () => {
+    const { lives } = await getTimeWeather();
     const { city, weather, temperature } = lives[0];
     nowWeather.value = `${city} ${weather} ${temperature} ℃ `;
 });
 
 const $router = useRouter();
 const menuStore = useMenuStore();
-let { menueWidthState, menuTags, breadMenu } = storeToRefs(menuStore);
-const isCollapse = ref(menueWidthState);
-const handleClick = (state) => {
-    isCollapse.value = state;
-    menueWidthState.value = state;
-};
 
-type Tag = {
-    name: string;
-    type: string;
-    checked: string;
-    path: string;
+let { menueWidthState, menuTags, breadMenu } = storeToRefs(menuStore);
+
+const handleClick = (state: boolean) => {
+    menuStore.updateMenuState(state);
 };
 
 const handleClose = (tag: Tag) => {
-    menuTags.value.splice(menuTags.value.indexOf(tag), 1);
+    menuStore.deleteMenuTags(tag);
+    if (menuTags.value.length === 0) {
+        $router.push({ path: '/home' });
+    }
+    const lastTag = menuTags.value.slice(-1)[0];
+    $router.push({ path: lastTag.path });
 };
 
 const clickHandle = (tag: Tag) => {
     // 重置选中效果
-    menuTags.value = menuTags.value.map((t) => {
-        t.checked = 'plain';
-        return t;
-    });
+    menuStore.resetCheckedMenuTags();
     // 跳转到选中页面
     $router.push({ path: tag.path });
     // 选中效果
-    const inx = menuTags.value.findIndex((t) => t.name === tag.name);
-    menuTags.value[inx].checked = 'dark';
+    menuStore.checkedMenuTags(tag);
 };
 
 // 监听router获取面包屑数据
-type Node = {
-    path: string;
-    label: string;
-};
 const currentPathNode = ref<Node>({ path: '', label: '' });
 watch(
     () => $router.currentRoute.value,
@@ -170,7 +173,6 @@ watch(
 );
 
 // 设置ui尺寸
-type Func = () => void;
 const reloadPage: Func = inject('reloadPage');
 const globalStore = useGlobalStore();
 const handleCommand = (data) => {
@@ -207,6 +209,23 @@ const fullScreen = () => {
     }
     screenfull.toggle();
 };
+
+onMounted(() => {
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'F11') {
+            screenfull.toggle();
+            event.preventDefault();
+        }
+    });
+});
+
+// 语言切换
+const isZh = ref(true);
+watchEffect(() => {
+    const languageStore = useLanguage();
+    const local = isZh.value ? 'zh-cn' : 'en';
+    languageStore.changeLanguage(local);
+});
 </script>
 <style scoped lang="scss">
 .icon-block {
@@ -215,13 +234,16 @@ const fullScreen = () => {
     background-color: var(--el-bg-color);
     height: 45px;
     justify-content: space-between;
+
     & .el-icon {
         cursor: pointer;
         padding-right: 20px;
     }
+
     & .header-right-tab {
         display: flex;
         align-items: center;
+
         & .header-right-weather {
             padding-right: 20px;
             font-size: 16px;
@@ -233,13 +255,16 @@ const fullScreen = () => {
         align-items: center;
     }
 }
+
 .keep-alive-tag {
     height: 35px;
-    & .el-tag--large.is-closable {
+
+    & .mx-1 {
         margin-right: 5px;
         cursor: pointer;
     }
 }
+
 .picker {
     margin-right: 20px;
 }

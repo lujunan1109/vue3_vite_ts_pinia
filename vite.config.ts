@@ -56,6 +56,7 @@ export default defineConfig({
         }),
         Components({
             resolvers: [ElementPlusResolver()],
+            directoryAsNamespace: true
         }),
         createStyleImportPlugin({
             resolves: [ElementPlusResolve()],

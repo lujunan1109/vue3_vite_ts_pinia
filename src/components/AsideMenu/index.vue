@@ -3,7 +3,7 @@
         <el-menu
             :collapse="menueWidthState"
             active-text-color="#359ef3"
-            background-color="#304156"
+            background-color="#001529"
             class="el-menu-vertical-demo"
             default-active="/home"
             text-color="#fff"
@@ -51,7 +51,7 @@ const renderMenu = routes[1].children;
 console.log(renderMenu, 'renderMenu');
 
 const menuStore = useMenuStore();
-const { menueWidthState, breadMenu } = storeToRefs(menuStore);
+const { menueWidthState } = storeToRefs(menuStore);
 const $router = useRouter();
 
 // import {
@@ -66,11 +66,7 @@ import { RouteRecordRaw } from 'vue-router';
 
 const handleClick = (node: RouteRecordRaw) => {
     // 利用这里的点击事件keyPath 给到全局变量然后处理面包屑即可
-    console.log(node);
-    breadMenu.value = {
-        path: node.path,
-        label: node.name as string,
-    };
+    menuStore.updateBreadMenu(node.path, node.name);
     $router.push({ name: node.name });
 };
 </script>

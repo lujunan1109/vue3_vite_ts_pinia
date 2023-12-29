@@ -1,102 +1,125 @@
 <template>
     <div class="container">
-        <div class="flex-layout">
-            <el-input
-                v-model="searchCtx"
-                placeholder="请输入搜索内容"
-                class="input"
-            />
-            <el-button type="primary">搜索</el-button>
-        </div>
-        <el-row>
-            <custom-table
-                :table-data="tableData"
-                :colums="colums"
-                border
-                stripe
-                :default-sort="{ prop: 'date', order: 'descending' }"
-            >
-                <template #default="{ slotData }">
-                    <el-button
-                        type="primary"
-                        round
-                        @click="handleClk(slotData.row)"
-                        >点击获取数据</el-button
+        <v-table
+            :columns="columns"
+            border
+            stripe
+            :default-sort="{ prop: 'date', order: 'descending' }"
+            :pagination="pagination"
+            :request-api="getDataApi"
+            :form-options="tableOptions"
+            :rule-form="tableForm"
+            :fil-attr="{
+                labelWidth: '80px',
+            }"
+            @handle-size-change="(val) => (pagination.pageSize = val)"
+            @handle-current-change="(val) => (pagination.currentPage = val)"
+        >
+            <el-table-column fixed="right" label="Operations" width="180">
+                <template #default>
+                    <el-button size="small" type="danger" :icon="Delete"
+                        >Detail</el-button
+                    >
+                    <el-button size="small" type="success" :icon="Edit"
+                        >Edit</el-button
                     >
                 </template>
-            </custom-table>
-            <test-demo v-model="showDia" :title="diaTitle" @setTitle="setTitle"
-                >点击出现弹窗</test-demo
-            >
-        </el-row>
+            </el-table-column>
+
+            <template #btnSlots>
+                <div>
+                    <el-button icon="Plus" type="primary">新增</el-button>
+                    <el-button icon="Delete" type="danger">删除</el-button>
+                    <el-button icon="FolderAdd" type="success">导入</el-button>
+                </div>
+            </template>
+        </v-table>
     </div>
 </template>
 
 <script lang="ts" setup>
-const searchCtx = ref('');
+import vTable from '@/components/VTable';
+import { getTableData } from '@/api';
+import { captureAsyncErrors } from '@/utils';
+import { Delete, Edit } from '@element-plus/icons-vue';
 
-// 弹窗组件逻辑
-const showDia = ref(false);
-const diaTitle = ref('旧的弹窗标题');
-const setTitle = () => {
-    diaTitle.value = '新的弹窗标题';
-};
-const tableData = reactive([
+const columns = [
     {
-        date: '2016-05-03',
-        name: 'Tom3',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-02',
-        name: 'Tom2',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-04',
-        name: 'Tom4',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-01',
-        name: 'Tom1',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-]);
-
-const colums = reactive([
-    {
+        label: '日期',
         prop: 'date',
-        label: 'Date',
         sortable: true,
     },
     {
+        label: '姓名',
         prop: 'name',
-        label: 'Name',
     },
     {
+        label: '地址',
         prop: 'address',
-        label: 'Address',
+    },
+];
+
+const pagination = reactive({
+    layout: 'total, sizes, prev, pager, next, jumper',
+    currentPage: 1,
+    pageSize: 100,
+    total: 10000,
+    pageSizes: [100, 200, 500],
+});
+
+const tableOptions = [
+    {
+        label: '输入框',
+        prop: 'name',
+        componentName: 'el-input',
     },
     {
-        prop: 'operate',
-        label: 'Operate',
-        width: '220px',
-        slot: true,
+        label: '下拉框',
+        prop: 'select',
+        componentName: 'el-select',
+        childName: 'el-option',
+        attrs: {
+            clearable: true,
+            placeholder: '请选择',
+        },
+        children: [
+            {
+                label: '选项1',
+                value: '1',
+            },
+            {
+                label: '选项2',
+                value: '2',
+            },
+        ],
     },
-]);
+];
+const tableForm = reactive({
+    name: '',
+    name1: '',
+    name2: '',
+    name3: '',
+    select: '',
+});
 
-const handleClk = (data) => {
-    console.log(data);
-};
+// 获取数据 data可能是数组对象或者对象
+// interface ApiResponse {
+//     data: PramasType | PramasType[];
+//     code: number;
+//     message: string;
+// }
+
+const getDataApi = () => captureAsyncErrors(getTableData);
 </script>
 
 <style scoped lang="scss">
 .container {
-    padding: 15px;
+    padding: 30px 15px 15px;
+
     .flex-layout {
         display: flex;
         padding-bottom: 20px;
+
         .input {
             width: 200px;
         }

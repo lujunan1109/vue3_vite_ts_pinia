@@ -123,6 +123,18 @@ export const routes: Array<RouteRecordRaw> = [
                         component: () =>
                             import('@/pages/test/toggle-theme.vue'),
                     },
+                    {
+                        path: '/vform',
+                        name: '表单',
+                        meta: {
+                            title: '表单',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 12,
+                            icon: 'Document',
+                        },
+                        component: () => import('@/pages/test/vform-page.vue'),
+                    },
                 ],
             },
         ],
