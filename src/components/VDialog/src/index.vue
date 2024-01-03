@@ -6,23 +6,17 @@
             :append-to-body="true"
             :close-on-click-modal="false"
             :close-on-press-escape="false"
-            :draggable="isDraggable"
-            @close="dialogClose"
         >
-            <slot name="body"></slot>
+            <slot></slot>
             <template #footer>
-                <span class="dialog-footer">
+                <div v-if="defautFooter">
                     <el-button @click="dialogVisible = false">取消</el-button>
-                    <el-button
-                        v-if="dialogType != 'readonlyDialog'"
-                        type="primary"
-                        @click="saveSubmit"
-                    >
+                    <el-button type="primary" @click="saveSubmit">
                         确 定
                     </el-button>
-                </span>
+                </div>
+                <slot v-else name="footer"></slot>
             </template>
-            <slot name="footer"></slot>
         </el-dialog>
     </div>
 </template>
@@ -33,19 +27,25 @@ import { ref, computed, useAttrs } from 'vue';
 //   inheritAttrs: false
 // })
 // 获取属性值
-const attrs = useAttrs();
-console.log(attrs, 'attrs');
+// const attrs = useAttrs();
+// console.log(attrs, 'attrs');
 const dialogVisible = ref(false);
 
-const dialogClose = () => {
-    console.log('弹窗关闭之后的回调');
+const toggleDialogVisible = (bool: boolean) => {
+    if (bool === true || bool === false) {
+        dialogVisible.value = bool;
+    } else {
+        dialogVisible.value = !dialogVisible.value;
+    }
 };
-
-// 可以直接使用
-defineProps({
-    dialogType: { type: String, default: '' },
-    isDraggable: { type: Boolean, default: false },
-});
+withDefaults(
+    defineProps<{
+        defautFooter: boolean;
+    }>(),
+    {
+        defautFooter: true,
+    },
+);
 
 // 单向传递数据流
 const visible = computed({
@@ -59,8 +59,7 @@ const visible = computed({
 
 // 暴露给父组件调用的属性和方法
 defineExpose({
-    dialogVisible,
-    dialogClose,
+    toggleDialogVisible,
 });
 
 const emit = defineEmits(['saveSubmit']);

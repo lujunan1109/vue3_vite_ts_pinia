@@ -1,14 +1,15 @@
 import { defineStore } from 'pinia';
-export const useGlobalStore = defineStore(
-    'global',
-    () => {
-        const size = ref('default');
-        const setUiSize = (data: string) => {
-            size.value = data;
-        };
-        return { size, setUiSize };
+export const useGlobalStore = defineStore('global', {
+    state: () => ({
+        size: 'default',
+        theme: 'light',
+    }),
+    actions: {
+        setUiSize(data) {
+            this.size = data;
+        },
+        setTheme(data) {
+            this.theme = data;
+        },
     },
-    {
-        persist: true,
-    },
-);
+});

@@ -95,23 +95,7 @@ const local = computed(() => {
 
 <style lang="scss" scoped>
 // 切换动画效果
-.slide-right-enter-from {
-    transform: translateX(0);
-}
-.slide-right-enter-to {
-    transform: translateX(-100%);
-}
-.slide-right-leave-from {
-    transform: translateX(0);
-}
-.slide-right-leave-to {
-    transform: translateX(-100%);
-}
-
-.slide-right-enter-active,
-.slide-right-leave-active {
-    transition: transform 0.5s;
-}
+@import '@/assets/transition.scss';
 
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;

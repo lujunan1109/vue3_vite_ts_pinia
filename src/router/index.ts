@@ -7,6 +7,7 @@
  */
 
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import nprogress from 'nprogress';
 
 export const routes: Array<RouteRecordRaw> = [
     {
@@ -165,10 +166,17 @@ export const router = createRouter({
 });
 
 // 前置路由守卫
-router.beforeEach((to, from) => {
+router.beforeEach((to, from, next) => {
     // 返回 false 以取消导航
     // return false
     // for example
     // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
     // else next()
+    nprogress.start();
+    next();
+    return true;
+});
+
+router.afterEach((to, from, next) => {
+    nprogress.done();
 });

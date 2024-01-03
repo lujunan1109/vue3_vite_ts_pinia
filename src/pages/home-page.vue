@@ -9,9 +9,9 @@
             <el-tag class="mouse-hand" @click="goGithub">github地址 </el-tag>
         </div>
 
-        <div id="line" class="mid-content box-shadow-bg">图表$曲线图</div>
+        <div id="bg" class="mid-content box-shadow-bg">图表$曲线图</div>
 
-        <div id="bg" class="footer-content box-shadow-bg">底部三个图</div>
+        <div id="line" class="footer-content box-shadow-bg">底部三个图</div>
     </div>
 </template>
 
@@ -19,32 +19,37 @@
 import { onMounted, watch } from 'vue';
 import * as echarts from 'echarts';
 import { useMenuStore } from '@/store/menu';
+import { useGlobalStore } from '@/store/global';
 import { storeToRefs } from 'pinia';
-import { option, hisOption } from '@/assets/config.js';
+import { option, hisOption2, hisOption } from '@/assets/config.js';
 
-// 重置echart图表
-let resetEcahrts = [];
-const init = (id: string, opt, once = true) => {
-    const chartDom = document.getElementById(id);
-    const myChart = echarts.init(chartDom);
-    opt && myChart.setOption(opt);
-    // 只收集一次依赖
-    if (once) {
-        resetEcahrts.push({
-            type: id,
-            dom: myChart,
-            opt,
-        });
-    }
+const globalStore = useGlobalStore();
+const { theme } = storeToRefs(globalStore);
+
+// 设置主题的opt
+const setThemeOpt = {
+    line: option,
+    bg: theme.value === 'light' ? hisOption : hisOption2,
+};
+// 初始化
+const initEcharts = () => {
+    const echartsList = ['line', 'bg'];
+    echartsList.forEach((id) => {
+        const opt = setThemeOpt[id];
+        const chartDom = document.getElementById(id);
+        const myChart = echarts.init(chartDom);
+        myChart.setOption(opt);
+        ecahrtGrounp.push({ myChart, opt });
+    });
 };
 
 // 重绘图标
 const redraw = () => {
-    resetEcahrts.forEach((cfg) => {
-        const { dom: myChart, type, opt: option } = cfg;
+    ecahrtGrounp.forEach((cfg) => {
+        const { myChart, opt } = cfg;
         myChart.clear();
         myChart.resize();
-        init(type, option, false);
+        opt && myChart.setOption(opt);
     });
 };
 
@@ -60,9 +65,10 @@ watch(menueWidthState, (nv) => {
     }, 500);
 });
 
+// 实例收集
+let ecahrtGrounp = [];
 onMounted(() => {
-    init('bg', option);
-    init('line', hisOption);
+    initEcharts();
     window.addEventListener('resize', redraw, false);
 });
 

@@ -20,7 +20,11 @@
                     <el-button size="small" type="danger" :icon="Delete"
                         >Detail</el-button
                     >
-                    <el-button size="small" type="success" :icon="Edit"
+                    <el-button
+                        size="small"
+                        type="success"
+                        :icon="Edit"
+                        @click="dialogRef.toggleDialogVisible(true)"
                         >Edit</el-button
                     >
                 </template>
@@ -34,15 +38,48 @@
                 </div>
             </template>
         </v-table>
+
+        <v-dialog
+            ref="dialogRef"
+            title="弹窗标题"
+            draggable
+            :defaut-footer="false"
+        >
+            <div>弹窗的内容部分</div>
+
+            <template #footer>
+                <div>
+                    <el-button @click="toggleDialog(false)">取消</el-button>
+                    <el-button type="primary" @click="submitEvent">
+                        完 成
+                    </el-button>
+                </div>
+            </template>
+        </v-dialog>
     </div>
 </template>
 
 <script lang="ts" setup>
-import vTable from '@/components/VTable';
+import { ref, reactive, Ref } from 'vue';
 import { getTableData } from '@/api';
 import { captureAsyncErrors } from '@/utils';
 import { Delete, Edit } from '@element-plus/icons-vue';
+import { TreeExposedMethods } from '@/components/VDialog/src/type';
 
+import vTable from '@/components/VTable';
+import vDialog from '@/components/VDialog';
+
+// 弹窗逻辑
+const dialogRef: Ref<TreeExposedMethods> = ref(null);
+const toggleDialog = (bool?: boolean) => {
+    dialogRef.value.toggleDialogVisible(bool);
+};
+const submitEvent = () => {
+    console.log('提交弹窗的事件');
+    dialogRef.value.toggleDialogVisible(false);
+};
+
+// 表格逻辑
 const columns = [
     {
         label: '日期',

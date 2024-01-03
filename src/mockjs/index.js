@@ -19,3 +19,26 @@ export const userData = Mock.mock('/data/list', 'get', {
     code: 200,
     message: 'ok',
 });
+
+// 定义树节点数据的规则
+export const authTreeData = Mock.mock('/data/tree', 'get', {
+    data: [
+        {
+            'id|+1': 1,
+            label: '@ctitle(3, 5)',
+            'children|0-3': [
+                {
+                    'id|+1': 1,
+                    label: '@ctitle(3, 5)',
+                    'children|0-2': [
+                        {
+                            'id|+1': 1,
+                            label: '@ctitle(3, 5)',
+                            'children|0-1': [],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+});

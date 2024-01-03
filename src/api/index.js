@@ -13,3 +13,10 @@ export function getTableData() {
         method: 'GET',
     });
 }
+
+export function getTreeData() {
+    return ywzRequest({
+        url: '/data/tree',
+        method: 'GET',
+    });
+}

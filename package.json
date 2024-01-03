@@ -37,6 +37,7 @@
     "light-swiper": "^1.0.5",
     "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^3.2.0",
     "screenfull": "^6.0.2",

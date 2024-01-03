@@ -1,11 +1,9 @@
 export interface TreeDataType {
-  id: number;
-  label: string;
-  [key:string]: any;
-  children?: TreeDataType[];
+    [key: string]: any;
+    children?: TreeDataType[];
 }
 
 export type DefaultPropsType = {
-  label: string;
-  children:string;
-}
+    label: string;
+    children: string;
+};

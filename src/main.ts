@@ -18,6 +18,7 @@ import * as directives from './utils/directive.js';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
 import '@/mockjs/index';
+import 'nprogress/nprogress.css';
 
 // 创建vue实例
 export const app = createApp(App);

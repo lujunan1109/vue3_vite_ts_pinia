@@ -20,6 +20,11 @@
 <script setup lang="ts">
 import { Sunny, Moon } from '@element-plus/icons-vue';
 import { useDark, useToggle } from '@vueuse/core';
+import { useGlobalStore } from '@/store/global';
+// import {storeToRefs} from 'pinia';
+
+const globalStore = useGlobalStore();
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 console.log(isDark.value);
@@ -28,6 +33,7 @@ watch(isDark, () => {
     document
         .querySelector('html')
         .setAttribute('data-theme', isDark.value ? 'dark' : 'light');
+    globalStore.setTheme(isDark.value ? 'dark' : 'light');
 });
 </script>
 

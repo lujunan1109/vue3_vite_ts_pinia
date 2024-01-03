@@ -15,11 +15,11 @@ import { TreeDataType, DefaultPropsType } from './type';
 
 withDefaults(
     defineProps<{
-        nodeKey: string;
-        showCheckBox: boolean;
+        nodeKey?: string;
+        showCheckBox?: boolean;
         treeData: TreeDataType[];
-        defaultKeys: number[];
-        defaultProps: DefaultPropsType;
+        defaultKeys?: number[];
+        defaultProps?: DefaultPropsType;
     }>(),
     {
         treeData: () => [
