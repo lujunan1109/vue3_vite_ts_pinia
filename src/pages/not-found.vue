@@ -7,14 +7,11 @@
 -->
 
 <template>
-    <img :src="notFound" alt="404" />
-    >
+    <img :src="imgUrl" alt="404" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 import imgUrl from '@/assets/404.png';
-const notFound = ref(imgUrl);
 </script>
 
 <style lang="scss" scoped>

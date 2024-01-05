@@ -44,7 +44,7 @@
                     >
                     <div class="bot-box">
                         <span class="register">注册账户</span>
-                        <span>忘记密码</span>
+                        <span class="forget-psw">忘记密码</span>
                     </div>
                 </el-form-item>
             </el-form>
@@ -147,6 +147,9 @@ $mainColor: #409eff;
             .register {
                 color: $mainColor;
                 cursor: pointer;
+            }
+            .forget-psw {
+                user-select: none;
             }
         }
     }

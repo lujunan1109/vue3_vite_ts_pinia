@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, onUnmounted, onMounted } from 'vue';
 import defaultImg from '@/assets/logo.png';
 
 const props = defineProps({
@@ -33,7 +32,6 @@ const props = defineProps({
 });
 
 const coverImg = ref(props.imgSrc);
-const coverRate = ref(props.rate);
 
 const errHandle = () => {
     coverImg.value = defaultImg;

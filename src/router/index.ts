@@ -63,6 +63,18 @@ export const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/pages/life-page.vue'),
             },
             {
+                path: '/music',
+                name: '音乐',
+                meta: {
+                    title: '音乐',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 6,
+                    icon: 'Headset',
+                },
+                component: () => import('@/pages/music-page.vue'),
+            },
+            {
                 path: '/test',
                 name: '测试',
                 meta: {

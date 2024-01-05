@@ -2,10 +2,16 @@
 ### Vue 3 + TypeScript + Vite
 
 
-### 更新计划：
-- theme switch
-- 骨架屏 / 全局loading
-- 管理后台基本框架+基本功能实践
+### 功能：
+- 支持皮肤切换
+- i18n UI框架中英文切换
+- 全屏放大缩小
+- 按需引入echart & element
+- 工程化自动引入组件，无需手动引入
+- 路由切换动画
+- 业务组件基础封装
+- 环境区分和打包
+- 浏览器样式工程化兼容
 
 ### 技术栈
 - vue@3.2.25
@@ -37,7 +43,7 @@
 - https://blog.csdn.net/weixin_43554584/article/details/113839778
 ### vite + ele plus 配置：
 - https://blog.csdn.net/filerat/article/details/123750595
-### 预计参考页面ui实现
+### ui 看看
 - https://panjiachen.github.io/vue-element-admin/###/dashboard
 - https://vue3.youlai.tech/#/dashboard
 - https://lin0716.gitee.io/gi-demo/#/home

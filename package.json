@@ -10,7 +10,7 @@
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "prettier:comment": "自动格式化当前目录下的所有文件",
     "prettier": "prettier --write",
-    "commit:comment": "引导设置规范化的提交信息",
+    "commit:comment": "引导设置规范化的<提交>信息",
     "commit": "git-cz"
   },
   "config": {
@@ -30,6 +30,7 @@
     "@vueuse/core": "^8.6.0",
     "animate.css": "^3.5.2",
     "autofit.js": "2.0.5",
+    "autoprefixer": "^10.4.16",
     "axios": "^1.4.0",
     "default-passive-events": "^2.0.0",
     "echarts": "^5.4.3",
@@ -40,6 +41,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^3.2.0",
+    "postcss": "^8.4.33",
     "screenfull": "^6.0.2",
     "use-element-plus-theme": "^0.0.5",
     "vue": "^3.3.13",
@@ -64,6 +66,7 @@
     "eslint-plugin-vue": "^9.1.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.0",
+    "postcss-preset-env": "^9.3.0",
     "prettier": "^2.6.2",
     "sass": "^1.52.2",
     "typescript": "^4.5.4",

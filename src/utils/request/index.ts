@@ -48,7 +48,7 @@ class Request {
                 this.abortControllerMap.delete(url);
                 return res.data;
             },
-            (err: any) => err,
+            (err) => err,
         );
     }
     request<T>(config: RequestConfig<T>): Promise<T> {
