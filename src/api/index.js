@@ -20,3 +20,11 @@ export function getTreeData() {
         method: 'GET',
     });
 }
+
+export function mergeFile(data) {
+    return ywzRequest({
+        url: 'http://localhost:3306/api/merge_chunk',
+        method: 'POST',
+        data,
+    });
+}

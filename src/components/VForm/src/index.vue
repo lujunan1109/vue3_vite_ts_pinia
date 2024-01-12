@@ -31,7 +31,6 @@
     </el-form>
 </template>
 <script setup lang="ts">
-import { defineEmits } from 'vue';
 import type { FormRules } from 'element-plus';
 import { FormOptionType, RuleForm, defineRenderComponentType } from './type';
 import {

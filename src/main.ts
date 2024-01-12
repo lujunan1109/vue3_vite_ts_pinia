@@ -19,6 +19,9 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
 import '@/mockjs/index';
 import 'nprogress/nprogress.css';
+// 文件上传
+import uploader from 'vue-simple-uploader';
+import 'vue-simple-uploader/dist/style.css';
 
 // 创建vue实例
 export const app = createApp(App);
@@ -42,4 +45,8 @@ app.config.globalProperties.$filter = {
     },
 };
 
-app.use(store).use(router).component('SvgIcon', SvgIcon).mount('#app');
+app.use(store)
+    .use(router)
+    .component('SvgIcon', SvgIcon)
+    .use(uploader)
+    .mount('#app');

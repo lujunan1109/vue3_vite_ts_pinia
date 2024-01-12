@@ -47,7 +47,7 @@
 - https://panjiachen.github.io/vue-element-admin/###/dashboard
 - https://vue3.youlai.tech/#/dashboard
 - https://lin0716.gitee.io/gi-demo/#/home
-
-
+### 打包 暂时不支持iife&umd
+https://blog.csdn.net/weixin_63443072/article/details/134882618
 ### 共勉
 - 莫愁前路无知己，天下谁人不识君。
