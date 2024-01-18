@@ -114,6 +114,8 @@ import screenfull from 'screenfull';
 import { getTimeWeather } from '@/api/index';
 import { useElementPlusTheme } from 'use-element-plus-theme';
 import { useLanguage } from '@/store/language';
+import { userLogout } from '@/api';
+import { captureAsyncErrors } from '@/utils';
 
 import { Tag, Node, Func } from './type';
 
@@ -188,7 +190,15 @@ const triggerCom = (data) => {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
             type: 'warning',
-        }).then(() => {
+        }).then(async () => {
+            const [isErr, result] = await captureAsyncErrors(userLogout());
+            if (result && !isErr) {
+                localStorage.clear();
+                ElMessage({
+                    type: 'success',
+                    message: '退出成功',
+                });
+            }
             $router.push({ path: data });
         });
     } else {

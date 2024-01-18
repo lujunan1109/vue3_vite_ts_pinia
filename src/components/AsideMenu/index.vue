@@ -12,7 +12,9 @@
                 <el-sub-menu v-show="items.children" :index="items.path">
                     <template #title>
                         <el-icon><component :is="items.meta.icon" /></el-icon>
-                        <span v-show="!menueWidthState"> {{ items.name }}</span>
+                        <span v-show="!menueWidthState">
+                            {{ items.meta.title }}</span
+                        >
                     </template>
                     <el-menu-item
                         v-for="nav in items.children"
@@ -21,7 +23,7 @@
                         @click="handleClick(nav)"
                     >
                         <el-icon><component :is="nav.meta.icon" /></el-icon>
-                        <span> {{ nav.name }}</span>
+                        <span> {{ nav.meta.title }}</span>
                     </el-menu-item>
                 </el-sub-menu>
 
@@ -32,7 +34,7 @@
                 >
                     <el-icon><component :is="items.meta.icon" /></el-icon>
                     <template #title>
-                        <span>{{ items.name }}</span>
+                        <span>{{ items.meta.title }}</span>
                     </template>
                 </el-menu-item>
             </div>
@@ -62,11 +64,14 @@ const $router = useRouter();
 //     WarningFilled,
 // } from '@element-plus/icons-vue';
 
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw, RouteRecordName } from 'vue-router';
 
 const handleClick = (node: RouteRecordRaw) => {
     // 利用这里的点击事件keyPath 给到全局变量然后处理面包屑即可
-    menuStore.updateBreadMenu(node.path, node.name);
+    menuStore.updateBreadMenu(
+        node.path,
+        (node.meta as { title: RouteRecordName }).title,
+    );
     $router.push({ name: node.name });
 };
 </script>

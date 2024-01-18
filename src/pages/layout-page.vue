@@ -15,14 +15,14 @@
                             :z-index="zIndex"
                             :locale="local"
                         >
-                            <Transition name="slide-right">
-                                <router-view
-                                    v-slot="{ Component }"
-                                    class="router-view"
-                                >
+                            <router-view
+                                v-slot="{ Component }"
+                                class="router-view"
+                            >
+                                <Transition name="slide-right">
                                     <component :is="Component" />
-                                </router-view>
-                            </Transition>
+                                </Transition>
+                            </router-view>
                         </el-config-provider>
                     </div>
                 </div>

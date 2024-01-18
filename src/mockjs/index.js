@@ -42,3 +42,19 @@ export const authTreeData = Mock.mock('/data/tree', 'get', {
         },
     ],
 });
+
+// 登录接口
+export const login = Mock.mock('/login', 'post', {
+    code: 200,
+    message: 'ok',
+    data: {
+        token: 'admin',
+    },
+});
+
+// 退出登录
+export const logout = Mock.mock('/logout', 'post', {
+    code: 200,
+    message: 'ok',
+    data: {},
+});

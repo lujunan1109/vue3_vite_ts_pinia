@@ -44,6 +44,8 @@ app.config.globalProperties.$filter = {
         return `我爱前端-${str}`;
     },
 };
+import { ElMessage } from 'element-plus';
+app.config.globalProperties.$message = ElMessage;
 
 app.use(store)
     .use(router)

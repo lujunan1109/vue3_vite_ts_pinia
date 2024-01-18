@@ -28,7 +28,7 @@ export const routes: Array<RouteRecordRaw> = [
         children: [
             {
                 path: '/home',
-                name: '首页',
+                name: 'Home',
                 meta: {
                     title: '首页',
                     keepAlive: false,
@@ -40,7 +40,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/keep',
-                name: '健身',
+                name: 'Keep',
                 meta: {
                     title: '健身',
                     keepAlive: false,
@@ -52,7 +52,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/day',
-                name: '生活',
+                name: 'Life',
                 meta: {
                     title: '生活',
                     keepAlive: false,
@@ -64,7 +64,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/music',
-                name: '音乐',
+                name: 'Music',
                 meta: {
                     title: '音乐',
                     keepAlive: false,
@@ -76,7 +76,7 @@ export const routes: Array<RouteRecordRaw> = [
             },
             {
                 path: '/test',
-                name: '测试',
+                name: 'Test',
                 meta: {
                     title: '测试模块',
                     keepAlive: false,
@@ -88,7 +88,7 @@ export const routes: Array<RouteRecordRaw> = [
                 children: [
                     {
                         path: 'table',
-                        name: '表格',
+                        name: 'Table',
                         meta: {
                             title: '表格',
                             keepAlive: false,
@@ -100,7 +100,7 @@ export const routes: Array<RouteRecordRaw> = [
                     },
                     {
                         path: 'teleport',
-                        name: '传送门',
+                        name: 'Teleport',
                         meta: {
                             title: '传送门',
                             keepAlive: false,
@@ -113,7 +113,7 @@ export const routes: Array<RouteRecordRaw> = [
                     },
                     {
                         path: '/tree',
-                        name: '多选树',
+                        name: 'Tree',
                         meta: {
                             title: '多选树',
                             keepAlive: false,
@@ -125,7 +125,7 @@ export const routes: Array<RouteRecordRaw> = [
                     },
                     {
                         path: '/theme',
-                        name: '主题切换',
+                        name: 'Theme',
                         meta: {
                             title: '主题切换',
                             keepAlive: false,
@@ -138,7 +138,7 @@ export const routes: Array<RouteRecordRaw> = [
                     },
                     {
                         path: '/vform',
-                        name: '表单',
+                        name: 'Form',
                         meta: {
                             title: '表单',
                             keepAlive: false,
@@ -185,10 +185,25 @@ router.beforeEach((to, from, next) => {
     // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
     // else next()
     nprogress.start();
-    next();
-    return true;
+    if (to.path === '/login') {
+        if (hasAuth()) {
+            next({ name: 'Home' });
+        } else {
+            next();
+        }
+    } else {
+        if (hasAuth()) {
+            next();
+        } else {
+            next({ name: 'Login' });
+        }
+    }
 });
 
 router.afterEach((to, from, next) => {
     nprogress.done();
 });
+
+const hasAuth = () => {
+    return localStorage.getItem('token') ? true : false;
+};

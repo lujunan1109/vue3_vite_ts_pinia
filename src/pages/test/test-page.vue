@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <router-view v-slot="{ Component }" :key="routerPath">
         <Transition name="slide-right">
-            <router-view :key="routerPath"></router-view>
+            <component :is="Component"></component>
         </Transition>
-    </div>
+    </router-view>
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router';

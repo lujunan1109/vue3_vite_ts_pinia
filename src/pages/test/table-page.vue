@@ -146,7 +146,7 @@ const tableForm = reactive({
 //     message: string;
 // }
 
-const getDataApi = () => captureAsyncErrors(getTableData);
+const getDataApi = () => captureAsyncErrors(getTableData());
 </script>
 
 <style scoped lang="scss">

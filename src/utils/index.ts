@@ -120,12 +120,26 @@ export const equalAmount = function (s: string) {
  * @returns
  */
 export async function captureAsyncErrors<T>(
-    asyncFunction: () => Promise<T>,
+    asyncFunction: Promise<T>,
 ): Promise<[Error | null, T | null]> {
     try {
-        const result = await asyncFunction();
+        const result = await asyncFunction;
         return [null, result];
     } catch (error) {
         return [error, null];
     }
 }
+
+/**
+ * Sleeps for a given amount of time.
+ *
+ * @param {number} t - The amount of time to sleep in seconds.
+ * @return {Promise<number>} A promise that resolves with the amount of time slept.
+ */
+export const sleep = (time) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(time);
+        }, time);
+    });
+};

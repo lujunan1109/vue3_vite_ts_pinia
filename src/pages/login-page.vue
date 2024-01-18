@@ -8,46 +8,110 @@
 
 <template>
     <div class="login">
-        <svg-icon :name="iconsName" size="100%" />
-        <div class="center-form">
-            <div class="user-login">用户登录</div>
-            <el-form
-                ref="ruleFormRef"
-                :rules="rules"
-                label-width="120px"
-                status-icon
-                label-position="top"
-                :model="ruleForm"
-            >
-                <el-form-item label="账户" prop="name">
-                    <el-input
-                        v-model="ruleForm.name"
-                        autofocus
-                        placeholder="请输入用户名/手机账户/邮箱"
-                        :prefix-icon="User"
-                        clearable
-                        autocomplete="on"
-                    />
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input
-                        v-model="ruleForm.password"
-                        placeholder="请输入密码"
-                        :prefix-icon="Lock"
-                        clearable
-                        autocomplete="on"
-                    />
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="submitForm(ruleFormRef)"
-                        >登录</el-button
-                    >
-                    <div class="bot-box">
-                        <span class="register">注册账户</span>
-                        <span class="forget-psw">忘记密码</span>
-                    </div>
-                </el-form-item>
-            </el-form>
+        <svg-icon name="login-bg" size="100%" />
+        <div ref="rollBox" class="center-form">
+            <div v-show="cmtActive">
+                <div class="user-login">用户登录</div>
+                <el-form
+                    ref="ruleFormRef"
+                    :rules="rules"
+                    label-width="120px"
+                    status-icon
+                    label-position="top"
+                    :model="ruleForm"
+                >
+                    <el-form-item label="账户" prop="name">
+                        <el-input
+                            v-model="ruleForm.name"
+                            autofocus
+                            placeholder="请输入用户名/手机账户/邮箱"
+                            :prefix-icon="User"
+                            clearable
+                            autocomplete="on"
+                        />
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input
+                            v-model="ruleForm.password"
+                            type="password"
+                            placeholder="请输入密码"
+                            :prefix-icon="Lock"
+                            clearable
+                            autocomplete="on"
+                        />
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button
+                            type="primary"
+                            @click="submitForm(ruleFormRef)"
+                            >登录</el-button
+                        >
+                        <div class="bot-box">
+                            <span class="register" @click="register"
+                                >注册账户</span
+                            >
+                            <span class="forget-psw">忘记密码</span>
+                        </div>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div v-show="!cmtActive">
+                <div class="user-login">用户注册</div>
+                <el-form
+                    ref="ruleFormRef"
+                    :rules="rules"
+                    label-width="120px"
+                    status-icon
+                    label-position="top"
+                    :model="ruleForm"
+                >
+                    <el-form-item label="账户" prop="name">
+                        <el-input
+                            v-model="ruleForm.name"
+                            autofocus
+                            placeholder="请输入用户名/手机账户/邮箱"
+                            :prefix-icon="User"
+                            clearable
+                            autocomplete="on"
+                        />
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input
+                            v-model="ruleForm.password"
+                            type="password"
+                            placeholder="请输入密码"
+                            :prefix-icon="Lock"
+                            clearable
+                            autocomplete="on"
+                        />
+                    </el-form-item>
+                    <el-form-item label="再次输入密码" prop="password">
+                        <el-input
+                            v-model="ruleForm.repPsw"
+                            type="password"
+                            placeholder="请再次输入密码"
+                            :prefix-icon="Lock"
+                            clearable
+                            autocomplete="on"
+                        />
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button
+                            type="primary"
+                            @click="submitForm(ruleFormRef)"
+                            >注册登录</el-button
+                        >
+                        <div class="bot-box">
+                            <span class="register" @click="register"
+                                >登录账户</span
+                            >
+                            <span v-show="cmtActive" class="forget-psw"
+                                >忘记密码</span
+                            >
+                        </div>
+                    </el-form-item>
+                </el-form>
+            </div>
         </div>
     </div>
 </template>
@@ -57,44 +121,110 @@ import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import type { FormInstance, FormRules } from 'element-plus';
 import { Lock, User } from '@element-plus/icons-vue';
-const iconsName = ref('login-bg');
+import { userLogin } from '@/api';
+import { captureAsyncErrors, sleep } from '@/utils';
+import { getCurrentInstance } from 'vue';
+
 const ruleFormRef = ref<FormInstance>();
+// 获取全局的参数/方法
+const { proxy } = getCurrentInstance();
+
+type ResponseDataType = ReturnType<typeof userLogin>;
+
 const ruleForm = reactive({
     name: '',
     password: '',
+    repPsw: '',
 });
 
 const $router = useRouter();
-
+const checkName = (rule, value, callback) => {
+    if (!value) {
+        callback(new Error('请输入用户名/手机账户/邮箱'));
+    }
+    callback();
+};
+const checkPsw = (rule, value, callback) => {
+    if (!value) {
+        callback(new Error('请输入密码'));
+    }
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).+$/;
+    if (!passwordRegex.test(value)) {
+        callback(new Error('密码必须包含大小写字母、数字、特殊字符'));
+    }
+    callback();
+};
 const rules = reactive<FormRules>({
     name: [
         {
             required: true,
-            message: '请输入用户名/手机账户/邮箱',
             trigger: 'blur',
+            validator: checkName,
         },
     ],
     password: [
         {
             required: true,
-            message: '请输入密码',
             trigger: 'blur',
+            validator: checkPsw,
+        },
+    ],
+    repPsw: [
+        {
+            required: true,
+            trigger: 'blur',
+            validator: checkPsw,
         },
     ],
 });
 
 const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
-    await formEl.validate((valid, fields) => {
+    await formEl.validate(async (valid, fields) => {
         console.log(valid, fields);
         if (valid) {
-            $router.push({ path: '/home' });
-            console.log('submit!');
-        } else {
-            console.log('error submit!', fields);
+            const [isErr, result]: ResponseDataType = await captureAsyncErrors(
+                userLogin(ruleForm),
+            );
+            if (!isErr && result) {
+                $router.push({ path: '/home' });
+                proxy.$message({
+                    message: '登录成功',
+                    type: 'success',
+                });
+                localStorage.setItem('token', result.token);
+            }
         }
     });
 };
+
+// 实现翻转动画
+const active = ref(true);
+const cmtActive = ref(true);
+const register = async () => {
+    rollBox.value.classList.add('add-style');
+    active.value = !active.value;
+    if (!active.value) {
+        await sleep(250);
+        rollBox.value.classList.add('register-height');
+    } else {
+        await sleep(250);
+        rollBox.value.classList.remove('register-height');
+    }
+};
+watch(active, async () => {
+    // 在动画duration在一半也就是rotateY为90deg的时候完成此动画
+    await sleep(250);
+    cmtActive.value = active.value;
+});
+
+const rollBox = ref(null);
+onMounted(() => {
+    rollBox.value.addEventListener('animationend', () => {
+        rollBox.value.classList.remove('add-style');
+    });
+});
 
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return;
@@ -114,9 +244,8 @@ $mainColor: #409eff;
 
 .login {
     position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
 
     .user-login {
         font-weight: 500;
@@ -125,9 +254,11 @@ $mainColor: #409eff;
 
     .center-form {
         position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
         width: 400px;
         height: 250px;
         padding: 20px 20px 30px 20px;
@@ -152,6 +283,26 @@ $mainColor: #409eff;
                 user-select: none;
             }
         }
+    }
+
+    .register-height {
+        height: 350px;
+    }
+
+    .add-style {
+        animation: roll 0.5s ease-in;
+    }
+}
+
+@keyframes roll {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
     }
 }
 </style>

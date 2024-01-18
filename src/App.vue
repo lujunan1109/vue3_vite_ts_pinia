@@ -7,7 +7,11 @@
 -->
 
 <template>
-    <div v-if="isRouterAlive" id="resetBox"><router-view /></div>
+    <div v-if="isRouterAlive" id="resetBox">
+        <router-view v-slot="{ Component }">
+            <component :is="Component" />
+        </router-view>
+    </div>
 </template>
 
 <script lang="ts" setup module="es2017">

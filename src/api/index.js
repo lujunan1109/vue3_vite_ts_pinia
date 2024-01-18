@@ -7,10 +7,11 @@ export function getTimeWeather() {
     });
 }
 
-export function getTableData() {
+export function getTableData(data) {
     return ywzRequest({
         url: '/data/list',
         method: 'GET',
+        data,
     });
 }
 
@@ -26,5 +27,20 @@ export function mergeFile(data) {
         url: 'http://localhost:3306/api/merge_chunk',
         method: 'POST',
         data,
+    });
+}
+
+export function userLogin(data) {
+    return ywzRequest({
+        url: '/login',
+        method: 'POST',
+        data,
+    });
+}
+
+export function userLogout() {
+    return ywzRequest({
+        url: '/logout',
+        method: 'POST',
     });
 }
