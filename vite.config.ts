@@ -6,7 +6,6 @@
  * @LastEditTime: 2023-11-25 19:11:40
  */
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import vue from '@vitejs/plugin-vue';
 import * as path from 'path';

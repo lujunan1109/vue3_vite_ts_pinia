@@ -23,7 +23,6 @@
                     <el-form-item label="账户" prop="name">
                         <el-input
                             v-model="ruleForm.name"
-                            autofocus
                             placeholder="请输入用户名/手机账户/邮箱"
                             :prefix-icon="User"
                             clearable
@@ -38,14 +37,17 @@
                             :prefix-icon="Lock"
                             clearable
                             autocomplete="on"
+                            @keyup.enter="submitForm(ruleFormRef)"
                         />
                     </el-form-item>
                     <el-form-item>
                         <el-button
                             type="primary"
                             @click="submitForm(ruleFormRef)"
-                            >登录</el-button
+                            @click.enter="submitForm(ruleFormRef)"
                         >
+                            登录
+                        </el-button>
                         <div class="bot-box">
                             <span class="register" @click="register"
                                 >注册账户</span
@@ -148,11 +150,11 @@ const checkPsw = (rule, value, callback) => {
     if (!value) {
         callback(new Error('请输入密码'));
     }
-    const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).+$/;
-    if (!passwordRegex.test(value)) {
-        callback(new Error('密码必须包含大小写字母、数字、特殊字符'));
-    }
+    // const passwordRegex =
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).+$/;
+    // if (!passwordRegex.test(value)) {
+    //     callback(new Error('密码必须包含大小写字母、数字、特殊字符'));
+    // }
     callback();
 };
 const rules = reactive<FormRules>({
@@ -180,6 +182,7 @@ const rules = reactive<FormRules>({
 });
 
 const submitForm = async (formEl: FormInstance | undefined) => {
+    console.log('触发');
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
         console.log(valid, fields);

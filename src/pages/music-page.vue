@@ -40,7 +40,7 @@ const waveData = reactive([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     .wave-#{$i} {
         position: relative;
         width: 40px;
-        background-color: #333;
+        @include useTheme('background-color', $subtitle-color);
         overflow: hidden;
         animation: wave-animation-#{$i} 2s ease-in-out infinite;
     }
