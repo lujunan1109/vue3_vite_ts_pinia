@@ -2,16 +2,9 @@
 ### Vue 3 + TypeScript + Vite
 
 
-### 功能：
-- 支持皮肤切换
-- i18n UI框架中英文切换
-- 全屏放大缩小
-- 按需引入echart & element
-- 工程化自动引入组件，无需手动引入
-- 路由切换动画
-- 业务组件基础封装
-- 环境区分和打包
-- 浏览器样式工程化兼容
+### 更新计划：
+- iconfont引入开始重构每个界面
+- 目标就是ts含量>90%
 
 ### 技术栈
 - vue@3.2.25
@@ -43,11 +36,11 @@
 - https://blog.csdn.net/weixin_43554584/article/details/113839778
 ### vite + ele plus 配置：
 - https://blog.csdn.net/filerat/article/details/123750595
-### ui 看看
+### 预计参考页面ui实现
 - https://panjiachen.github.io/vue-element-admin/###/dashboard
 - https://vue3.youlai.tech/#/dashboard
-- https://lin0716.gitee.io/gi-demo/#/home
-### 打包 暂时不支持iife&umd
-https://blog.csdn.net/weixin_63443072/article/details/134882618
+- http://118.89.81.22:9527/#/dashboard/workbench
+
+
 ### 共勉
 - 莫愁前路无知己，天下谁人不识君。

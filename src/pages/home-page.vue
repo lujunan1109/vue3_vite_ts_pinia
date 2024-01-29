@@ -1,17 +1,26 @@
 <template>
     <div class="home-container">
-        <div class="top-content box-shadow-bg">
-            <div class="avatar-data">
-                <el-avatar
-                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-                />管理员{{ textInner() }}
+        <div class="flex-layout">
+            <div
+                v-for="item in 4"
+                :key="item"
+                class="top-content box-shadow-bg"
+            >
+                <div class="avatar-data">
+                    <el-avatar
+                        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                    />
+                </div>
+                <div class="data-info">
+                    <div>233</div>
+                    <div class="data-title">访问数</div>
+                </div>
             </div>
-            <el-tag class="mouse-hand" @click="goGithub">github地址 </el-tag>
         </div>
 
-        <div id="bg" class="mid-content box-shadow-bg">图表$曲线图</div>
+        <div id="line" class="mid-content box-shadow-bg">图表$曲线图</div>
 
-        <div id="line" class="footer-content box-shadow-bg">底部三个图</div>
+        <div id="bg" class="footer-content box-shadow-bg">底部三个图</div>
     </div>
 </template>
 
@@ -19,37 +28,32 @@
 import { onMounted, watch } from 'vue';
 import * as echarts from 'echarts';
 import { useMenuStore } from '@/store/menu';
-import { useGlobalStore } from '@/store/global';
 import { storeToRefs } from 'pinia';
-import { option, hisOption2, hisOption } from '@/assets/config.js';
+import { option, hisOption } from '@/assets/config.js';
 
-const globalStore = useGlobalStore();
-const { theme } = storeToRefs(globalStore);
-
-// 设置主题的opt
-const setThemeOpt = {
-    line: option,
-    bg: theme.value === 'light' ? hisOption : hisOption2,
-};
-// 初始化
-const initEcharts = () => {
-    const echartsList = ['line', 'bg'];
-    echartsList.forEach((id) => {
-        const opt = setThemeOpt[id];
-        const chartDom = document.getElementById(id);
-        const myChart = echarts.init(chartDom);
-        myChart.setOption(opt);
-        ecahrtGrounp.push({ myChart, opt });
-    });
+// 重置echart图表
+let resetEcahrts = [];
+const init = (id: string, opt, once = true) => {
+    const chartDom = document.getElementById(id);
+    const myChart = echarts.init(chartDom);
+    opt && myChart.setOption(opt);
+    // 只收集一次依赖
+    if (once) {
+        resetEcahrts.push({
+            type: id,
+            dom: myChart,
+            opt,
+        });
+    }
 };
 
 // 重绘图标
 const redraw = () => {
-    ecahrtGrounp.forEach((cfg) => {
-        const { myChart, opt } = cfg;
+    resetEcahrts.forEach((cfg) => {
+        const { dom: myChart, type, opt: option } = cfg;
         myChart.clear();
         myChart.resize();
-        opt && myChart.setOption(opt);
+        init(type, option, false);
     });
 };
 
@@ -58,6 +62,7 @@ const menuStore = useMenuStore();
 let { menueWidthState } = storeToRefs(menuStore);
 
 watch(menueWidthState, (nv) => {
+    console.log('切换的时候出发', nv);
     // 由于切换菜单有性能问题，div宽度变化在echart渲染之后导致的bug
     const t = setTimeout(() => {
         redraw();
@@ -65,10 +70,10 @@ watch(menueWidthState, (nv) => {
     }, 500);
 });
 
-// 实例收集
-let ecahrtGrounp = [];
 onMounted(() => {
-    initEcharts();
+    textInner();
+    init('bg', option);
+    init('line', hisOption);
     window.addEventListener('resize', redraw, false);
 });
 
@@ -91,6 +96,8 @@ const textInner = () => {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/theme.scss'; // 主题样式
+
 $el-text-color-regular: #606266;
 $el-bg-color-overlay: #1d1d1d;
 $el-border-color: #dcdfe6;
@@ -109,16 +116,40 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     @include useTheme('background-color', $bg-color);
 }
 
-.top-content {
+.flex-layout {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 0 -10px;
+}
+
+.top-content {
+    width: 25%;
+    display: flex;
     align-items: center;
     padding: 20px;
-    height: 40px;
+    margin: 0 10px;
+    height: 60px;
+    border-radius: 5px;
+    transition: transform 0.3s;
+    &:hover {
+        transform: scaleX(1.05) scaleY(1.05);
+    }
     & .avatar-data {
-        display: flex;
-        align-items: center;
-        color: --el-text-color-regular;
+        width: 50px;
+        height: 50px;
+        shape-outside: circle(50%);
+    }
+
+    & .data-info {
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        & .data-title {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #606266;
+            line-height: 1.5;
+        }
     }
 }
 
