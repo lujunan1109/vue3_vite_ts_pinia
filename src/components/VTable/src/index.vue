@@ -71,16 +71,6 @@ import VForm from '../../VForm/src/index.vue';
 import { RuleForm, FormOptionType } from '../../VForm/src/type';
 import type { FormInstance } from 'element-plus';
 
-// const props = defineProps<{
-//     columns: ColumnsType[];
-//     pagination: PaginationType;
-//     requestApi: MyFunction;
-//     formOptions: FormOptionType[];
-//     ruleForm: RuleForm;
-//     filAttr?: FilAttrType;
-//     isShowBtns?: boolean;
-// }>();
-
 const props = withDefaults(
     defineProps<{
         columns: ColumnsType[];
@@ -99,20 +89,28 @@ const filterCellVal = (_row: any, _column: any, cellValue: any) => {
     return cellValue;
 };
 
-const emit = defineEmits(['handleCurrentChange', 'handleSizeChange']);
+// const emit = defineEmits(['handleCurrentChange', 'handleSizeChange']);
+const tableProps = computed(() => props.pagination);
 const handleCurrentChange = (val: number) => {
-    emit('handleCurrentChange', val);
+    // emit('handleCurrentChange', val);
+    tableProps.value.currentPage = val;
     getTableData();
 };
 
 const handleSizeChange = (val: number) => {
-    emit('handleSizeChange', val);
+    tableProps.value.pageSize = val;
+    // emit('handleSizeChange', val);
     getTableData();
 };
 
 const getTableData = (model = props.ruleForm) => {
+    const params = Object.assign({}, model, {
+        pageNum: tableProps.value.currentPage,
+        pageSize: tableProps.value.pageSize,
+    });
+    console.log(params, '请求参数');
     props
-        .requestApi(model)
+        .requestApi(params)
         .then((res: TableItemType[]) => {
             const [isErr, tableData] = res;
             if (!isErr) {
@@ -130,11 +128,10 @@ getTableData();
 
 let ruleFormRef = ref<FormInstance>();
 
-const search = async (model: RuleForm) => {
+const search = async (model) => {
     if (!ruleFormRef.value) return;
     await ruleFormRef.value.validate((valid) => {
         if (valid) {
-            console.log(model, '搜索的数据请求接口');
             getTableData(model);
         }
     });

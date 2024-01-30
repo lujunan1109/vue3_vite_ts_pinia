@@ -1,6 +1,6 @@
 <template>
     <div class="home-container">
-        <div class="flex-layout">
+        <div class="flex-layout m-10">
             <div
                 v-for="item in 4"
                 :key="item"
@@ -15,12 +15,20 @@
                     <div>233</div>
                     <div class="data-title">访问数</div>
                 </div>
+                <span class="data-num">+2.5%</span>
             </div>
         </div>
 
-        <div id="line" class="mid-content box-shadow-bg">图表$曲线图</div>
+        <div id="line" class="mid-content box-shadow-bg"></div>
 
-        <div id="bg" class="footer-content box-shadow-bg">底部三个图</div>
+        <div class="flex-layout m-10">
+            <div
+                v-for="item in 3"
+                :id="`bg${item}`"
+                :key="item"
+                class="footer-content box-shadow-bg"
+            ></div>
+        </div>
     </div>
 </template>
 
@@ -29,7 +37,13 @@ import { onMounted, watch } from 'vue';
 import * as echarts from 'echarts';
 import { useMenuStore } from '@/store/menu';
 import { storeToRefs } from 'pinia';
-import { option, hisOption } from '@/assets/config.js';
+import {
+    hisOption,
+    pieOption,
+    lineOption,
+    barOption,
+} from '@/assets/config.js';
+const { proxy } = getCurrentInstance();
 
 // 重置echart图表
 let resetEcahrts = [];
@@ -71,9 +85,15 @@ watch(menueWidthState, (nv) => {
 });
 
 onMounted(() => {
-    textInner();
-    init('bg', option);
+    proxy.$message({
+        message: textInner(),
+        type: 'success',
+    });
+
     init('line', hisOption);
+    init('bg1', pieOption);
+    init('bg2', lineOption);
+    init('bg3', barOption);
     window.addEventListener('resize', redraw, false);
 });
 
@@ -119,10 +139,14 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
 .flex-layout {
     display: flex;
     justify-content: space-between;
+}
+
+.m-10 {
     margin: 0 -10px;
 }
 
 .top-content {
+    position: relative;
     width: 25%;
     display: flex;
     align-items: center;
@@ -133,6 +157,14 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     transition: transform 0.3s;
     &:hover {
         transform: scaleX(1.05) scaleY(1.05);
+    }
+    & .data-num {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        font-size: 12px;
+        font-weight: 300;
+        color: #f56c6c;
     }
     & .avatar-data {
         width: 50px;
@@ -160,8 +192,10 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
 }
 
 .footer-content {
+    width: 33%;
     height: 300px;
     padding: 20px;
+    margin: 0 10px;
 }
 
 .mouse-hand {

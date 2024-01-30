@@ -12,8 +12,6 @@
             :fil-attr="{
                 labelWidth: '80px',
             }"
-            @handle-size-change="(val) => (pagination.pageSize = val)"
-            @handle-current-change="(val) => (pagination.currentPage = val)"
         >
             <el-table-column fixed="right" label="Operations" width="180">
                 <template #default>
@@ -99,9 +97,9 @@ const columns = [
 const pagination = reactive({
     layout: 'total, sizes, prev, pager, next, jumper',
     currentPage: 1,
-    pageSize: 100,
-    total: 10000,
-    pageSizes: [100, 200, 500],
+    pageSize: 10,
+    total: 100,
+    pageSizes: [10, 20, 50],
 });
 
 const tableOptions = [
@@ -133,9 +131,6 @@ const tableOptions = [
 ];
 const tableForm = reactive({
     name: '',
-    name1: '',
-    name2: '',
-    name3: '',
     select: '',
 });
 

@@ -19,12 +19,12 @@ export const routes: Array<RouteRecordRaw> = [
             requireAuth: false,
             index: 1,
         },
-        component: () => import('@/pages/login-page.vue'),
+        component: () => import('@/pages/login.vue'),
     },
 
     {
         path: '/redirect',
-        component: () => import('@/pages/layout-page.vue'),
+        component: () => import('@/pages/layout.vue'),
         children: [
             {
                 path: '/home',
@@ -34,57 +34,59 @@ export const routes: Array<RouteRecordRaw> = [
                     keepAlive: false,
                     requireAuth: true,
                     index: 2,
-                    icon: 'House',
+                    icon: 'HomeFilled',
                 },
-                component: () => import('@/pages/home-page.vue'),
+                component: () => import('@/pages/home.vue'),
             },
             {
-                path: '/keep',
-                name: 'Keep',
+                path: '/function',
+                name: 'Function',
                 meta: {
-                    title: '健身',
-                    keepAlive: false,
-                    requireAuth: true,
-                    index: 5,
-                    icon: 'Basketball',
-                },
-                component: () => import('@/pages/keep-page.vue'),
-            },
-            {
-                path: '/day',
-                name: 'Life',
-                meta: {
-                    title: '生活',
+                    title: '功能模块',
                     keepAlive: false,
                     requireAuth: true,
                     index: 6,
-                    icon: 'Avatar',
+                    icon: 'Suitcase',
                 },
-                component: () => import('@/pages/life-page.vue'),
+                component: () => import('@/pages/func/index.vue'),
+                children: [
+                    {
+                        path: '/theme',
+                        name: 'Theme',
+                        meta: {
+                            title: '主题切换',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 11,
+                            icon: 'Guide',
+                        },
+                        component: () => import('@/pages/func/toggle.vue'),
+                    },
+                    {
+                        path: '/teleport',
+                        name: 'Teleport',
+                        meta: {
+                            title: '传送门',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 11,
+                            icon: 'Bicycle',
+                        },
+                        component: () => import('@/pages/func/teleport.vue'),
+                    },
+                ],
             },
             {
-                path: '/music',
-                name: 'Music',
+                path: '/component',
+                name: 'Component',
                 meta: {
-                    title: '音乐',
+                    title: '组件模块',
                     keepAlive: false,
                     requireAuth: true,
                     index: 6,
-                    icon: 'Headset',
+                    icon: 'Box',
                 },
-                component: () => import('@/pages/music-page.vue'),
-            },
-            {
-                path: '/test',
-                name: 'Test',
-                meta: {
-                    title: '测试模块',
-                    keepAlive: false,
-                    requireAuth: true,
-                    index: 7,
-                    icon: 'HelpFilled',
-                },
-                component: () => import('@/pages/test/test-page.vue'),
+                component: () => import('@/pages/comp/index.vue'),
                 children: [
                     {
                         path: 'table',
@@ -96,20 +98,7 @@ export const routes: Array<RouteRecordRaw> = [
                             index: 8,
                             icon: 'TrendCharts',
                         },
-                        component: () => import('@/pages/test/table-page.vue'),
-                    },
-                    {
-                        path: 'teleport',
-                        name: 'Teleport',
-                        meta: {
-                            title: '传送门',
-                            keepAlive: false,
-                            requireAuth: true,
-                            index: 9,
-                            icon: 'Bicycle',
-                        },
-                        component: () =>
-                            import('@/pages/test/teleport-page.vue'),
+                        component: () => import('@/pages/comp/table.vue'),
                     },
                     {
                         path: '/tree',
@@ -119,23 +108,11 @@ export const routes: Array<RouteRecordRaw> = [
                             keepAlive: false,
                             requireAuth: true,
                             index: 10,
-                            icon: 'Document',
+                            icon: 'Checked',
                         },
-                        component: () => import('@/pages/test/tree-page.vue'),
+                        component: () => import('@/pages/comp/tree.vue'),
                     },
-                    {
-                        path: '/theme',
-                        name: 'Theme',
-                        meta: {
-                            title: '主题切换',
-                            keepAlive: false,
-                            requireAuth: true,
-                            index: 11,
-                            icon: 'Guide',
-                        },
-                        component: () =>
-                            import('@/pages/test/toggle-theme.vue'),
-                    },
+
                     {
                         path: '/vform',
                         name: 'Form',
@@ -144,18 +121,30 @@ export const routes: Array<RouteRecordRaw> = [
                             keepAlive: false,
                             requireAuth: true,
                             index: 12,
-                            icon: 'Document',
+                            icon: 'List',
                         },
-                        component: () => import('@/pages/test/vform-page.vue'),
+                        component: () => import('@/pages/comp/vform.vue'),
                     },
                 ],
+            },
+            {
+                path: '/permisssion',
+                name: 'Permisssion',
+                meta: {
+                    title: '用户权限',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 3,
+                    icon: 'UserFilled',
+                },
+                component: () => import('@/pages/permission/index.vue'),
             },
         ],
     },
 
     {
         path: '/:pathMatch(.*)',
-        redirect: '/login',
+        redirect: '/404',
     },
 
     {
@@ -168,7 +157,7 @@ export const routes: Array<RouteRecordRaw> = [
             index: 4,
             icon: 'WarningFilled',
         },
-        component: () => import('@/pages/404-page.vue'),
+        component: () => import('@/pages/404.vue'),
     },
 ];
 
