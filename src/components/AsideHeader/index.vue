@@ -65,6 +65,11 @@
                 />
             </div>
 
+            <div class="user-message">
+                <el-icon><BellFilled /></el-icon>
+                <span>3</span>
+            </div>
+
             <el-dropdown @command="triggerCom">
                 <span class="el-dropdown-link">
                     <el-image
@@ -277,5 +282,25 @@ watchEffect(() => {
 
 .picker {
     margin-right: 20px;
+}
+
+.user-message {
+    position: relative;
+    color: #333;
+    font-size: 20px;
+    & span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        background: red;
+        position: absolute;
+        font-size: 0.8rem;
+        top: -5px;
+        right: 12px;
+        color: #fff;
+        text-align: center;
+        line-height: 1.2;
+    }
 }
 </style>
