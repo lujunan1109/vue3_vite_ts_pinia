@@ -44,3 +44,10 @@ export function userLogout() {
         method: 'POST',
     });
 }
+
+export function getUserDaynamicRoute() {
+    return ywzRequest({
+        url: '/user/dynamic',
+        method: 'GET',
+    });
+}

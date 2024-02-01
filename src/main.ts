@@ -17,7 +17,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
-import '@/mockjs/index';
+import '@/mockjs/index.ts';
 import 'nprogress/nprogress.css';
 // 文件上传
 import uploader from 'vue-simple-uploader';

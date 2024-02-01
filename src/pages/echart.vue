@@ -22,7 +22,11 @@
     </div>
 </template>
 <script setup lang="ts">
-import { option, hisOption, waveOption } from '@/assets/config.js';
+import {
+    pieOption as option,
+    hisOption,
+    barOption as waveOption,
+} from '@/assets/config.js';
 import * as echarts from 'echarts';
 import autofit from 'autofit.js';
 import { onMounted } from 'vue';

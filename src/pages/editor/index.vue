@@ -1,23 +1,25 @@
 <template>
-    <h3>wangeditor 编辑器示例</h3>
-    <div style="border: 1px solid #ccc">
-        <Toolbar
-            style="border-bottom: 1px solid #ccc"
-            :editor="editorRef"
-            :default-config="toolbarConfig"
-            mode="default"
-        />
-        <Editor
-            v-model="valueHtml"
-            style="height: 500px; overflow-y: hidden"
-            :default-config="editorConfig"
-            mode="default"
-            @on-created="handleCreated"
-            @on-change="onChange"
-        />
+    <div>
+        <h3>wangeditor 编辑器示例</h3>
+        <div style="border: 1px solid #ccc">
+            <Toolbar
+                style="border-bottom: 1px solid #ccc"
+                :editor="editorRef"
+                :default-config="toolbarConfig"
+                mode="default"
+            />
+            <Editor
+                v-model="valueHtml"
+                style="height: 500px; overflow-y: hidden"
+                :default-config="editorConfig"
+                mode="default"
+                @on-created="handleCreated"
+                @on-change="onChange"
+            />
+        </div>
+        <div>内容展示：</div>
+        <div v-html="getHtml"></div>
     </div>
-    <div>内容展示：</div>
-    <div v-html="getHtml"></div>
 </template>
 
 <script setup lang="ts">

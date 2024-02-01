@@ -429,8 +429,8 @@ export const pieOption = {
                     },
                 },
             ],
-            itemStyle: {
-                emphasis: {
+            emphasis: {
+                itemStyle: {
                     shadowBlur: 10,
                     shadowOffsetX: 0,
                     shadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -506,8 +506,8 @@ export const pieOptionDark = {
                     },
                 },
             ],
-            itemStyle: {
-                emphasis: {
+            emphasis: {
+                itemStyle: {
                     shadowBlur: 10,
                     shadowOffsetX: 0,
                     shadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -580,36 +580,32 @@ export const lineOption = {
             type: 'line',
             data: [23, 60, 20, 36, 23, 85],
             lineStyle: {
-                normal: {
-                    width: 8,
-                    color: {
-                        type: 'linear',
+                width: 8,
+                color: {
+                    type: 'linear',
 
-                        colorStops: [
-                            {
-                                offset: 0,
-                                color: '#A9F387', // 0% 处的颜色
-                            },
-                            {
-                                offset: 1,
-                                color: '#48D8BF', // 100% 处的颜色
-                            },
-                        ],
-                        globalCoord: false, // 缺省为 false
-                    },
-                    shadowColor: 'rgba(72,216,191, 0.3)',
-                    shadowBlur: 10,
-                    shadowOffsetY: 20,
+                    colorStops: [
+                        {
+                            offset: 0,
+                            color: '#A9F387', // 0% 处的颜色
+                        },
+                        {
+                            offset: 1,
+                            color: '#48D8BF', // 100% 处的颜色
+                        },
+                    ],
+                    globalCoord: false, // 缺省为 false
                 },
+                shadowColor: 'rgba(72,216,191, 0.3)',
+                shadowBlur: 10,
+                shadowOffsetY: 20,
             },
             itemStyle: {
-                normal: {
-                    color: '#fff',
-                    borderWidth: 10,
-                    /*shadowColor: 'rgba(72,216,191, 0.3)',
+                color: '#fff',
+                borderWidth: 10,
+                /*shadowColor: 'rgba(72,216,191, 0.3)',
                 shadowBlur: 100,*/
-                    borderColor: '#A9F387',
-                },
+                borderColor: '#A9F387',
             },
             smooth: true,
         },
@@ -687,36 +683,32 @@ export const lineOptionDark = {
             type: 'line',
             data: [23, 60, 20, 36, 23, 85],
             lineStyle: {
-                normal: {
-                    width: 8,
-                    color: {
-                        type: 'linear',
+                width: 8,
+                color: {
+                    type: 'linear',
 
-                        colorStops: [
-                            {
-                                offset: 0,
-                                color: '#A9F387', // 0% 处的颜色
-                            },
-                            {
-                                offset: 1,
-                                color: '#48D8BF', // 100% 处的颜色
-                            },
-                        ],
-                        globalCoord: false, // 缺省为 false
-                    },
-                    shadowColor: 'rgba(72,216,191, 0.3)',
-                    shadowBlur: 10,
-                    shadowOffsetY: 20,
+                    colorStops: [
+                        {
+                            offset: 0,
+                            color: '#A9F387', // 0% 处的颜色
+                        },
+                        {
+                            offset: 1,
+                            color: '#48D8BF', // 100% 处的颜色
+                        },
+                    ],
+                    globalCoord: false, // 缺省为 false
                 },
+                shadowColor: 'rgba(72,216,191, 0.3)',
+                shadowBlur: 10,
+                shadowOffsetY: 20,
             },
             itemStyle: {
-                normal: {
-                    color: '#fff',
-                    borderWidth: 10,
-                    /*shadowColor: 'rgba(72,216,191, 0.3)',
+                color: '#fff',
+                borderWidth: 10,
+                /*shadowColor: 'rgba(72,216,191, 0.3)',
                 shadowBlur: 100,*/
-                    borderColor: '#A9F387',
-                },
+                borderColor: '#A9F387',
             },
             smooth: true,
         },
@@ -776,17 +768,15 @@ export const barOption = {
             barMaxWidth: 30,
             barGap: '0%',
             itemStyle: {
-                normal: {
-                    color: 'rgba(254,191,7,1)',
-                    label: {
-                        show: true,
-                        textStyle: {
-                            color: '#fff',
-                        },
-                        position: 'insideTop',
-                        formatter: function (p) {
-                            return p.value > 0 ? p.value : '';
-                        },
+                color: 'rgba(254,191,7,1)',
+                label: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff',
+                    },
+                    position: 'insideTop',
+                    formatter: function (p) {
+                        return p.value > 0 ? p.value : '';
                     },
                 },
             },
@@ -800,15 +790,13 @@ export const barOption = {
             symbolSize: 20,
             symbol: 'circle',
             itemStyle: {
-                normal: {
-                    color: 'rgba(153,153,153,1)',
-                    barBorderRadius: 0,
-                    label: {
-                        show: true,
-                        position: 'top',
-                        formatter: function (p) {
-                            return p.value > 0 ? p.value : '';
-                        },
+                color: 'rgba(153,153,153,1)',
+                barBorderRadius: 0,
+                label: {
+                    show: true,
+                    position: 'top',
+                    formatter: function (p) {
+                        return p.value > 0 ? p.value : '';
                     },
                 },
             },
@@ -874,17 +862,15 @@ export const barOptionDark = {
             barMaxWidth: 30,
             barGap: '0%',
             itemStyle: {
-                normal: {
-                    color: 'rgba(254,191,7,1)',
-                    label: {
-                        show: true,
-                        textStyle: {
-                            color: '#fff',
-                        },
-                        position: 'insideTop',
-                        formatter: function (p) {
-                            return p.value > 0 ? p.value : '';
-                        },
+                color: 'rgba(254,191,7,1)',
+                label: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff',
+                    },
+                    position: 'insideTop',
+                    formatter: function (p) {
+                        return p.value > 0 ? p.value : '';
                     },
                 },
             },
@@ -898,15 +884,13 @@ export const barOptionDark = {
             symbolSize: 20,
             symbol: 'circle',
             itemStyle: {
-                normal: {
-                    color: 'rgba(153,153,153,1)',
-                    barBorderRadius: 0,
-                    label: {
-                        show: true,
-                        position: 'top',
-                        formatter: function (p) {
-                            return p.value > 0 ? p.value : '';
-                        },
+                color: 'rgba(153,153,153,1)',
+                barBorderRadius: 0,
+                label: {
+                    show: true,
+                    position: 'top',
+                    formatter: function (p) {
+                        return p.value > 0 ? p.value : '';
                     },
                 },
             },

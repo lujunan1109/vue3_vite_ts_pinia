@@ -44,7 +44,6 @@
                         <el-button
                             type="primary"
                             @click="submitForm(ruleFormRef)"
-                            @click.enter="submitForm(ruleFormRef)"
                         >
                             登录
                         </el-button>
@@ -98,11 +97,7 @@
                         />
                     </el-form-item>
                     <el-form-item>
-                        <el-button
-                            type="primary"
-                            @click="submitForm(ruleFormRef)"
-                            >注册登录</el-button
-                        >
+                        <el-button type="primary">注册登录</el-button>
                         <div class="bot-box">
                             <span class="register" @click="register"
                                 >登录账户</span
@@ -123,15 +118,13 @@ import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import type { FormInstance, FormRules } from 'element-plus';
 import { Lock, User } from '@element-plus/icons-vue';
-import { userLogin } from '@/api';
-import { captureAsyncErrors, sleep } from '@/utils';
+import { sleep } from '@/utils';
 import { getCurrentInstance } from 'vue';
+import { useLoginStore } from '@/store/login';
 
 const ruleFormRef = ref<FormInstance>();
 // 获取全局的参数/方法
 const { proxy } = getCurrentInstance();
-
-type ResponseDataType = ReturnType<typeof userLogin>;
 
 const ruleForm = reactive({
     name: '',
@@ -182,21 +175,17 @@ const rules = reactive<FormRules>({
 });
 
 const submitForm = async (formEl: FormInstance | undefined) => {
-    console.log('触发');
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
-        console.log(valid, fields);
         if (valid) {
-            const [isErr, result]: ResponseDataType = await captureAsyncErrors(
-                userLogin(ruleForm),
-            );
-            if (!isErr && result) {
+            const loginStore = useLoginStore();
+            const result = loginStore.userLoginHandle(ruleForm);
+            if (result) {
                 $router.push({ path: '/home' });
                 proxy.$message({
                     message: '登录成功',
                     type: 'success',
                 });
-                localStorage.setItem('token', result.token);
             }
         }
     });
