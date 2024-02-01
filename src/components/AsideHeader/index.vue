@@ -65,7 +65,7 @@
                 />
             </div>
 
-            <div class="user-message">
+            <div class="user-message" @click="drawerMsg = true">
                 <el-icon><BellFilled /></el-icon>
                 <span>3</span>
             </div>
@@ -106,6 +106,19 @@
             {{ tag.name }}
         </el-tag>
     </div>
+
+    <el-drawer
+        v-model="drawerMsg"
+        title="3条消息"
+        direction="rtl"
+        :with-header="true"
+    >
+        <div class="msg-ctx">
+            <div>1.坚持学习</div>
+            <div>2.永不放弃</div>
+            <div>3.保持健康</div>
+        </div>
+    </el-drawer>
 </template>
 <script setup lang="ts">
 import { ref, inject } from 'vue';
@@ -225,6 +238,9 @@ const fullScreen = () => {
     screenfull.toggle();
 };
 
+// 消息点击展示
+const drawerMsg = ref(false);
+
 onMounted(() => {
     document.addEventListener('keydown', (event) => {
         if (event.key === 'F11') {
@@ -286,8 +302,10 @@ watchEffect(() => {
 
 .user-message {
     position: relative;
-    color: #333;
+    @include useTheme('color', $title-color);
     font-size: 20px;
+    cursor: pointer;
+
     & span {
         display: inline-block;
         width: 15px;
@@ -301,6 +319,13 @@ watchEffect(() => {
         color: #fff;
         text-align: center;
         line-height: 1.2;
+    }
+}
+
+.msg-ctx {
+    & > div {
+        color: red;
+        padding: 5px 10px;
     }
 }
 </style>

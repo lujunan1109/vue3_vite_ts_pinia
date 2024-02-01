@@ -12,7 +12,7 @@ import nprogress from 'nprogress';
 export const routes: Array<RouteRecordRaw> = [
     {
         path: '/login',
-        name: '登录',
+        name: 'Login',
         meta: {
             title: '登录',
             keepAlive: false,
@@ -138,6 +138,18 @@ export const routes: Array<RouteRecordRaw> = [
                     icon: 'UserFilled',
                 },
                 component: () => import('@/pages/permission/index.vue'),
+            },
+            {
+                path: '/editor',
+                name: 'Editor',
+                meta: {
+                    title: '编辑器',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 3,
+                    icon: 'Management',
+                },
+                component: () => import('@/pages/editor/index.vue'),
             },
         ],
     },

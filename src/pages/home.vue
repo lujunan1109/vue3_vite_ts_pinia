@@ -39,10 +39,16 @@ import { useMenuStore } from '@/store/menu';
 import { storeToRefs } from 'pinia';
 import {
     hisOption,
+    hisOptionDark,
     pieOption,
+    pieOptionDark,
     lineOption,
+    lineOptionDark,
     barOption,
+    barOptionDark,
 } from '@/assets/config.js';
+import { useGlobalStore } from '@/store/global';
+const globalStore = useGlobalStore();
 const { proxy } = getCurrentInstance();
 
 // 重置echart图表
@@ -90,10 +96,10 @@ onMounted(() => {
         type: 'success',
     });
 
-    init('line', hisOption);
-    init('bg1', pieOption);
-    init('bg2', lineOption);
-    init('bg3', barOption);
+    init('line', globalStore.theme === 'light' ? hisOption : hisOptionDark);
+    init('bg1', globalStore.theme === 'light' ? pieOption : pieOptionDark);
+    init('bg2', globalStore.theme === 'light' ? lineOption : lineOptionDark);
+    init('bg3', globalStore.theme === 'light' ? barOption : barOptionDark);
     window.addEventListener('resize', redraw, false);
 });
 
@@ -116,8 +122,6 @@ const textInner = () => {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/theme.scss'; // 主题样式
-
 $el-text-color-regular: #606266;
 $el-bg-color-overlay: #1d1d1d;
 $el-border-color: #dcdfe6;
