@@ -49,6 +49,21 @@ export const login = Mock.mock('/login', 'post', {
     message: 'ok',
     data: {
         token: 'admin',
+    },
+});
+
+// 退出登录
+export const logout = Mock.mock('/logout', 'post', {
+    code: 200,
+    message: 'ok',
+    data: {},
+});
+
+// 返回异步路由
+export const asyncRoutes = Mock.mock('/router', 'post', {
+    code: 200,
+    message: 'ok',
+    data: {
         routes: [
             {
                 path: '/function',
@@ -60,7 +75,7 @@ export const login = Mock.mock('/login', 'post', {
                     index: 6,
                     icon: 'Suitcase',
                 },
-                component: () => import('@/pages/func/index.vue'),
+                component: '/func/index',
                 children: [
                     {
                         path: '/theme',
@@ -72,7 +87,7 @@ export const login = Mock.mock('/login', 'post', {
                             index: 11,
                             icon: 'Guide',
                         },
-                        component: () => import('@/pages/func/toggle.vue'),
+                        component: '/func/toggle',
                     },
                     {
                         path: '/teleport',
@@ -84,7 +99,7 @@ export const login = Mock.mock('/login', 'post', {
                             index: 11,
                             icon: 'Bicycle',
                         },
-                        component: () => import('@/pages/func/teleport.vue'),
+                        component: '/func/teleport',
                     },
                 ],
             },
@@ -98,10 +113,10 @@ export const login = Mock.mock('/login', 'post', {
                     index: 6,
                     icon: 'Box',
                 },
-                component: () => import('@/pages/comp/index.vue'),
+                component: '/comp/index',
                 children: [
                     {
-                        path: 'table',
+                        path: '/table',
                         name: 'Table',
                         meta: {
                             title: '表格',
@@ -110,7 +125,7 @@ export const login = Mock.mock('/login', 'post', {
                             index: 8,
                             icon: 'TrendCharts',
                         },
-                        component: () => import('@/pages/comp/table.vue'),
+                        component: '/comp/table',
                     },
                     {
                         path: '/tree',
@@ -122,7 +137,7 @@ export const login = Mock.mock('/login', 'post', {
                             index: 10,
                             icon: 'Checked',
                         },
-                        component: () => import('@/pages/comp/tree.vue'),
+                        component: '/comp/tree',
                     },
 
                     {
@@ -135,7 +150,7 @@ export const login = Mock.mock('/login', 'post', {
                             index: 12,
                             icon: 'List',
                         },
-                        component: () => import('@/pages/comp/vform.vue'),
+                        component: '/comp/vform',
                     },
                 ],
             },
@@ -149,7 +164,7 @@ export const login = Mock.mock('/login', 'post', {
                     index: 3,
                     icon: 'UserFilled',
                 },
-                component: () => import('@/pages/permission/index.vue'),
+                component: '/permission/index',
             },
             {
                 path: '/editor',
@@ -161,15 +176,8 @@ export const login = Mock.mock('/login', 'post', {
                     index: 3,
                     icon: 'Management',
                 },
-                component: () => import('@/pages/editor/index.vue'),
+                component: '/editor/index',
             },
         ],
     },
-});
-
-// 退出登录
-export const logout = Mock.mock('/logout', 'post', {
-    code: 200,
-    message: 'ok',
-    data: {},
 });

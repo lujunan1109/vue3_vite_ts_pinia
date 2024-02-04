@@ -1,12 +1,12 @@
 <template>
     <div>
         <v-tree :tree-data="treeData"></v-tree>
-        <mul-slect-tree :data="data" :default-keys="[10]"></mul-slect-tree>
+        <mul-select-tree :data="data" :default-keys="[10]"></mul-select-tree>
     </div>
 </template>
 <script lang="ts" setup>
-import VTree from '@/components/VTree/src/index.vue';
-import MulSlectTree from '@/components/MulSelectTree/src/index.vue';
+import VTree from '@/components/VTree';
+import MulSelectTree from '@/components/MulSelectTree';
 
 import { ref, onMounted } from 'vue';
 import { captureAsyncErrors } from '@/utils';
@@ -26,9 +26,7 @@ type TreeDataType = {
 
 const treeData = ref([]);
 onMounted(async () => {
-    const [isErr, res]: ResultType = await captureAsyncErrors<ResponseType>(
-        getTreeData,
-    );
+    const [isErr, res]: ResultType = await captureAsyncErrors(getTreeData());
     if (!isErr) {
         treeData.value = res.data;
     }

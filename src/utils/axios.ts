@@ -4,9 +4,10 @@ import { AxiosResponse } from 'axios';
 import type { RequestConfig } from './request/type';
 
 export interface YWZResponse<T> {
-    statusCode: number;
-    desc: string;
-    result: T;
+    code: number;
+    message: string;
+    data: T;
+    lives?: any;
 }
 
 // 重写返回类型

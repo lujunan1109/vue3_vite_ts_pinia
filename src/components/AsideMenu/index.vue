@@ -45,11 +45,12 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
 import { useMenuStore } from '@/store/menu';
+import { useLoginStore } from '@/store/login';
 import { storeToRefs } from 'pinia';
 import { routes } from '@/router';
 console.log(routes, 'routes');
 
-const renderMenu = routes[1].children;
+const renderMenu = routes[1].children.concat(useLoginStore().dymicRoutes);
 console.log(renderMenu, 'renderMenu');
 
 const menuStore = useMenuStore();

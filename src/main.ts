@@ -3,12 +3,13 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-12-03 21:38:17
+ * @LastEditTime: 2024-02-04 15:20:51
  */
 import { createApp } from 'vue';
 import App from './App.vue';
 import store from './store';
 import { router } from './router';
+import './router/permission';
 import SvgIcon from '@/components/SvgIcon/index.vue';
 import 'virtual:svg-icons-register'; // 注册 svg 注册脚本
 import 'normalize.css';
@@ -17,7 +18,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import * as directives from './utils/directive.js';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
-import '@/mockjs/index.ts';
+import '@/mockjs/index';
 import 'nprogress/nprogress.css';
 // 文件上传
 import uploader from 'vue-simple-uploader';

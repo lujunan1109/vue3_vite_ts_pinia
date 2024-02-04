@@ -1,4 +1,4 @@
-import ywzRequest from '@/utils/axios.ts';
+import ywzRequest from '@/utils/axios';
 
 export function getTimeWeather() {
     return ywzRequest({
@@ -47,7 +47,7 @@ export function userLogout() {
 
 export function getUserDaynamicRoute() {
     return ywzRequest({
-        url: '/user/dynamic',
-        method: 'GET',
+        url: '/router',
+        method: 'POST',
     });
 }

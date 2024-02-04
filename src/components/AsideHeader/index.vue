@@ -129,7 +129,7 @@ import { ArrowRight } from '@element-plus/icons-vue';
 import { useGlobalStore } from '@/store/global';
 import userUrl from '@/assets/user.gif';
 import screenfull from 'screenfull';
-import { getTimeWeather } from '@/api/index';
+import { getTimeWeather } from '@/api/index.ts';
 import { useElementPlusTheme } from 'use-element-plus-theme';
 import { useLanguage } from '@/store/language';
 import { userLogout } from '@/api';
