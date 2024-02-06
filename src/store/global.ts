@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { useThemeCahenge } from '@/utils';
 export const useGlobalStore = defineStore('global', {
     state: () => ({
         size: 'default',
@@ -10,6 +11,7 @@ export const useGlobalStore = defineStore('global', {
         },
         setTheme(data: string) {
             this.theme = data;
+            useThemeCahenge(data);
         },
     },
     persist: true,

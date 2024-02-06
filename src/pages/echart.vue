@@ -69,15 +69,15 @@ onMounted(() => {
     init('line2', hisOption);
     init('waveOption', waveOption);
     window.addEventListener('resize', redraw, false);
-    // autofit.init({
-    //     el: '#app',
-    //     dh: 1080,
-    //     dw: 1920,
-    //     resize: true,
-    //     ignore: [],
-    //     transition: 0,
-    //     delay: 0,
-    // });
+    autofit.init({
+        el: '#app',
+        dh: 1080,
+        dw: 1920,
+        resize: true,
+        ignore: [],
+        transition: 0,
+        delay: 0,
+    });
 });
 
 onUnmounted(() => {

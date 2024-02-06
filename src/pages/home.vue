@@ -192,7 +192,7 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
 .mid-content {
     height: 300px;
     padding: 20px;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .footer-content {
