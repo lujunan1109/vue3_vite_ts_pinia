@@ -5,11 +5,12 @@ export const useGlobalStore = defineStore('global', {
         theme: 'light',
     }),
     actions: {
-        setUiSize(data) {
+        setUiSize(data: string) {
             this.size = data;
         },
-        setTheme(data) {
+        setTheme(data: string) {
             this.theme = data;
         },
     },
+    persist: true,
 });

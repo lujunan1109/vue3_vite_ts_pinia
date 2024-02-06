@@ -59,7 +59,7 @@ export const logout = Mock.mock('/logout', 'post', {
     data: {},
 });
 
-// 返回异步路由
+// 返回admin异步路由
 export const asyncRoutes = Mock.mock('/router', 'post', {
     code: 200,
     message: 'ok',
@@ -103,6 +103,91 @@ export const asyncRoutes = Mock.mock('/router', 'post', {
                     },
                 ],
             },
+            {
+                path: '/component',
+                name: 'Component',
+                meta: {
+                    title: '组件模块',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 6,
+                    icon: 'Box',
+                },
+                component: '/comp/index',
+                children: [
+                    {
+                        path: '/table',
+                        name: 'Table',
+                        meta: {
+                            title: '表格',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 8,
+                            icon: 'TrendCharts',
+                        },
+                        component: '/comp/table',
+                    },
+                    {
+                        path: '/tree',
+                        name: 'Tree',
+                        meta: {
+                            title: '多选树',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 10,
+                            icon: 'Checked',
+                        },
+                        component: '/comp/tree',
+                    },
+
+                    {
+                        path: '/vform',
+                        name: 'Form',
+                        meta: {
+                            title: '表单',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 12,
+                            icon: 'List',
+                        },
+                        component: '/comp/vform',
+                    },
+                ],
+            },
+            {
+                path: '/permisssion',
+                name: 'Permisssion',
+                meta: {
+                    title: '用户权限',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 3,
+                    icon: 'UserFilled',
+                },
+                component: '/permission/index',
+            },
+            {
+                path: '/editor',
+                name: 'Editor',
+                meta: {
+                    title: '编辑器',
+                    keepAlive: false,
+                    requireAuth: true,
+                    index: 3,
+                    icon: 'Management',
+                },
+                component: '/editor/index',
+            },
+        ],
+    },
+});
+
+// 返回test异步路由
+export const asyncTestRoutes = Mock.mock('/router/test', 'post', {
+    code: 200,
+    message: 'ok',
+    data: {
+        routes: [
             {
                 path: '/component',
                 name: 'Component',

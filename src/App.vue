@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:28
  * @LastEditors: lujunan
- * @LastEditTime: 2023-11-25 19:45:34
+ * @LastEditTime: 2024-02-06 20:16:02
 -->
 
 <template>
@@ -28,17 +28,6 @@ const reloadPage = () => {
 };
 
 // 利用autofit进行全屏的一个缩放的效果 https://juejin.cn/post/7231089453694009404#heading-5
-onMounted(() => {
-    autofit.init({
-        el: '#app',
-        dh: 937,
-        dw: 1920,
-        resize: true,
-        ignore: [],
-        transition: 0,
-        delay: 0,
-    });
-});
 
 provide('reloadPage', reloadPage);
 </script>
@@ -46,6 +35,7 @@ provide('reloadPage', reloadPage);
 <style>
 #resetBox {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 </style>

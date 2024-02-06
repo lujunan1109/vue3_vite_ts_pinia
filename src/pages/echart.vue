@@ -1,9 +1,9 @@
 <!--
- * @Description: 
+ * @Description: autofit实验界面
  * @Author: lujunan
  * @Date: 2024-01-21 21:06:19
  * @LastEditors: lujunan
- * @LastEditTime: 2024-01-27 21:17:34
+ * @LastEditTime: 2024-02-06 19:25:40
 -->
 <template>
     <div class="big-screen">
@@ -69,15 +69,15 @@ onMounted(() => {
     init('line2', hisOption);
     init('waveOption', waveOption);
     window.addEventListener('resize', redraw, false);
-    autofit.init({
-        el: '#app',
-        dh: 1080,
-        dw: 1920,
-        resize: true,
-        ignore: [],
-        transition: 0,
-        delay: 0,
-    });
+    // autofit.init({
+    //     el: '#app',
+    //     dh: 1080,
+    //     dw: 1920,
+    //     resize: true,
+    //     ignore: [],
+    //     transition: 0,
+    //     delay: 0,
+    // });
 });
 
 onUnmounted(() => {

@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2023-11-26 20:31:00
  * @LastEditors: lujunan
- * @LastEditTime: 2023-12-03 21:34:38
+ * @LastEditTime: 2024-02-06 20:58:39
 -->
 <template>
     <div style="padding: 20px">
@@ -27,14 +27,17 @@ const globalStore = useGlobalStore();
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-console.log(isDark.value);
+
 // 切换html的data-theme用于测试scss主题切换
-watch(isDark, () => {
-    document
-        .querySelector('html')
-        .setAttribute('data-theme', isDark.value ? 'dark' : 'light');
-    globalStore.setTheme(isDark.value ? 'dark' : 'light');
-});
+watch(
+    isDark,
+    () => {
+        globalStore.setTheme(isDark.value ? 'dark' : 'light');
+    },
+    {
+        immediate: true,
+    },
+);
 </script>
 
 <style lang="scss">

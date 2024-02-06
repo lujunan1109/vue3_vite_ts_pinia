@@ -5,19 +5,26 @@
 import { router } from './index'; // = import router from '@/router/index'
 import { useLoginStore } from '@/store/login';
 import nprogress from 'nprogress';
+import { useThemeCahenge } from '@/utils/index';
+import { useGlobalStore } from '@/store/global';
 
 const whiteList = ['/login', '/noPermission', '/404'];
 let pageRefresh = true;
 
 router.beforeEach(async (to, from) => {
     nprogress.start();
+    const globalStore = useGlobalStore();
+    // 保持主题样式持久化
+    useThemeCahenge(globalStore.theme);
     if (whiteList.indexOf(to.path) !== -1) {
         if (to.path == '/login') {
             pageRefresh = true;
         }
         return true;
     }
-
+    if (to.path == '/') {
+        router.push('/login');
+    }
     const token = localStorage.getItem('token') ? true : false;
     if (!token) {
         router.push({ name: 'login' });

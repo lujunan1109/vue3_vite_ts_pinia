@@ -114,9 +114,7 @@
         :with-header="true"
     >
         <div class="msg-ctx">
-            <div>1.坚持学习</div>
-            <div>2.永不放弃</div>
-            <div>3.保持健康</div>
+            <div v-for="item in 3" :key="item">消息展示{{ item }}</div>
         </div>
     </el-drawer>
 </template>
@@ -324,8 +322,11 @@ watchEffect(() => {
 
 .msg-ctx {
     & > div {
-        color: red;
+        margin: 15px 0;
+        color: rgb(23, 14, 196);
         padding: 5px 10px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
     }
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div>
+        <h5>常规tree</h5>
         <v-tree :tree-data="treeData"></v-tree>
+        <h5>多选树展示</h5>
         <mul-select-tree :data="data" :default-keys="[10]"></mul-select-tree>
     </div>
 </template>

@@ -97,16 +97,6 @@ const local = computed(() => {
 // 切换动画效果
 @import '@/assets/transition.scss';
 
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    width: 100%;
-    height: 100%;
-}
-
 .common-layout {
     width: 100%;
     height: 100%;
@@ -131,13 +121,14 @@ const local = computed(() => {
 
     &-aside {
         width: auto;
-        background: #001529;
         overflow-x: hidden;
+        height: 100%;
+        @include useTheme('background-color', $menu-bg);
     }
 
     &-main {
         width: 100%;
-        height: 100%common-layout;
+        height: 100%;
         overflow-y: auto;
         display: flex;
         flex-direction: column;

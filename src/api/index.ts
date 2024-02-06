@@ -51,3 +51,10 @@ export function getUserDaynamicRoute() {
         method: 'POST',
     });
 }
+
+export function getUserDaynamicTestRoute() {
+    return ywzRequest({
+        url: '/router/test',
+        method: 'POST',
+    });
+}

@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2024-02-04 15:40:57
+ * @LastEditTime: 2024-02-05 15:16:13
  */
 
 import {
@@ -45,12 +45,6 @@ export const routes: Array<RouteRecordRaw> = [
             },
         ],
     },
-
-    // {
-    //     path: '/:pathMatch(.*)',
-    //     name: '404',
-    //     redirect: '/404',
-    // },
 
     // {
     //     path: '/404',

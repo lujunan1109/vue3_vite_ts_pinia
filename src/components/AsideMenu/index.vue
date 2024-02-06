@@ -1,45 +1,46 @@
 <template>
-    <div class="slider-wrap">
-        <el-menu
-            :collapse="menueWidthState"
-            active-text-color="#359ef3"
-            background-color="#001529"
-            class="el-menu-vertical-demo"
-            default-active="/home"
-            text-color="#fff"
-        >
-            <div v-for="items in renderMenu" :key="items.name">
-                <el-sub-menu v-show="items.children" :index="items.path">
-                    <template #title>
-                        <el-icon><component :is="items.meta.icon" /></el-icon>
-                        <span v-show="!menueWidthState">
-                            {{ items.meta.title }}</span
-                        >
-                    </template>
-                    <el-menu-item
-                        v-for="nav in items.children"
-                        :key="nav.name"
-                        :index="nav.path"
-                        @click="handleClick(nav)"
+    <el-menu
+        :collapse="menueWidthState"
+        class="el-menu-vertical-demo"
+        default-active="/home"
+    >
+        <div v-for="items in renderMenu" :key="items.name">
+            <el-sub-menu v-show="items.children" :index="items.path">
+                <template #title>
+                    <el-icon class="icon"
+                        ><component :is="items.meta.icon"
+                    /></el-icon>
+                    <span v-show="!menueWidthState" class="nav-title">
+                        {{ items.meta.title }}</span
                     >
-                        <el-icon><component :is="nav.meta.icon" /></el-icon>
-                        <span> {{ nav.meta.title }}</span>
-                    </el-menu-item>
-                </el-sub-menu>
-
+                </template>
                 <el-menu-item
-                    v-show="!items.children"
-                    :index="items.path"
-                    @click="handleClick(items)"
+                    v-for="nav in items.children"
+                    :key="nav.name"
+                    :index="nav.path"
+                    @click="handleClick(nav)"
                 >
-                    <el-icon><component :is="items.meta.icon" /></el-icon>
-                    <template #title>
-                        <span>{{ items.meta.title }}</span>
-                    </template>
+                    <el-icon class="icon"
+                        ><component :is="nav.meta.icon"
+                    /></el-icon>
+                    <span class="nav-title"> {{ nav.meta.title }}</span>
                 </el-menu-item>
-            </div>
-        </el-menu>
-    </div>
+            </el-sub-menu>
+
+            <el-menu-item
+                v-show="!items.children"
+                :index="items.path"
+                @click="handleClick(items)"
+            >
+                <el-icon class="icon"
+                    ><component :is="items.meta.icon"
+                /></el-icon>
+                <template #title>
+                    <span class="nav-title">{{ items.meta.title }}</span>
+                </template>
+            </el-menu-item>
+        </div>
+    </el-menu>
 </template>
 
 <script lang="ts" setup>
@@ -50,8 +51,14 @@ import { storeToRefs } from 'pinia';
 import { routes } from '@/router';
 console.log(routes, 'routes');
 
-const renderMenu = routes[1].children.concat(useLoginStore().dymicRoutes);
-console.log(renderMenu, 'renderMenu');
+const { dymicRoutes } = storeToRefs(useLoginStore());
+// watchEffect(() => {
+//     renderMenu = routes[1].children.concat(dymicRoutes.value);
+//     console.log(renderMenu, 'renderMenu');
+// });
+const renderMenu = computed(() => {
+    return routes[1].children.concat(dymicRoutes.value);
+});
 
 const menuStore = useMenuStore();
 const { menueWidthState } = storeToRefs(menuStore);
@@ -77,9 +84,26 @@ const handleClick = (node: RouteRecordRaw) => {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
-    min-height: 100vh;
+    height: 100vh;
+
+    & .nav-title {
+        @include useTheme('color', $menu-text);
+    }
+    & .icon {
+        @include useTheme('color', $menu-text);
+    }
+}
+</style>
+
+<style lang="scss">
+.el-sub-menu__title:hover {
+    @include useTheme('background-color', $menu-text-hover);
+}
+
+.el-menu-item:hover {
+    @include useTheme('background-color', $menu-text-hover);
 }
 </style>

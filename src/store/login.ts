@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { userLogin } from '@/api';
 import { routes, router } from '@/router';
-import { getUserDaynamicRoute } from '@/api/index.ts';
+import { getUserDaynamicRoute, getUserDaynamicTestRoute } from '@/api/index.ts';
 import { filterAsyncRoutes, _addRoutes } from '@/router/resolveRouter';
 
 import { captureAsyncErrors } from '@/utils';
@@ -12,6 +12,7 @@ export const useLoginStore = defineStore('login', {
         username: '',
         dymicRoutes: [],
         routeList: routes,
+        switchMenu: 'admin',
     }),
     actions: {
         setToken(data) {
@@ -19,6 +20,9 @@ export const useLoginStore = defineStore('login', {
         },
         setDymicRoutes(data) {
             this.dymicRoutes = data;
+        },
+        setRole(data) {
+            this.switchMenu = data;
         },
         async userLoginHandle(data) {
             const [isErr, result] = await captureAsyncErrors(userLogin(data));
@@ -29,7 +33,11 @@ export const useLoginStore = defineStore('login', {
             }
         },
         async getRouter() {
-            const { code, data } = await getUserDaynamicRoute();
+            const asyncApi =
+                this.switchMenu === 'admin'
+                    ? getUserDaynamicRoute
+                    : getUserDaynamicTestRoute;
+            const { code, data } = await asyncApi();
             if (code === 200) {
                 // 让后端的组件路径实例化为组件
                 const renderCompRouter = filterAsyncRoutes(data.routes);
@@ -44,4 +52,5 @@ export const useLoginStore = defineStore('login', {
             }
         },
     },
+    persist: true,
 });

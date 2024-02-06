@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-27 14:53:16
  * @LastEditors: lujunan
- * @LastEditTime: 2023-11-26 23:42:57
+ * @LastEditTime: 2024-02-06 22:00:03
  * @Description: 工具函数
  */
 
@@ -142,4 +142,9 @@ export const sleep = (time) => {
             resolve(time);
         }, time);
     });
+};
+
+export const useThemeCahenge = (theme: string) => {
+    document.querySelector('html').setAttribute('class', theme);
+    document.querySelector('html').setAttribute('data-theme', theme);
 };
