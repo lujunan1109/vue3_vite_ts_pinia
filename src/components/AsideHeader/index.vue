@@ -27,6 +27,7 @@
         </div>
 
         <div class="header-right-tab">
+            <el-icon @click="globalStore.setLoading(true)"><Search /></el-icon>
             <i class="header-right-weather">{{ nowWeather }}</i>
             <el-icon v-if="isFullscreen" @click="fullScreen"
                 ><FullScreen

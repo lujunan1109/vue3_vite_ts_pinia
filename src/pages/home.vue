@@ -2,8 +2,8 @@
     <div class="home-container">
         <div class="flex-layout m-10">
             <div
-                v-for="item in 4"
-                :key="item"
+                v-for="(item, index) in getHeaderData"
+                :key="index"
                 class="top-content box-shadow-bg"
             >
                 <div class="avatar-data">
@@ -12,8 +12,8 @@
                     />
                 </div>
                 <div class="data-info">
-                    <div>233</div>
-                    <div class="data-title">访问数</div>
+                    <div>{{ item.num }}</div>
+                    <div class="data-title">{{ item.name }}</div>
                 </div>
                 <span class="data-num">+2.5%</span>
             </div>
@@ -51,6 +51,24 @@ import { useGlobalStore } from '@/store/global';
 const globalStore = useGlobalStore();
 const { proxy } = getCurrentInstance();
 
+const getHeaderData = [
+    {
+        name: '访问数',
+        num: 2134,
+    },
+    {
+        name: '下载量',
+        num: 1234,
+    },
+    {
+        name: '销售额',
+        num: 2324,
+    },
+    {
+        name: '新用户数',
+        num: 264,
+    },
+];
 // 重置echart图表
 let resetEcahrts = [];
 const init = (id: string, opt, once = true) => {

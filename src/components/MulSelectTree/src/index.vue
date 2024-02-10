@@ -128,12 +128,16 @@ onMounted(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .container {
     padding: 20px;
 }
 
-.el-select-dropdown__item::v-deep {
+// .el-select-dropdown__item::v-deep {
+//     padding: 0;
+//     height: auto;
+// }
+.el-select-dropdown__item {
     padding: 0;
     height: auto;
 }

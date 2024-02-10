@@ -4,7 +4,7 @@
         class="el-menu-vertical-demo"
         default-active="/home"
     >
-        <div v-for="items in renderMenu" :key="items.name">
+        <div v-for="(items, key) in renderMenu" :key="key">
             <el-sub-menu v-show="items.children" :index="items.path">
                 <template #title>
                     <el-icon class="icon"
@@ -59,6 +59,8 @@ const { dymicRoutes } = storeToRefs(useLoginStore());
 const renderMenu = computed(() => {
     return routes[1].children.concat(dymicRoutes.value);
 });
+
+console.log(renderMenu, 'renderMenu');
 
 const menuStore = useMenuStore();
 const { menueWidthState } = storeToRefs(menuStore);

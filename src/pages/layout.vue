@@ -1,5 +1,13 @@
 <template>
-    <div class="common-layout">
+    <div v-show="loading" class="aoto-comp">
+        <auto-complete></auto-complete>
+    </div>
+    <div
+        v-loading="loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+        :element-loading-spinner="false"
+        class="common-layout"
+    >
         <el-container>
             <el-container class="common-flex">
                 <el-aside class="common-layout-aside">
@@ -34,16 +42,21 @@
 <script lang="ts" setup>
 import AsideMenu from '@/components/AsideMenu/index.vue';
 import AsideHeader from '@/components/AsideHeader/index.vue';
+import AutoComplete from '@/components/AutoComplete/index.vue';
 
 import { storeToRefs } from 'pinia';
 import { useMenuStore } from '@/store/menu';
+import { useGlobalStore } from '@/store/global';
 const menuStore = useMenuStore();
+const globalStore = useGlobalStore();
+
 let { menuTags } = storeToRefs(menuStore);
 
 import { watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const $router = useRouter();
+const loading = computed(() => globalStore.load);
 
 // 监听并且menuTags赋值
 watch(
@@ -75,7 +88,6 @@ watch(
 import type { EpPropMergeType } from 'element-plus/es/utils/vue/props/types';
 // 修改elment-plus的尺寸/语言/组件层级
 import { ElConfigProvider } from 'element-plus';
-import { useGlobalStore } from '@/store/global';
 import { useLanguage } from '@/store/language';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import en from 'element-plus/dist/locale/en.mjs';
@@ -96,7 +108,20 @@ const local = computed(() => {
 <style lang="scss" scoped>
 // 切换动画效果
 @import '@/assets/transition.scss';
-
+.aoto-comp {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20001;
+    width: auto;
+    height: auto;
+    overflow-y: auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .common-layout {
     width: 100%;
     height: 100%;
