@@ -9,9 +9,14 @@
 <template>
     <div class="not-found">404 NOT FOUND</div>
     <div class="go-home">
-        <router-link to="/home"> GO HOME</router-link>
+        <router-link to="/home"> GO HOME {{ t('Menu.Home') }}</router-link>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n({ useScope: 'global' });
+</script>
 
 <style lang="scss" scoped>
 .not-found {

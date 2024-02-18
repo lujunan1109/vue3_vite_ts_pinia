@@ -179,13 +179,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     await formEl.validate(async (valid, fields) => {
         if (valid) {
             const loginStore = useLoginStore();
-            const result = loginStore.userLoginHandle(ruleForm);
+            const result = await loginStore.userLoginHandle(ruleForm);
             if (result) {
-                $router.push({ path: '/home' });
                 proxy.$message({
                     message: '登录成功',
                     type: 'success',
                 });
+                $router.push({ path: '/home' });
             }
         }
     });

@@ -2,9 +2,13 @@ import { defineStore } from 'pinia';
 import { userLogin } from '@/api';
 import { routes, router } from '@/router';
 import { getUserDaynamicRoute, getUserDaynamicTestRoute } from '@/api/index.ts';
-import { filterAsyncRoutes, _addRoutes } from '@/router/resolveRouter';
+import {
+    filterAsyncRoutes,
+    _addRoutes,
+    _resetRouter,
+} from '@/router/resolveRouter';
 
-import { captureAsyncErrors } from '@/utils';
+import { captureAsyncErrors, sleep } from '@/utils';
 
 export const useLoginStore = defineStore('login', {
     state: () => ({
@@ -28,7 +32,7 @@ export const useLoginStore = defineStore('login', {
             const [isErr, result] = await captureAsyncErrors(userLogin(data));
             if (!isErr && result) {
                 window.localStorage.setItem('token', result.data.token);
-                this.setDymicRoutes(result.data.routes);
+                await this.setDymicRoutes(result.data.routes);
                 return true;
             }
         },
@@ -41,6 +45,8 @@ export const useLoginStore = defineStore('login', {
             if (code === 200) {
                 // 让后端的组件路径实例化为组件
                 const renderCompRouter = filterAsyncRoutes(data.routes);
+                // 重置路由
+                _resetRouter(this.dymicRoutes);
                 console.log(renderCompRouter, 'renderCompRouter');
                 // 设置到路由状态中
                 this.setDymicRoutes(renderCompRouter);

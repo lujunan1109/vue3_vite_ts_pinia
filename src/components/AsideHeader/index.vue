@@ -130,7 +130,7 @@ import userUrl from '@/assets/user.gif';
 import screenfull from 'screenfull';
 import { getTimeWeather } from '@/api/index.ts';
 import { useElementPlusTheme } from 'use-element-plus-theme';
-import { useLanguage } from '@/store/language';
+import { useLanguageStore } from '@/store/language';
 import { userLogout } from '@/api';
 import { captureAsyncErrors } from '@/utils';
 
@@ -250,10 +250,14 @@ onMounted(() => {
 });
 
 // 语言切换
-const isZh = ref(true);
+const languageStore = useLanguageStore();
+const isZh = ref(languageStore.language === 'zh');
+import { useI18n } from 'vue-i18n';
+const { locale } = useI18n();
 watchEffect(() => {
-    const languageStore = useLanguage();
-    const local = isZh.value ? 'zh-cn' : 'en';
+    const local = isZh.value ? 'zh' : 'en';
+    // 文字切换
+    locale.value = local;
     languageStore.changeLanguage(local);
 });
 </script>

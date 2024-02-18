@@ -9,7 +9,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowImportingTsExtensions":true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "lib": ["esnext", "dom"],
     "baseUrl": "./",// 解析非相对模块的基础地址，默认是当前目录
     "paths": {
@@ -30,7 +31,7 @@
     "types": ["element-plus/global","vite/client"],
     "skipLibCheck": true, // 跳过第三方依赖的类型检查
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/lang/en.js"],
   "exclude": ["node_modules", "**/dist", "**/__tests__/**/*"]
 }
 

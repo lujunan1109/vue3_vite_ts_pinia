@@ -88,7 +88,7 @@ watch(
 import type { EpPropMergeType } from 'element-plus/es/utils/vue/props/types';
 // 修改elment-plus的尺寸/语言/组件层级
 import { ElConfigProvider } from 'element-plus';
-import { useLanguage } from '@/store/language';
+import { useLanguageStore } from '@/store/language';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import en from 'element-plus/dist/locale/en.mjs';
 
@@ -100,8 +100,8 @@ const size = storeToRefs(useGlobalStore()).size.value as EpPropMergeType<
 const zIndex = 3000;
 
 const local = computed(() => {
-    const { language } = storeToRefs(useLanguage());
-    return language.value === 'zh-cn' ? zhCn : en;
+    const { language } = storeToRefs(useLanguageStore());
+    return language.value === 'zh' ? zhCn : en;
 });
 </script>
 

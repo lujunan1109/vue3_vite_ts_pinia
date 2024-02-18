@@ -202,7 +202,7 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
             font-size: 0.8rem;
             font-weight: 400;
             color: #606266;
-            line-height: 1.5;
+            line-height: 1rem;
         }
     }
 }

@@ -23,6 +23,8 @@ import 'nprogress/nprogress.css';
 // 文件上传
 import uploader from 'vue-simple-uploader';
 import 'vue-simple-uploader/dist/style.css';
+// 国际化
+import { setupI18n } from '@/lang';
 
 // 创建vue实例
 export const app = createApp(App);
@@ -52,4 +54,5 @@ app.use(store)
     .use(router)
     .component('SvgIcon', SvgIcon)
     .use(uploader)
+    .use(setupI18n)
     .mount('#app');

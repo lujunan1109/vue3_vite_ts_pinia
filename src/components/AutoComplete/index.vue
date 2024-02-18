@@ -83,7 +83,7 @@ const loadAll = () => {
         },
         {
             value: '用户权限',
-            link: '/permisssion',
+            link: '/permission',
         },
         {
             value: '编辑器',

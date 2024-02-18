@@ -11,7 +11,7 @@
                         ><component :is="items.meta.icon"
                     /></el-icon>
                     <span v-show="!menueWidthState" class="nav-title">
-                        {{ items.meta.title }}</span
+                        {{ t(`Menu.${String(items.name)}`) }}</span
                     >
                 </template>
                 <el-menu-item
@@ -23,7 +23,9 @@
                     <el-icon class="icon"
                         ><component :is="nav.meta.icon"
                     /></el-icon>
-                    <span class="nav-title"> {{ nav.meta.title }}</span>
+                    <span class="nav-title">
+                        {{ t(`Menu.${String(nav.name)}`) }}</span
+                    >
                 </el-menu-item>
             </el-sub-menu>
 
@@ -36,7 +38,9 @@
                     ><component :is="items.meta.icon"
                 /></el-icon>
                 <template #title>
-                    <span class="nav-title">{{ items.meta.title }}</span>
+                    <span class="nav-title">{{
+                        t(`Menu.${String(items.name)}`)
+                    }}</span>
                 </template>
             </el-menu-item>
         </div>
@@ -49,8 +53,8 @@ import { useMenuStore } from '@/store/menu';
 import { useLoginStore } from '@/store/login';
 import { storeToRefs } from 'pinia';
 import { routes } from '@/router';
-console.log(routes, 'routes');
-
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n({ useScope: 'global' });
 const { dymicRoutes } = storeToRefs(useLoginStore());
 // watchEffect(() => {
 //     renderMenu = routes[1].children.concat(dymicRoutes.value);
@@ -60,7 +64,7 @@ const renderMenu = computed(() => {
     return routes[1].children.concat(dymicRoutes.value);
 });
 
-console.log(renderMenu, 'renderMenu');
+console.log(renderMenu.value, 'renderMenu');
 
 const menuStore = useMenuStore();
 const { menueWidthState } = storeToRefs(menuStore);
