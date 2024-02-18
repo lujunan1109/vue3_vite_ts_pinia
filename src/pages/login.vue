@@ -43,6 +43,7 @@
                     <el-form-item>
                         <el-button
                             type="primary"
+                            :loading="loginLoading"
                             @click="submitForm(ruleFormRef)"
                         >
                             登录
@@ -132,6 +133,8 @@ const ruleForm = reactive({
     repPsw: '',
 });
 
+const loginLoading = ref(false);
+
 const $router = useRouter();
 const checkName = (rule, value, callback) => {
     if (!value) {
@@ -178,6 +181,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     await formEl.validate(async (valid, fields) => {
         if (valid) {
+            loginLoading.value = true;
             const loginStore = useLoginStore();
             const result = await loginStore.userLoginHandle(ruleForm);
             if (result) {
@@ -185,6 +189,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
                     message: '登录成功',
                     type: 'success',
                 });
+                await sleep(2000);
+                loginLoading.value = false;
                 $router.push({ path: '/home' });
             }
         }
