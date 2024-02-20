@@ -10,7 +10,7 @@ type LanguageType = {
 
 //i18n实例配置
 const useLanguageStore: LanguageType = JSON.parse(
-    localStorage.getItem('language') || '{}',
+    localStorage.getItem('language') || '{"language": "zh"}',
 );
 const localeData = {
     globalInjection: true, //如果设置true, $t() 函数将注册到全局
@@ -19,6 +19,7 @@ const localeData = {
     // options: en | zh | es
     locale: useLanguageStore.language,
     messages, // set locale messages
+    fallbackLocale: 'zh',
 };
 
 // 提供install方法，给vue.use进行创建实例

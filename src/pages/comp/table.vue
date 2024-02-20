@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <v-table
+            ref="getVTableRef"
             :columns="columns"
             border
             stripe
@@ -34,6 +35,12 @@
                     <el-button icon="Delete" type="danger">删除</el-button>
                     <el-button icon="FolderAdd" type="success">导入</el-button>
                 </div>
+            </template>
+            <!-- 头部自定义按钮 -->
+            <template #btnHead="{ model }">
+                <el-button type="primary" @click="getVTableRef.search(model)"
+                    >自定义搜索</el-button
+                >
             </template>
         </v-table>
 
@@ -69,6 +76,12 @@ import vDialog from '@/components/VDialog';
 
 // 弹窗逻辑
 const dialogRef: Ref<TreeExposedMethods> = ref(null);
+const getVTableRef = ref(null);
+
+onMounted(() => {
+    console.log(getVTableRef.value, '子组件方法');
+});
+
 const toggleDialog = (bool?: boolean) => {
     dialogRef.value.toggleDialogVisible(bool);
 };
@@ -128,10 +141,20 @@ const tableOptions = [
             },
         ],
     },
+    {
+        label: '日期',
+        prop: 'date',
+        componentName: 'el-date-picker',
+        attrs: {
+            type: 'daterange',
+            placeholder: '请选择日期时间',
+        },
+    },
 ];
 const tableForm = reactive({
     name: '',
     select: '',
+    date: '',
 });
 
 // 获取数据 data可能是数组对象或者对象

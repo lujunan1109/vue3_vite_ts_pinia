@@ -20,7 +20,9 @@ export const _addRoutes = (routes: any) => {
 //退出登录时用于清除router中的添加进的路由
 export const _resetRouter = (asyncRoutes: any) => {
     asyncRoutes.forEach((route: any) => {
-        router.removeRoute(route.name);
+        if (router.hasRoute(route.name)) {
+            router.removeRoute(route.name);
+        }
     });
 };
 

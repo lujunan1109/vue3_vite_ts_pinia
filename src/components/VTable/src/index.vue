@@ -3,18 +3,22 @@
         <VForm
             :form-options="formOptions"
             :rule-form="ruleForm"
-            v-bind="filAttr"
+            v-bind="formAttrs"
             @set-ref="(el) => (ruleFormRef = el)"
         >
             <template #footer="{ model }">
                 <div style="padding-left: 20px">
-                    <el-button
-                        type="primary"
-                        icon="Search"
-                        @click="search(model)"
-                        >搜索</el-button
-                    >
-                    <el-button icon="Refresh" @click="reset">重置</el-button>
+                    <slot name="btnHead" :model="model">
+                        <el-button
+                            type="primary"
+                            icon="Search"
+                            @click="search(model)"
+                            >搜索</el-button
+                        >
+                        <el-button icon="Refresh" @click="reset"
+                            >重置</el-button
+                        >
+                    </slot>
                 </div>
             </template>
 
@@ -78,7 +82,7 @@ const props = withDefaults(
         requestApi: MyFunction;
         formOptions: FormOptionType[];
         ruleForm: RuleForm;
-        filAttr?: FilAttrType;
+        formAttrs?: FilAttrType;
     }>(),
     {},
 );
@@ -141,6 +145,13 @@ const reset = () => {
     if (!ruleFormRef.value) return;
     ruleFormRef.value.resetFields();
 };
+
+// 自定义暴露给父组件调用方法/属性
+defineExpose({
+    getTableData,
+    search,
+    reset,
+});
 </script>
 <style lang="scss" scoped>
 .mt-20 {

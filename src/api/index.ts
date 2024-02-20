@@ -7,11 +7,10 @@ export function getTimeWeather() {
     });
 }
 
-export function getTableData(data) {
+export function getTableData() {
     return ywzRequest({
         url: '/data/list',
         method: 'GET',
-        data,
     });
 }
 

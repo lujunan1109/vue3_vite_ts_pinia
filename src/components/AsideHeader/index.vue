@@ -162,9 +162,10 @@ const handleClose = (tag: Tag) => {
     menuStore.deleteMenuTags(tag);
     if (menuTags.value.length === 0) {
         $router.push({ path: '/home' });
+    } else {
+        const lastTag = menuTags.value.slice(-1)[0];
+        $router.push({ path: lastTag.path });
     }
-    const lastTag = menuTags.value.slice(-1)[0];
-    $router.push({ path: lastTag.path });
 };
 
 const clickHandle = (tag: Tag) => {
