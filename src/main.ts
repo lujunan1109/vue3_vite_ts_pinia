@@ -15,7 +15,7 @@ import 'virtual:svg-icons-register'; // 注册 svg 注册脚本
 import 'normalize.css';
 import '@/assets/iconfont/iconfont.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
-import * as directives from './utils/directive.js';
+import * as directives from './utils/directive.js'; // 全局注册自定义指令
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'default-passive-events'; //添加事件管理者'passive'，来阻止'touchstart'事件，让页面更加流畅
 import '@/mockjs/index';

@@ -45,4 +45,5 @@ export const useMenuStore = defineStore({
             this.menuTags[inx].checked = 'dark';
         },
     },
+    persist: true,
 });

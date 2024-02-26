@@ -84,7 +84,11 @@ const props = withDefaults(
         ruleForm: RuleForm;
         formAttrs?: FilAttrType;
     }>(),
-    {},
+    {
+        formAttrs: () => {
+            return {};
+        },
+    },
 );
 
 const data = ref<TableItemType[]>();
