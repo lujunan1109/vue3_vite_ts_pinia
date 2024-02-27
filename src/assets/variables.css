@@ -1,0 +1,7 @@
+[data-theme=light] {
+  --v-color: #122ca1;
+}
+
+[data-theme=dark] {
+  --v-color: #d6c7c7;
+}

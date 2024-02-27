@@ -146,5 +146,5 @@ export const sleep = (time) => {
 
 export const useThemeCahenge = (theme: string) => {
     document.querySelector('html').setAttribute('class', theme);
-    document.querySelector('html').setAttribute('data-theme', theme);
+    // document.querySelector('html').setAttribute('data-theme', theme);
 };
