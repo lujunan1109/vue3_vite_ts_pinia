@@ -10,6 +10,7 @@ const zh = {
         Table: '表格',
         Form: '表单',
         Tree: '下拉树',
+        Upload: '上传',
     },
 };
 

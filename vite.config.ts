@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 09:08:29
  * @LastEditors: lujunan
- * @LastEditTime: 2023-11-25 19:11:40
+ * @LastEditTime: 2024-02-25 15:52:24
  */
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -42,7 +42,11 @@ export default defineConfig({
         },
     },
     plugins: [
-        vue(),
+        vue({
+            script: {
+                defineModel: true,
+            }
+        }),
         AutoImport({
             imports: ['vue'],
             dts: 'src/auto-import.d.ts',

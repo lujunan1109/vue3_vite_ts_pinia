@@ -267,6 +267,19 @@ export const asyncRoutes = Mock.mock('/router', 'post', {
                         },
                         component: '/comp/vform',
                     },
+
+                    {
+                        path: '/upload',
+                        name: 'Upload',
+                        meta: {
+                            title: '上传',
+                            keepAlive: false,
+                            requireAuth: true,
+                            index: 12,
+                            icon: 'Upload',
+                        },
+                        component: '/comp/upload',
+                    },
                 ],
             },
             {

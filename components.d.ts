@@ -44,6 +44,7 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTree: typeof import('element-plus/es')['ElTree']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     MulSelectTreeSrc: typeof import('./src/components/MulSelectTree/src/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

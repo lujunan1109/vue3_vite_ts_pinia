@@ -74,7 +74,6 @@ import {
 import VForm from '../../VForm/src/index.vue';
 import { RuleForm, FormOptionType } from '../../VForm/src/type';
 import type { FormInstance } from 'element-plus';
-
 const props = withDefaults(
     defineProps<{
         columns: ColumnsType[];
@@ -84,7 +83,11 @@ const props = withDefaults(
         ruleForm: RuleForm;
         formAttrs?: FilAttrType;
     }>(),
-    {},
+    {
+        formAttrs: () => {
+            return {};
+        },
+    },
 );
 
 const data = ref<TableItemType[]>();

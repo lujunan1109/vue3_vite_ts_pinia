@@ -74,6 +74,8 @@ import { TreeExposedMethods } from '@/components/VDialog/src/type';
 import vTable from '@/components/VTable';
 import vDialog from '@/components/VDialog';
 
+const modelText = ref('test');
+
 // 弹窗逻辑
 const dialogRef: Ref<TreeExposedMethods> = ref(null);
 const getVTableRef = ref(null);

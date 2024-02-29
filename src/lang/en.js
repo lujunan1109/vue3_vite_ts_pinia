@@ -10,6 +10,7 @@ const en = {
         Table: 'Table',
         Form: 'Form',
         Tree: 'Tree',
+        Upload: 'Upload',
     },
 };
 
