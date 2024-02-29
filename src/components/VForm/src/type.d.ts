@@ -27,7 +27,7 @@ export interface RuleForm {
 }
 
 export type defineRenderComponentType = {
-    [key: string]: any;
+    [key: string]: ComponentOptions;
 };
 
 export type FormItemChildType = {

@@ -128,12 +128,11 @@ import { ArrowRight } from '@element-plus/icons-vue';
 import { useGlobalStore } from '@/store/global';
 import userUrl from '@/assets/user.gif';
 import screenfull from 'screenfull';
-import { getTimeWeather } from '@/api/index.ts';
+import { getTimeWeather } from '@/api';
 import { useElementPlusTheme } from 'use-element-plus-theme';
 import { useLanguageStore } from '@/store/language';
 import { userLogout } from '@/api';
 import { captureAsyncErrors } from '@/utils';
-
 import { Tag, Node, Func } from './type';
 
 // 主颜色切换

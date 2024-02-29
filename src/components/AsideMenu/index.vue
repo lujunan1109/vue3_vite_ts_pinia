@@ -61,7 +61,7 @@ const { dymicRoutes } = storeToRefs(useLoginStore());
 //     console.log(renderMenu, 'renderMenu');
 // });
 const renderMenu = computed(() => {
-    return routes[1].children.concat(dymicRoutes.value);
+    return routes[2].children.concat(dymicRoutes.value);
 });
 
 console.log(renderMenu.value, 'renderMenu');

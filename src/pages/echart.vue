@@ -7,7 +7,9 @@
 -->
 <template>
     <div class="big-screen">
-        <header class="header-nav"></header>
+        <header class="header-nav">
+            <div style="height: 80px">头部标题展示部分</div>
+        </header>
         <div class="container">
             <div class="left-content">
                 <div id="line"></div>

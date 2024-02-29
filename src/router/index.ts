@@ -27,6 +27,18 @@ export const routes: Array<RouteRecordRaw> = [
     },
 
     {
+        path: '/echart',
+        name: 'Echart',
+        meta: {
+            title: '图表',
+            keepAlive: false,
+            requireAuth: false,
+            index: 1,
+        },
+        component: () => import('@/pages/echart.vue'),
+    },
+
+    {
         path: '/layout',
         name: 'layout',
         component: () => import('@/pages/layout.vue'),
@@ -45,19 +57,6 @@ export const routes: Array<RouteRecordRaw> = [
             },
         ],
     },
-
-    // {
-    //     path: '/404',
-    //     name: '404',
-    //     meta: {
-    //         title: '404',
-    //         keepAlive: false,
-    //         requireAuth: true,
-    //         index: 4,
-    //         icon: 'WarningFilled',
-    //     },
-    //     component: () => import('@/pages/404.vue'),
-    // },
 ];
 
 export const router = createRouter({

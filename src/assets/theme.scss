@@ -37,12 +37,22 @@ $border-bottom: (
   dark: 1px solid #363636
 );
 
+// @mixin useTheme($key, $valueMap) {
+//   // theme list
+//   $themes: light, dark;
+//   @each $theme in $themes {
+//     [data-theme=#{$theme}] & {
+//       #{$key}: map-get($valueMap, $theme);
+//     }
+//   }
+// }
+
 @mixin useTheme($key, $valueMap) {
   // theme list
   $themes: light, dark;
-  
+
   @each $theme in $themes {
-    [data-theme=#{$theme}] & {
+    .#{$theme} & {
       #{$key}: map-get($valueMap, $theme);
     }
   }

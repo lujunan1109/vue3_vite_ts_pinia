@@ -25,7 +25,7 @@
                         <el-form-item
                             v-for="(item, k) in iptComComput"
                             :key="k"
-                            label="参数1"
+                            :label="`参数${k + 1}`"
                             label-width="50px"
                         >
                             <el-input
@@ -42,7 +42,7 @@
                         <el-select
                             v-model="ruleForm.mixSelete"
                             clearable
-                            placeholder="Select"
+                            placeholder="Select2"
                             :disabled="hideSlot"
                         >
                             <el-option
@@ -55,7 +55,37 @@
                     </el-form-item>
                 </div>
             </template>
+
+            <template #mixSeleteSlot2>
+                <div v-show="!hideSlot">
+                    <el-form-item label="下拉框2" prop="mixSelete2">
+                        <el-select
+                            v-model="ruleForm.mixSelete2"
+                            clearable
+                            placeholder="Select"
+                        >
+                            <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                            />
+                        </el-select>
+                    </el-form-item>
+                </div>
+            </template>
         </VForm>
+
+        <div style="padding-left: 20px">
+            <el-button
+                v-throttle="{
+                    fn: handleClick,
+                    event: 'click',
+                    delay: 500,
+                }"
+                >测试节流</el-button
+            >
+        </div>
     </div>
 </template>
 
@@ -85,6 +115,7 @@ const setFormRef = (el: FormInstance): void => {
 
 const ruleForm: RuleForm = reactive({
     name: '',
+    date: '',
     select: '',
     checkBox: [],
     iptCom: {
@@ -95,7 +126,12 @@ const ruleForm: RuleForm = reactive({
     },
     slider: 0,
     mixSelete: '',
+    mixSelete2: '',
 });
+
+const handleClick = () => {
+    console.log('节流');
+};
 
 // 用于遍历slot
 const iptComComput = computed(() => {
@@ -141,6 +177,11 @@ const formOptions: FormOptionType[] = [
         label: '输入框',
         prop: 'name',
         componentName: 'el-input',
+    },
+    {
+        label: '时间',
+        prop: 'date',
+        componentName: 'el-date-picker',
     },
     {
         label: '下拉框',
@@ -193,6 +234,9 @@ const formOptions: FormOptionType[] = [
     },
     {
         slotName: 'mixSeleteSlot',
+    },
+    {
+        slotName: 'mixSeleteSlot2',
     },
 ];
 

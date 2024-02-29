@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { userLogin } from '@/api';
 import { routes, router } from '@/router';
-import { getUserDaynamicRoute, getUserDaynamicTestRoute } from '@/api/index.ts';
+import { getUserDaynamicRoute, getUserDaynamicTestRoute } from '@/api';
 import {
     filterAsyncRoutes,
     _addRoutes,
