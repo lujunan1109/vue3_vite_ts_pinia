@@ -1,6 +1,6 @@
 <template>
     <router-view v-slot="{ Component }" :key="routerPath">
-        <Transition name="slide-right">
+        <Transition name="fade-transform" mode="out-in">
             <component :is="Component"></component>
         </Transition>
     </router-view>
@@ -12,5 +12,5 @@ const routerPath = $route.currentRoute.value.path;
 </script>
 <style scoped lang="scss">
 // 切换动画效果
-@import '@/assets/transition.scss';
+// @import '@/assets/transition.scss';
 </style>

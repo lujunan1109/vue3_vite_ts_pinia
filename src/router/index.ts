@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:07:02
  * @LastEditors: lujunan
- * @LastEditTime: 2024-02-05 15:16:13
+ * @LastEditTime: 2024-04-09 11:13:44
  */
 
 import {
@@ -12,6 +12,8 @@ import {
     Router,
     RouteRecordRaw,
 } from 'vue-router';
+
+import Layout from '@/pages/layout.vue';
 
 export const routes: Array<RouteRecordRaw> = [
     {
@@ -41,7 +43,7 @@ export const routes: Array<RouteRecordRaw> = [
     {
         path: '/layout',
         name: 'layout',
-        component: () => import('@/pages/layout.vue'),
+        component: Layout,
         children: [
             {
                 path: '/home',

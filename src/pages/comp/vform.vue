@@ -1,5 +1,6 @@
 <template>
     <div class="form-layout">
+        <el-input v-model="testIpt" v-copyText="testIpt"></el-input>
         <VForm
             :form-options="formOptions"
             :rules="rules"
@@ -106,6 +107,7 @@ const options = [
         label: 'Option1',
     },
 ];
+const testIpt = ref('测试复制内容');
 // 表单封装示例
 let ruleFormRef = ref<FormInstance>();
 

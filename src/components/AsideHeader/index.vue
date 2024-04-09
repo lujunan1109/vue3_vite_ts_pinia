@@ -143,7 +143,12 @@ const nowWeather = ref('');
 const { changeTheme } = useElementPlusTheme(defaultTheme.value);
 
 onBeforeMount(async () => {
-    const { lives } = await getTimeWeather();
+    const wData = {
+        key: '1cf811c466b5081ce23e9acb13d8367f',
+        city: 430100,
+        extensions: 'base',
+    };
+    const { lives } = await getTimeWeather(wData);
     const { city, weather, temperature } = lives[0];
     nowWeather.value = `${city} ${weather} ${temperature} ℃ `;
 });
@@ -262,12 +267,14 @@ watchEffect(() => {
 });
 </script>
 <style scoped lang="scss">
+// $testVar: var(--el-color-primary-light-3);
 .icon-block {
     display: flex;
     align-items: center;
     background-color: var(--el-bg-color);
     height: 45px;
     justify-content: space-between;
+    // color: $testVar;
 
     & .el-icon {
         cursor: pointer;

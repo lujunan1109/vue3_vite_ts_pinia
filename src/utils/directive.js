@@ -2,10 +2,10 @@
  * @Author: lujunan
  * @Date: 2022-07-14 11:11:52
  * @LastEditors: lujunan
- * @LastEditTime: 2023-09-14 22:41:43
+ * @LastEditTime: 2024-04-08 17:42:04
  * @Description: 参考链接https://www.jb51.net/article/251168.htm
  */
-
+import { ElMessage } from 'element-plus';
 /**
  * @description: 防抖
  * @return {*}
@@ -72,7 +72,7 @@ export const throttle = {
         el.addEventListener(binding.value.event, el.handler);
     },
     // 元素卸载前也记得清理定时器并且移除监听事件
-    beforeMount(el, binding) {
+    beforeUnmount(el, binding) {
         if (el.timer) {
             clearTimeout(el.timer);
             el.timer = null;
@@ -107,7 +107,30 @@ export const hideDialog = {
         // }, 0);
     },
     // 解除事件绑定
-    beforeMount(el) {
+    beforeUnmount(el) {
+        document.removeEventListener('click', el.handler);
+    },
+};
+
+/**
+ * 复制文本
+ */
+export const copyText = {
+    mounted(el, binding) {
+        el.handler = () => {
+            const text = binding.value;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+            ElMessage.success('复制成功');
+        };
+        el.addEventListener('click', el.handler);
+    },
+    beforeUnmount(el) {
+        // 解除事件绑定
         document.removeEventListener('click', el.handler);
     },
 };

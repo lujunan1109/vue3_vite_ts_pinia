@@ -1,12 +1,15 @@
 import ywzRequest from '@/utils/axios';
+import { objectToQueryString } from '@/utils';
 
-export function getTimeWeather() {
+export function getTimeWeather(data) {
     return ywzRequest({
-        url: `https://restapi.amap.com/v3/weather/weatherInfo?key=1cf811c466b5081ce23e9acb13d8367f&city=440100&extensions=base`,
+        url: `https://restapi.amap.com/v3/weather/weatherInfo?${objectToQueryString(
+            data,
+        )}`,
         method: 'GET',
-        onDownloadProgress(ProgressEvent) {
-            console.log('进度事件', ProgressEvent);
-        },
+        // onDownloadProgress(ProgressEvent) {
+        //     console.log('进度事件', ProgressEvent);
+        // },
     });
 }
 
@@ -58,5 +61,13 @@ export function getUserDaynamicTestRoute() {
     return ywzRequest({
         url: '/router/test',
         method: 'POST',
+    });
+}
+
+export function mergeFiles(data) {
+    return ywzRequest({
+        url: 'http://localhost:3306/api/merge_files',
+        method: 'POST',
+        data,
     });
 }

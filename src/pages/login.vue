@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2022-06-07 10:14:58
  * @LastEditors: lujunan
- * @LastEditTime: 2022-07-14 14:37:46
+ * @LastEditTime: 2024-04-08 20:57:15
 -->
 
 <template>
@@ -26,7 +26,7 @@
                             placeholder="请输入用户名/手机账户/邮箱"
                             :prefix-icon="User"
                             clearable
-                            autocomplete="on"
+                            autocomplete="off"
                         />
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
@@ -36,7 +36,7 @@
                             placeholder="请输入密码"
                             :prefix-icon="Lock"
                             clearable
-                            autocomplete="on"
+                            autocomplete="off"
                             @keyup.enter="submitForm(ruleFormRef)"
                         />
                     </el-form-item>
@@ -60,16 +60,14 @@
             <div v-show="!cmtActive">
                 <div class="user-login">用户注册</div>
                 <el-form
-                    ref="ruleFormRef"
-                    :rules="rules"
                     label-width="120px"
                     status-icon
                     label-position="top"
-                    :model="ruleForm"
+                    :model="registerForm"
                 >
                     <el-form-item label="账户" prop="name">
                         <el-input
-                            v-model="ruleForm.name"
+                            v-model="registerForm.name"
                             autofocus
                             placeholder="请输入用户名/手机账户/邮箱"
                             :prefix-icon="User"
@@ -79,7 +77,7 @@
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
                         <el-input
-                            v-model="ruleForm.password"
+                            v-model="registerForm.password"
                             type="password"
                             placeholder="请输入密码"
                             :prefix-icon="Lock"
@@ -89,12 +87,12 @@
                     </el-form-item>
                     <el-form-item label="再次输入密码" prop="password">
                         <el-input
-                            v-model="ruleForm.repPsw"
+                            v-model="registerForm.repPsw"
                             type="password"
                             placeholder="请再次输入密码"
                             :prefix-icon="Lock"
                             clearable
-                            autocomplete="on"
+                            autocomplete="off"
                         />
                     </el-form-item>
                     <el-form-item>
@@ -133,6 +131,12 @@ const ruleForm = reactive({
     repPsw: '',
 });
 
+const registerForm = reactive({
+    name: '',
+    password: '',
+    repPsw: '',
+});
+
 const loginLoading = ref(false);
 
 const $router = useRouter();
@@ -153,46 +157,55 @@ const checkPsw = (rule, value, callback) => {
     // }
     callback();
 };
-const rules = reactive<FormRules>({
+const rules = reactive<FormRules<ruleForm>>({
     name: [
         {
             required: true,
-            trigger: 'blur',
             validator: checkName,
+            trigger: 'blur',
         },
     ],
     password: [
         {
             required: true,
-            trigger: 'blur',
             validator: checkPsw,
+            trigger: 'blur',
         },
     ],
     repPsw: [
         {
             required: true,
-            trigger: 'blur',
             validator: checkPsw,
+            trigger: 'blur',
         },
     ],
 });
 
 const submitForm = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
-    await formEl.validate(async (valid, fields) => {
+    await formEl.validate((valid, fields) => {
         if (valid) {
             loginLoading.value = true;
             const loginStore = useLoginStore();
-            const result = await loginStore.userLoginHandle(ruleForm);
-            if (result) {
-                proxy.$message({
-                    message: '登录成功',
-                    type: 'success',
+            loginStore
+                .userLoginHandle(ruleForm)
+                .then((result) => {
+                    if (result) {
+                        proxy.$message({
+                            message: '登录成功',
+                            type: 'success',
+                        });
+                        $router.push({ path: '/home' });
+                        loginLoading.value = false;
+                    }
+                })
+                .catch(() => {
+                    proxy.$message({
+                        message: '登录失败',
+                        type: 'error',
+                    });
+                    loginLoading.value = false;
                 });
-                await sleep(2000);
-                loginLoading.value = false;
-                $router.push({ path: '/home' });
-            }
         }
     });
 };

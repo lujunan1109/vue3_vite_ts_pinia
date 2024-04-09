@@ -2,7 +2,7 @@
  * @Author: lujunan
  * @Date: 2022-06-27 14:53:16
  * @LastEditors: lujunan
- * @LastEditTime: 2024-02-06 22:00:03
+ * @LastEditTime: 2024-04-09 10:18:59
  * @Description: 工具函数
  */
 
@@ -148,3 +148,26 @@ export const useThemeCahenge = (theme: string) => {
     document.querySelector('html').setAttribute('class', theme);
     // document.querySelector('html').setAttribute('data-theme', theme);
 };
+
+/**
+ * 对象转qs字符串
+ */
+export function objectToQueryString(obj, parentKey = null) {
+    return Object.keys(obj)
+        .map((key) => {
+            const value = obj[key];
+            if (typeof value === 'object' && !Array.isArray(value)) {
+                return objectToQueryString(
+                    value,
+                    parentKey
+                        ? `${parentKey}[${encodeURIComponent(key)}]`
+                        : encodeURIComponent(key),
+                );
+            }
+            const finalKey = parentKey
+                ? `${parentKey}[${encodeURIComponent(key)}]`
+                : encodeURIComponent(key);
+            return `${finalKey}=${encodeURIComponent(value)}`;
+        })
+        .join('&');
+}

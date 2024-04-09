@@ -3,7 +3,7 @@
  * @Author: lujunan
  * @Date: 2024-02-29 18:33:19
  * @LastEditors: lujunan
- * @LastEditTime: 2024-02-29 19:25:14
+ * @LastEditTime: 2024-04-08 21:43:18
 -->
 <template>
     <div>
@@ -21,6 +21,7 @@
         <div style="margin: 20px">
             <el-button type="primary" @click="customUplaod">手动上传</el-button>
         </div>
+        <upload-big-file></upload-big-file>
     </div>
 </template>
 

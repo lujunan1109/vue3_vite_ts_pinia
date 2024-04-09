@@ -60,7 +60,7 @@ export const login = Mock.mock('/login', 'post', {
                     index: 6,
                     icon: 'Suitcase',
                 },
-                component: '/func/index',
+                component: '/main',
                 children: [
                     {
                         path: '/theme',
@@ -98,7 +98,7 @@ export const login = Mock.mock('/login', 'post', {
                     index: 6,
                     icon: 'Box',
                 },
-                component: '/comp/index',
+                component: '/main',
                 children: [
                     {
                         path: '/table',
@@ -190,7 +190,7 @@ export const asyncRoutes = Mock.mock('/router', 'post', {
                     index: 6,
                     icon: 'Suitcase',
                 },
-                component: '/func/index',
+                component: '/main',
                 children: [
                     {
                         path: '/theme',
@@ -228,7 +228,7 @@ export const asyncRoutes = Mock.mock('/router', 'post', {
                     index: 6,
                     icon: 'Box',
                 },
-                component: '/comp/index',
+                component: '/main',
                 children: [
                     {
                         path: '/table',
@@ -326,7 +326,7 @@ export const asyncTestRoutes = Mock.mock('/router/test', 'post', {
                     index: 6,
                     icon: 'Box',
                 },
-                component: '/comp/index',
+                component: '/main',
                 children: [
                     {
                         path: '/table',

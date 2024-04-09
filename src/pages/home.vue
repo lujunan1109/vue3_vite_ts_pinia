@@ -176,6 +176,7 @@ $el-box-shadow-dark: 0px 16px 48px 16px rgba(0, 0, 0, 0.08),
     height: 60px;
     border-radius: 5px;
     transition: transform 0.3s;
+    will-change: transform;
     &:hover {
         transform: scaleX(1.05) scaleY(1.05);
     }
